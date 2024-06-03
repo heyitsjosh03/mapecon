@@ -1,0 +1,415 @@
+body {
+  margin: 0;
+  font-family: "Oxygen", Arial, sans-serif;
+}
+
+/* Leave Pending */
+.container_report_report {
+  display: block;
+  margin: 0 auto;
+  padding: 40px;
+  border: 1px solid #D6DDE1;
+  border-radius: 7px;
+  width: 70%;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Adjust as needed */
+  margin-top: 140px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.filter-row th{
+  border: none;
+}
+
+input[type="checkbox"] {
+  width: 15px; /* Set width */
+  height: 15px; /* Set height */
+}
+
+td{
+  background-color: white;
+}
+
+td:nth-child(1) {
+  text-align: center; /* Align content to the center */
+  max-width: 5px;
+}
+
+td:nth-child(2) {
+  text-align: center; /* Align content to the center */
+  max-width: 100px;
+}
+
+td:nth-child(6), td:nth-child(7), td:nth-child(8) {
+  width: 20px;
+}
+
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+td:nth-child(2){
+  font-weight: bold;
+}
+
+.th {
+  background-color: #f6f6f6;
+  color: black;
+  font-weight: bold;
+  border-top: 1px solid #ddd;
+
+}
+
+.th:nth-child(1), .th:nth-child(2), .th:nth-child(6){
+  text-align: center;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+.actions {
+  text-align: center;
+}
+
+.eye i{
+  color: #68719D;
+  cursor: pointer;
+  border: 1px solid #68719D; /* Add border */
+  border-radius: 5px; /* Optional: Add border radius for rounded corners */
+  padding: 5px; /* Optional: Add padding to adjust the space between the icon and the border */
+}
+
+.check i{
+  color: green;
+  cursor: pointer;
+  border: 1px solid green; /* Add border */
+  border-radius: 5px; /* Optional: Add border radius for rounded corners */
+  padding: 5px 5px; /* Optional: Add padding to adjust the space between the icon and the border */
+}
+
+.close i {
+  color: #b40000;
+  cursor: pointer;
+  border: 1px solid #b40000; /* Add border */
+  border-radius: 5px; /* Optional: Add border radius for rounded corners */
+  padding: 5px 7px; /* Optional: Add padding to adjust the space between the icon and the border */
+}
+
+.trash i {
+  color: #b40000;
+  cursor: pointer;
+  border: 1px solid #b40000; /* Add border */
+  border-radius: 5px; /* Optional: Add border radius for rounded corners */
+  padding: 5px 7px; /* Optional: Add padding to adjust the space between the icon and the border */
+}
+
+
+
+.eye i:hover {
+  color: blue;
+  border: 1px solid blue;
+  transition: all 0.3s ease;
+  padding: 7px;
+}
+
+.close i:hover {
+  color: red;
+  border: 1px solid red;
+  transition: all 0.3s ease;
+  padding: 7px 9px;
+}
+
+.trash i:hover {
+  color: red;
+  border: 1px solid red;
+  transition: all 0.3s ease;
+  padding: 7px 9px;
+}
+
+.check i:hover{
+  color: #08ac6c;
+  border: 1px solid #08ac6c;
+  transition: all 0.3s ease;
+  padding: 7px;
+}
+
+.filter-row {
+  display: flex;
+  width: min-content;
+  border: none;
+}
+.filter-row input[type="number"]{
+  width: 30px;
+  padding: 5px;
+  border: none;
+  margin-right: 2px;
+  border-radius: 8px;
+  background-color: #F3F3F3;
+}
+
+.filter-row input[type="text"],  
+.filter-row input[type="date"] {
+  width: 120px;
+  padding: 5px;
+  border: none;
+  border-radius: 8px;
+  background-color: #D9D9D9;
+  color: black;
+}
+
+.filters {
+  margin-bottom: 20px;
+}
+.entries {
+  font-weight: normal;
+  margin-right: 15px;
+  white-space: nowrap;
+}
+
+.leave-report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-button {
+  background-color: #343434;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 8px 8px;
+  width: 120px;
+}
+
+.dropdown-menu {
+  display: none;
+  background-color: white;
+  border-radius: 6px;
+  width: 190px;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  list-style: none;
+  padding: 0;
+  position: absolute;
+  right: 5%; /* Adjust left positioning as needed */
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu li {
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.dropdown-menu li:hover {  /* Added hover state styles */
+  background-color: #e0e0e0; /* Change hover background color */
+}
+
+.dropdown-menu a {
+  text-decoration: none; /* Remove default link underline */
+  color: black;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+@media only screen and (max-width: 768px) {
+
+  td input[type="checkbox"], th input[type="checkbox"]{
+    margin-right: -5px;
+    } 
+
+  .th:nth-child(4), .th:nth-child(5), td:nth-child(4), td:nth-child(5) {
+    display: none;
+  }
+
+  .th.th:nth-child(6){
+    column-span: 4;
+  }
+
+  td:nth-child(6), td:nth-child(7), td:nth-child(8) {
+    max-width: 20px;
+  }
+
+  .filter-row {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center; /* Center horizontally */
+  }
+
+
+  .filter-row input[type="text"],
+  .filter-row input[type="date"] {
+    padding: 5px;
+    border: none;
+    border-radius: 8px;
+    background-color: #D9D9D9;
+    color: black;
+    margin-top: 5px; /* Add spacing between inputs */
+    width: 320px;
+  }
+
+  .tooltip:hover .tooltiptext-eye,
+  .tooltip:hover .tooltiptext-approve,
+  .tooltip:hover .tooltiptext-reject {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+}
+
+/* Tooltip text */
+.tooltiptext-eye {
+  font-size: 13px;
+  visibility: hidden;
+  width: max-content;
+  background-color: blue; /* Change the color as needed */
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltiptext-approve {
+  font-size: 13px;
+  visibility: hidden;
+  width: max-content;
+  background-color: green; /* Change the color as needed */
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltiptext-reject, .tooltiptext-delete {
+  font-size: 13px;
+  visibility: hidden;
+  width: max-content;
+  background-color: red; /* Change the color as needed */
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip text visibility on hover */
+.tooltip:hover .tooltiptext-eye {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip:hover .tooltiptext-approve {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip:hover .tooltiptext-reject {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip:hover .tooltiptext-delete {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Style the sidebar */
+.sidebar {
+  height: 90%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 1;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+/* The sidebar links */
+.sidebar a {
+  padding: 10px 15px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style the content */
+.content {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+.leave-report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.menu{
+  margin-top: 50px;
+}

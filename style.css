@@ -1,0 +1,1686 @@
+body {
+  margin: 0;
+  font-family: "Oxygen", Arial, sans-serif;
+}
+
+/* Header Styling */
+
+header {
+  background-color: #303033;
+  border-bottom: 4px solid #B40000;
+  color: #fff;
+  padding: 1px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  }
+
+  .logo_header img {
+  width: 120px;
+  height: auto;
+  margin-top: 5px;
+  margin-left: 40px;
+  }
+
+  .profile-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 20px;
+  }
+
+  .profile-dropdown img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: 12px;
+  margin-right: 30px;
+  }
+
+  .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: max-content;
+  white-space: nowrap;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 10px;
+  padding: 8px;
+  transition: all 0.3s ease;
+  margin-right: 30px;
+  }
+
+  .dropdown-content:hover {
+  padding: 12px;
+  }
+
+  .dropdown-content a {
+  color: #fff;
+  padding: 8px 16px;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  }
+
+  .dropdown-content a:hover {
+  border-radius: 10px;
+  color: #b40000;
+  }
+
+  /* Styling the Sidebar */
+.sidebar {
+  height: 100%;
+  visibility: hidden;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  margin-top: 160px;
+  font-weight: 400;
+}
+
+/* The sidebar links */
+.sidebar a {
+  color: black;
+  border-radius: 7px;
+  margin-top: 10px;
+  margin-left: 20% ;
+  width: 60%;
+  padding: 10px 15px;
+  text-decoration: none;
+  font-size: 16px;
+  display: flex; /* Use flexbox */
+  align-items: center; /* Vertically center items */
+  justify-content: flex-start; /* Align items to the start (left) */
+  transition: 0.3s;
+}
+
+.leave-label{
+  margin-left: 20% ;
+  font-size: small;
+}
+
+.home-sidebar{
+  margin-bottom: 20px;
+}
+
+#active{
+  color: white;
+  background-color: #b40000;
+}
+
+/* Style the sidebar icons */
+.sidebar a i {
+  margin-right: 10px; /* Add margin between icon and text */
+}
+
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+  color: white;
+  background-color: #b40000;
+  transition: none;
+}
+
+/* Position and style the close button (top right corner) */
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style the content */
+.content {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+.leave-report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.openbtn {
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.menu {
+  font-size: 23px;
+  font-weight: bolder;
+  margin-left: 50px;
+  margin-top: 100px;
+  margin-bottom: 20px;
+}
+
+  /* Home h3 */
+
+  .h3-home{
+    margin-left: 17px;
+  }
+
+  .h3-dashboard{
+    margin-left: -1px;
+  }
+
+  /* Forgor Password */
+
+  .h2-forgor{
+    margin-bottom: 0px;
+  }
+
+  .p-forgor{
+    margin-bottom: 30px;
+  }
+
+
+  /* Date and Time and Name Greeting! */
+  
+  #date-time {
+    font-size: 0.8rem; 
+    color: black; 
+    display: inline;
+    position: absolute;
+    right: 50px;
+  }
+
+  #name-greeting{
+    font-size: 0.8rem; 
+    color: black; 
+    display: inline;
+    position: absolute;
+    right: 50px;
+  }
+
+  .user-name{
+    color: red;
+    text-transform: uppercase;
+  }
+
+  /* Month and Year Filter */
+  #monthFilter{
+    width: 120px;
+    padding: 5px;
+    border: none;
+    border-radius: 8px;
+    background-color: #EBEBEB;
+    color: black;
+    margin-left: 10px;
+  }
+  
+  /* Dashboard */
+  .data-visualization {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 300px); 
+  }
+
+  .container_dashboard {
+    justify-content: center;
+    align-items: center;
+    width: 92%;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px; 
+  }
+
+  .dashboard-body {
+    background-color: #f4f4f4;
+  }
+
+  .dashboard-content {
+    padding: 20px;
+    margin-top: -50px;
+  }
+  .dashboard-content h1 {
+    margin-top: -40px;
+    margin-bottom: 10px;
+  }
+ 
+  .admin-container {
+    display: flex;
+    justify-content: center;
+  }
+  .admin-home {
+    flex: 1;
+    padding-right: 10px;
+  }
+  .admin-dashboard {
+    flex: 1;
+    padding-left: 10px;
+  
+  }
+
+  #monthFilter-dashboard{
+    width: 120px;
+    padding: 5px;
+    border: none;
+    border-radius: 8px;
+    background-color: #EBEBEB;
+    color: black;
+    margin-left: 10px;
+  }
+
+  #monthFilter option:active{
+  border: 2px solid black;
+  }
+  
+  #monthFilter option, 
+  #yearFilter option {
+    background: white;
+  }
+
+  #yearFilter-dashboard,
+  #yearFilter {
+  margin-left: 10px;
+  width: 120px;
+  padding: 5px;
+  border: none;
+  border-radius: 8px;
+  background-color: #EBEBEB;
+  color: black;
+  }
+
+/* New container for filters and nav button */
+.filter-nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px; 
+}
+
+/* Filters table styling */
+.filters {
+  display: flex;
+  align-items: center;
+}
+
+/* Navigation buttons container */
+.navigation-buttons {
+  display: flex;
+  align-items: center;
+}
+
+/* Changing of graph button */
+.nav-button {
+  background-color: #303030;
+  width: 100px;
+  border: none;
+  color: white;
+  padding: 7px 15px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.nav-button:hover {
+  background-color: #404040; 
+}
+
+  /* PROFILE DROPDOWN */
+  /* Style for the profile dropdown */
+  .profile-dropdown-toggle {
+      display: none; /* Hide the checkbox input */
+  }
+  
+  .profile-dropdown {
+      position: relative;
+      display: inline-block;
+  }
+  
+  .profile-dropdown img {
+      width: 40px; /* Adjust the width of the profile image */
+      height: 40px; /* Adjust the height of the profile image */
+      border-radius: 50%; /* Make the profile image circular */
+      cursor: pointer;
+  }
+  
+  .dropdown-content {
+      position: absolute;
+      right: 0; /* Adjust the right position of the dropdown content */
+      background-color: #f9f9f9;
+      min-width: 120px; /* Set the minimum width of the dropdown content */
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); /* Add shadow to the dropdown content */
+      z-index: 1;
+      display: none; /* Hide the dropdown content by default */
+  }
+  
+  .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+  }
+  
+  .dropdown-content a:hover {
+      background-color: #f1f1f1; /* Change background color on hover */
+  }
+  
+  /* Show dropdown content when checkbox is checked */
+  .profile-dropdown-toggle:checked + .profile-dropdown .dropdown-content {
+      display: block;
+  }
+
+.container-login {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+    justify-content: center; 
+    align-items: center; 
+  }
+
+.container-sign {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  justify-content: center; 
+  align-items: center; 
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.no-header-padding {
+  padding-top: 0; 
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-image: url("/mapecon/Pictures/Mapecon_BG-Img.jpg");
+  filter: blur(2px);
+}
+
+.background-image-1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  z-index: -1; /* Ensure it's behind the form */
+  background-image: url("/mapecon/Pictures/Mapecon_BG-Img.jpg");
+  filter: blur(2px);
+}
+
+/* LOGIN AND SIGN UP */
+.sign-form,
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 20px;
+  width: 400px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.login-btn {
+  background-color: red;
+  color: white;
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 15px; 
+  border: none; 
+  border-radius: 5px;
+  font-weight: bold;  
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login-btn:hover {
+  background-color: #B40000;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px 0 10px 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="tel"]:hover,
+input[type="password"]:hover,
+input[type="date"]:hover,
+input[type="number"]:hover,
+textarea:hover {
+  border: 2px solid black;
+  border-radius: 3px;
+}
+
+.logo {
+  width: 200px;
+  align-self: center;
+}
+
+/* Style the form group for name fields */
+.name-fields {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Style the individual form group */
+.form-group {
+  flex-basis: calc(50% - 5px); /* Adjust as needed */
+}
+
+/* Style the labels and inputs */
+.form-group label,
+.form-group input {
+  width: 100%;
+}
+
+/* Text Styles */
+h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+p {
+  text-align: center;
+  color: #4f4d4d;
+  margin-bottom: 10px;
+}
+
+/* Link Styles */
+
+/* Style for the container holding both "forgot password" and "remember me" */
+.remember-forgot-container {
+  display: flex; /* Use flexbox to align items */
+  justify-content: space-between; /* Space items evenly */
+  align-items: center; /* Center items vertically */
+}
+
+/* Style for the forgot password link */
+.remember-me,
+.forgot-password {
+  text-decoration: none; /* Remove underline */
+  font-size: 13px;
+  color: #333;
+}
+
+/* Style for the remember me checkbox and label */
+.remember-me {
+  margin-right: 10px; /* Add some space between checkbox and label */
+}
+
+/* Style for the checkbox input */
+.remember-me input[type="checkbox"] {
+  vertical-align: middle;
+}
+
+.forgot-password:hover{
+  text-decoration: underline;
+}
+
+.sign-up-link {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.sign-up-link a {
+  color: #333; 
+  text-decoration: none; 
+}
+
+.sign-up-link a:hover {
+  text-decoration: underline;
+}
+
+/* Alert Styles */
+.alert {
+  padding: 10px;
+  background-color: #f44336;
+  color: white;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  text-align: center;
+  position: relative;
+}
+
+.alert-success{
+  padding: 10px;
+  background-color: green;
+  color: white;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  text-align: center;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+/* When moving the mouse over the close button */
+.close-btn:hover {
+  color: rgb(201, 199, 199);
+}
+.alert-success {
+  background-color: #4CAF50;
+  color: white;
+}
+.alert-error {
+  background-color: #f44336;
+  color: white;
+}
+
+/* END LOGIN AND SIGN UP */
+
+/* FORM FIELDS */
+/* Style the leave application form */
+
+.change-password,
+.profile-edit {
+  margin: 0 auto;
+  margin-top: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.leave-application {
+  margin: 0 auto;
+  margin-top: -20px;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+
+/* Style the form */
+.leave-application form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Style the leave type label and select */
+.department-edit,
+.leave-type,
+#others {
+  width: 100%; 
+  margin-bottom: 20px;
+  border: 1px solid #ccc; 
+  border-radius: 3px;
+  box-sizing: border-box; 
+  resize: none; 
+}
+
+.department-edit select,
+.leave-type select {
+  width: 100%;
+  padding: 10px;
+  border: none; 
+  border-radius: 3px;
+}
+
+#others {
+  width: 100%;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.others {
+  width: 100%; 
+  border: none; 
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+/* Style the date range container */
+.date-range {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Style the from-date and to-date containers */
+.from-date,
+.to-date,
+.num-of-days {
+  margin-top: 5px;
+  width: 31%; /* Adjust as needed */
+  border-radius: 3px;
+}
+
+
+/* Style the date inputs */
+.from-date input[type="date"],
+.to-date input[type="date"],
+.num-of-days input[type="number"] {
+  width: 100%;
+  padding: 10px 10px 10px 10px;
+  border: 1px solid #ccc;; 
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+#others:hover,
+#leave-type:hover,
+.from-date input[type="date"]:hover,
+.to-date input[type="date"]:hover,
+.num-of-days input[type="number"]:hover,
+.reason textarea:hover {
+
+  border: 2px solid black; 
+}
+/* Style the reason field container */
+
+.reason-label{
+  margin-top: 20px;
+}
+
+.reason {
+  width: 100%; /* Set width to 100% to match other field containers */
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+/* Style the reason textarea */
+.reason textarea {
+  width: calc(100% - 22px); /* Adjusted width to account for border and padding */
+  padding: 11px; /* Added padding to match other fields */
+  border: none; /* Removed border to ensure consistency */
+  border-radius: 3px; /* Removed border radius to ensure consistency */
+  resize: none; 
+  height: 80px;
+}
+
+/* Style the profile container */
+.profile-container {
+  margin: 20px auto;
+  width: 35%;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+/* Style the heading */
+.h2_field {
+  margin-top: 40px;
+}
+
+/* Style the form */
+.profile-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Style the input fields */
+.profile-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.profile-form input[type="text"],
+.profile-form input[type="tel"],
+.profile-form input[type="email"],
+.profile-form input[type="password"] {
+  width: calc(50% - 10px); /* Adjusted width to fit two inputs in a row with margin */
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+/* BUTTONS */
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buttons button {
+  padding: 10px 20px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* Style the cancel button */
+.buttons button[type="button"] {
+  background-color: #F0F0F0;
+}
+
+/* Style the save and submit buttons */
+#pdf-btn{
+  background-color: transparent;
+  border: 2px solid red; 
+  color: red; 
+  cursor: pointer; 
+}
+
+#submit-btn{
+  background-color: #B40000;
+  color: #fff;
+}
+
+#leave-btn {
+  background-color: #B40000;
+  color: #fff;
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Style for hover buttons */
+.buttons button[type="button"]:hover {
+  background-color: lightgrey; 
+}
+#pdf-btn:hover {
+  background-color: red; 
+  color: white; 
+}
+#submit-btn:hover {
+  background-color: #fa2020;
+}
+
+#leave-btn:hover {
+  background-color: #fa2020;
+}
+/* End Style for hover buttons */
+/* END BUTTONS */
+
+/* CARD STYLE */
+.card-container, .card-container-admin {
+  display: flex;
+  justify-content: center; 
+  flex-wrap: wrap; 
+  margin-top: 120px;
+}
+
+.card-container-wrapper {
+  text-align: center;
+}
+
+.card {
+  position: relative; 
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); 
+  width: 120px;
+  height: 120px; 
+  margin: 20px; 
+  text-align: center;
+  font-family: arial;
+  border-radius: 10px; 
+  overflow: hidden; 
+}
+
+.card:hover {
+  padding: 20px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4); 
+  transition: all 0.3s ease;
+}
+
+.card-content {
+  position: relative;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  height: 100%; 
+}
+
+.card p {
+  margin-bottom: 20px;
+}
+
+.card img {
+  max-width: 50px; 
+  max-height: 50px; 
+}
+/* END CARD STYLE */
+
+@media only screen and (max-width: 768px) {
+  .card-container-admin{
+     margin-top: 75px;
+  }
+
+  .container_dashboard {
+    width: 75%;
+    margin-left: -15px;
+  }
+
+  #monthFilter-dashboard{
+    margin-left: 20px
+  }
+
+  .card:hover {
+    padding: 10px;
+  }
+}
+
+/* Make the form responsive on phone and tablet breakpoints */
+@media only screen and (max-width: 768px) {
+
+  button{
+    font-size: 10px;
+  }
+
+  label{
+    font-size: 10px;
+  }
+
+  .login-form {
+    width: 80%;
+  }
+
+  .h2_field {
+    margin-top: 30px;
+  }
+
+  .leave-application {
+    width: 70%;
+    margin-top: 0px;
+  }
+  
+  .leave-type,
+  .date-range {
+    width: 100%;
+  }
+
+  .change-password, .profile-edit, .leave-application{
+    width: 75%;
+  }
+  
+}
+
+/* Media query for responsiveness */
+@media only screen and (max-width: 600px) {
+  header {
+    padding: 2.5px 20px; 
+  }
+  .logo_header img{
+    width: 100px;
+    margin-left: 10px;
+  }
+
+  .profile-dropdown img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .file-leave-container {
+    padding: 10px;
+  }
+}
+
+/* Media query for responsiveness */
+@media (max-width: 600px) {
+
+  .leave-container {
+    padding: 20% 10%;
+  }
+
+  .leave-container h1 {
+    font-size: 1.2em; 
+  }
+
+  .leave-container p {
+    font-size: 1em; 
+  }
+
+  .profile-edit{
+    margin-top: 0px;
+  }
+
+}
+
+@media (max-width: 300px) {
+
+  .leave-container {
+    padding: 30% 10%;  
+  }
+
+  .leave-container h1 {
+    font-size: 1em; 
+  }
+
+  .leave-container p {
+    font-size: 0.8em;  /* Adjust as needed */
+  }
+  
+}
+
+@media only screen and (max-width: 768px) {
+.sidebar{
+  margin-top: 0%;
+  z-index: 1002;
+}
+
+.sidebar a{
+  width: 80%;
+  margin-left: 3.5%;
+}
+
+.leave-label{
+  margin-left: 5% ;
+}
+
+.overlay {
+  display: none;
+  position: fixed; 
+  width: 100%; 
+  height: 100%; 
+  top: 0; 
+  left: 0;
+  background-color: rgba(0,0,0,0.5); /* Semi-transparent black */
+  z-index: 1001; /* Ensure it's above everything else */
+}
+
+.data-visualization{
+  margin-left: -25px;
+}
+
+.admin-container {
+  display: block;
+  justify-content: center;
+}
+
+.admin-dashboard {
+  margin-left: 10px;
+  padding-left: 10px;
+}
+
+.h3-home{
+  margin-left: 14px;
+}
+
+.h3-dashboard{
+  margin-left: -15px;
+}
+
+#monthFilter-dashboard{
+  margin-left: 45px;
+}
+
+.navigation-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.nav-button {
+  background-color: #303030; /* Green background */
+  border: none;
+  color: white; /* White text */
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px; /* Rounded corners */
+  transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+  background-color: #404040; /* Darker green on hover */
+}
+
+}
+
+
+/* More Media Queries */
+
+@media only screen and (max-width: 920px) {
+
+  .openbtn{
+    margin-left: -15px;
+  }
+
+  #date-time {
+    right: 50px;
+  }
+
+  .leave-application {
+    width: 90%;
+  }
+}
+@media only screen and (min-width: 1020px) and (max-width: 1280px) {
+
+  /* CARD STYLE */
+  .card-container, .card-container-admin {
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap; 
+    margin-top: -20px;
+  }
+  
+  #yearFilter-dashboard,
+  #monthFilter-dashboard{
+    width: 85px;
+    border: none;
+    border-radius: 8px;
+    background-color: #EBEBEB;
+    color: black;
+    margin-top: 20px;
+  }
+   
+  /* New container for filters and nav button */
+  .filter-nav-container {
+    align-items: center;
+    width: 90%;
+    margin-top: -30px;
+    margin-left: -5px;
+  }
+  /* Changing of graph button */
+  .nav-button {
+    background-color: #303030; 
+    border: none;
+    color: white;
+    padding: 7px 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 11px;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 85px;
+    margin-right: -40px;
+    margin-top: 30px;
+  }
+  .container_dashboard {
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: fit-content;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 20px; 
+  }
+  #visualization1 {
+    margin-top: 5px;
+    margin-left: 30px; 
+    height: 420px; 
+    width: 380px;
+  }
+  #visualization2 {
+    margin-top: 5px;
+    margin-left: 30px; 
+    height: 420px; 
+    width: 380px;
+  }
+}
+@media only screen and (min-width: 820px) and (max-width: 920px) {
+
+  /* CARD STYLE */
+  .card-container, .card-container-admin {
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap; 
+    margin-top: -20px;
+  }
+  
+  #yearFilter-dashboard,
+  #monthFilter-dashboard{
+    width: 85px;
+    border: none;
+    border-radius: 8px;
+    background-color: #EBEBEB;
+    color: black;
+    margin-top: 20px;
+  }
+   
+  /* New container for filters and nav button */
+  .filter-nav-container {
+    align-items: center;
+    width: 90%;
+    margin-top: -30px;
+    margin-left: -5px;
+  }
+  /* Changing of graph button */
+  .nav-button {
+    background-color: #303030; 
+    border: none;
+    color: white;
+    padding: 7px 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 11px;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 85px;
+    margin-right: -40px;
+    margin-top: 30px;
+  }
+  .container_dashboard {
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: fit-content;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 20px; 
+  }
+  #visualization1 {
+    margin-top: 5px;
+    margin-left: 30px; 
+    height: 420px; 
+    width: 380px;
+  }
+  #visualization2 {
+    margin-top: 5px;
+    margin-left: 30px; 
+    height: 420px; 
+    width: 380px;
+  }
+}
+
+@media only screen and (min-width: 680px) and  (max-width: 800px) {
+
+  /* CARD STYLE */
+  .card-container, .card-container-admin {
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap; 
+    margin-top: -20px;
+  }
+
+
+  #yearFilter-dashboard,
+  #monthFilter-dashboard{
+    width: 85px;
+    border: none;
+    border-radius: 8px;
+    background-color: #EBEBEB;
+    color: black;
+    margin-top: 20px;
+  }
+   
+  /* New container for filters and nav button */
+  .filter-nav-container {
+    align-items: center;
+    width: 100%;
+    margin-top: -20px;
+    margin-left: -25px;
+  }
+  /* Changing of graph button */
+  .nav-button {
+    background-color: #303030; 
+    border: none;
+    color: white;
+    padding: 7px 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 11px;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 85px;
+    margin-top: 15px;
+    margin-right: -25px;
+  }
+  .container_dashboard {
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    height: fit-content;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 20px; 
+  }
+  #visualization1 {
+    margin-top: 5px;
+    margin-left: 100px; 
+    height: 450px; 
+    width: 400px;
+  }
+  #visualization2 {
+    margin-top: 5px;
+    margin-left: 100px; 
+    height: 450px; 
+    width: 400px;
+  }
+  
+}
+
+@media only screen and (max-width: 630px) {
+  #date-time {
+    right: 55px;
+  }
+
+  .leave-application {
+    width: 75%;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 679px) {
+  /* Home h3 */
+  .h3-home{
+    visibility: hidden;
+  }
+
+  /* CARD STYLE */
+  .card-container, .card-container-admin {
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap; 
+    margin-top: -40px;
+  }
+
+  #yearFilter-dashboard,
+  #monthFilter-dashboard{
+    width: 85px;
+    border: none;
+    border-radius: 8px;
+    background-color: #EBEBEB;
+    color: black;
+    margin-top: 20px;
+  }
+   
+  /* New container for filters and nav button */
+  .filter-nav-container {
+    align-items: center;
+    width: 100%;
+    margin-top: -30px;
+    margin-left: -45px;
+  }
+  /* Changing of graph button */
+  .nav-button {
+    background-color: #303030; /* Green background */
+    border: none;
+    color: white;
+    padding: 7px 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 11px;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 85px;
+    margin-right: -45px;
+  }
+  .container_dashboard {
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: fit-content;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 20px; 
+  }
+  #visualization1 {
+    margin-top: 5px;
+    margin-left: 0px; 
+    height: 400px; 
+    width: 360px;
+  }
+  #visualization2 {
+    margin-top: 5px;
+    margin-left: 0px; 
+    height: 400px; 
+    width: 360px;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+
+  .openbtn{
+    margin-left: -5px;
+  }
+
+  #date-time {
+    font-size: 0.7rem; /* Adjust font size as needed */
+    right: 45px;
+  
+  }
+}
+
+@media only screen and (min-width: 400px) and (max-width: 479px) {
+
+  /* Home h3 */
+  .h3-home{
+    visibility: hidden;
+  }
+  
+  /* CARD STYLE */
+  .card-container, .card-container-admin {
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap; 
+    margin-top: -40px;
+  }
+
+  /* Dashboard */
+  .data-visualization {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  #yearFilter-dashboard,
+  #monthFilter-dashboard{
+    width: 85px;
+    border: none;
+    border-radius: 8px;
+    background-color: #EBEBEB;
+    color: black;
+    margin-top: 20px;
+  }
+   
+  /* New container for filters and nav button */
+  .filter-nav-container {
+    align-items: center;
+    width: 100%;
+    margin-top: -30px;
+    margin-left: -45px;
+  }
+  /* Changing of graph button */
+  .nav-button {
+    background-color: #303030;
+    border: none;
+    color: white;
+    padding: 7px 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 11px;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 85px;
+    margin-top: 5px;
+    margin-inline-start: 10px;
+  }
+  .container_dashboard {
+    justify-content: center;
+    align-items: center;
+    width: 92%;
+    height: fit-content;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 20px; 
+  }
+  #visualization1 {
+    margin-top: 5px;
+    margin-left: 0px; 
+    height: 395px; 
+    width: 300px;
+  } 
+  #visualization2 {
+    margin-top: 5px;
+    padding-left: 20px; 
+    height: 395px; 
+    width: 300px;
+  }  
+  
+}
+
+@media only screen and (min-width: 375px) and (max-width: 399px) {
+
+  .h3-home{
+    visibility: hidden;
+  }
+
+  .openbtn{
+    margin-left: -10px;
+  }
+
+  #date-time {
+    font-size: 0.7rem; /* Adjust font size as needed */
+    right: 40px;
+  }
+  
+  /*(Iphone SE) and 12 Pro*/
+  /* CARD STYLE */
+  .card-container, .card-container-admin {
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap; 
+    margin-top: -40px;
+  }
+
+  .card-container-wrapper {
+    text-align: center;
+  }
+
+  .card {
+    position: relative; 
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); 
+    width: 100px;
+    height: 100px; 
+    margin: 10px; 
+    text-align: center;
+    font-family: arial;
+    border-radius: 10px; 
+    overflow: hidden; 
+  }
+
+  .card:hover {
+    padding: 20px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4); 
+    transition: all 0.2s ease;
+  }
+
+  .card-content {
+    position: relative;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100%; 
+  }
+  /* END CARD STYLE */
+  /* Dashboard */
+  .data-visualization {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 100%;
+  }
+  
+  #yearFilter-dashboard,
+  #monthFilter-dashboard{
+    width: 80px;
+    border: none;
+    border-radius: 8px;
+    background-color: #EBEBEB;
+    color: black;
+    margin-top: 20px;
+  }
+   
+  /* New container for filters and nav button */
+  .filter-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: -30px;
+    margin-left: -50px;
+  }
+  /* Changing of graph button */
+  .nav-button {
+    background-color: #303030; 
+    border: none;
+    color: white;
+    padding: 7px 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 11px;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 80px;
+    margin-top:5px;  
+    margin-inline-start: 10px;
+  }
+  .container_dashboard {
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    width: 90%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 20px; 
+  }
+  #visualization1 {
+    margin-top: 10px;
+    margin-left: 10px;
+    height: 375px; 
+    width: 240px;
+  }  
+  #visualization2 {
+    margin-top: 10px;
+    height: 375px; 
+    width: 240px;
+  }  
+}
+
+@media only screen and (min-width: 320px) and (max-width: 374px) {
+  /* Home h3 */
+  .h3-home{
+    visibility: hidden;
+  }
+  
+  /* CARD STYLE */
+  .card-container, .card-container-admin {
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap; 
+    margin-top: -40px;
+  }
+  .card-container-wrapper {
+    text-align: center;
+  }
+  .card {
+    position: relative; 
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); 
+    width: 110px;
+    height: 110px; 
+    margin: 10px; 
+    text-align: center;
+    font-family: arial;
+    border-radius: 10px; 
+    overflow: hidden;
+
+  }
+  .card:hover {
+    padding: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4); 
+    transition: all 0.3s ease;
+  }
+  
+  .card-content {
+    position: relative;
+    display: flex;    
+    justify-content: center; 
+    align-items: center; 
+    height: 100%; 
+  }
+  
+  /* New container for filters and nav button */
+  .filter-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:  0%;
+    margin-top: -30px;
+    margin-left: -50px;
+  }
+  #yearFilter-dashboard,
+  #monthFilter-dashboard{
+    width: 70px;
+    border: none;
+    border-radius: 8px;
+    background-color: #EBEBEB;
+    color: black;
+    margin-top: 20px;
+  }
+   
+  /* Changing of graph button */
+  .nav-button {
+    background-color: #303030; 
+    border: none;
+    color: white;
+    padding: 7px 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 70px;
+    margin-inline-start: 10px;
+    margin-top: 5px;
+  }
+  .container_dashboard {
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px; 
+  }
+  #visualization1 {
+    margin-top: 5px;
+    margin-left: -5px; 
+    height: 370px; 
+    width: 240px;
+  } 
+  #visualization2 {
+    margin-top: 5px;
+    margin-left: -30px; 
+    height: 370px; 
+    width: 240px;
+  }  
+}
+
+
+
+
+
+
