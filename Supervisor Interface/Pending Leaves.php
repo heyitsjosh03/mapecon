@@ -120,7 +120,7 @@ $result = $conn->query($sql);
       <th class="th">Leave Until</th>
       <th class="th">Days Covered</th>
       <th class="th"></th>
-      <th class="th" colspan="3">Actions</th>
+      <th class="th">Actions</th>
     </tr>
     <?php
     if ($result->num_rows > 0) {

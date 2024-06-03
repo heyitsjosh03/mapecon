@@ -752,7 +752,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
   }
 
   td input[type="checkbox"], th input[type="checkbox"]{
-    margin-right: 5px;
+    margin-right: -5px;
     } 
 
   .th:nth-child(2), .td:nth-child(2){
