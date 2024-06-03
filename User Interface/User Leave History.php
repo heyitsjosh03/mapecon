@@ -72,7 +72,7 @@ $result = $stmt->get_result();
   </div>
 </header>
 
-<div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span>  EMP<div id="date-time"></div></div>
+<div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span>  LMS<div id="date-time"></div></div>
 
  <!-- Content -->
 <div class="content" id="content">
