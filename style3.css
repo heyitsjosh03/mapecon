@@ -228,7 +228,7 @@ header {
 
 .th-history:nth-child(7), .td-history:nth-child(7){
   width: 180px;
-  text-align: right;
+  text-align: center;
 }
 
 
@@ -386,7 +386,7 @@ td:nth-child(2) {
 
 .th, td {
   padding: 8px;
-  text-align: left;
+  text-align: center;
   border-bottom: 1px solid #ddd;
 }
 
@@ -752,7 +752,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
   }
 
   td input[type="checkbox"], th input[type="checkbox"]{
-    margin-right: -5px;
+    margin-right: 5px;
     } 
 
   .th:nth-child(2), .td:nth-child(2){
