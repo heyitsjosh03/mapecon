@@ -387,7 +387,9 @@ td:nth-child(2) {
 .th, td {
   padding: 8px;
   text-align: center;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #131212;
+  border-left: 1px solid black; 
+  border-right: 1px solid black;
 }
 
 td:nth-child(2){
@@ -398,7 +400,7 @@ td:nth-child(2){
   background-color: #f6f6f6;
   color: black;
   font-weight: bold;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #0c0c0c;
 }
 
 .th:nth-child(1), .th:nth-child(2), .th:nth-child(6){
@@ -441,8 +443,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
   background-color: white;
   padding: 5.5px 8px;
   border-radius: 5px;
-  position: inline-block;
-  margin: 0%;
+  margin-left: 20%;
 }
 
 .btn-leaveHistory{ /* This is the Cancel Button */
@@ -451,9 +452,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
   background-color: white;
   padding: 5.5px 8px;
   border-radius: 5px;
-  position: inline-block;
-  margin-right: 260%;
-  margin-left: -260%;
+  margin-left: 5%;
   
 }
 
@@ -463,8 +462,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
   border-radius: 5px; /* Optional: Add border radius for rounded corners */
   padding: 5.5px 7px; /* Optional: Add padding to adjust the space between the icon and the border */
   background-color: white;
-  position: inline-block;
-  margin-left: -70%;
+  margin-left: 10%;
 }
 
 .btn-leaveHistory-disabled{

@@ -31,7 +31,8 @@ $result = $conn->query($sql);
     text-align: center; /* Center align text in Days Covered column */
 }
     th.Action{
-      text-align:center;
+      text-align: left; /* Align text to the left */
+      padding-left: 40px; /* Adjust this value to set your desired margin-left */
     }
 </style>
 </head>
@@ -127,9 +128,8 @@ $result = $conn->query($sql);
       <th class="th">Date Requested</th>
       <th class="th">Leave Until</th>
       <th class="th">Days Covered</th>
-      <th class="th"></th>
       <th class="th Action" colspan="3">Actions</th>
-      <th class="th"></th>
+      
     </tr>
     <?php
     if ($result->num_rows > 0) {
@@ -143,8 +143,6 @@ $result = $conn->query($sql);
                 echo "<td class='td'>" . $row["from_date"] . "</td>";
                 echo "<td class='td'>" . $row["to_date"] . "</td>";
                 echo "<td class='td days-covered'>" . $row["working_days_covered"] . "</td>";
-                echo "<td class='td'> - </td>";
-                echo "<td class='td'> </td>";
                 echo "<td class='td actions eye tooltip'><a href='view leave docs.php?application_id=" . $row["application_id"] . "' target='_blank'><i class='fa fa-eye'></i><span class='tooltiptext-eye'>View Leave Document</span></a></td>";
                 
                 echo "<td class='td actions tooltip'>";
