@@ -3,7 +3,7 @@ session_start();
 
 include("../sql/config.php");
 // Connect to database
-$conn = mysqli_connect("localhost", "root", "", "mapecon");
+$conn = mysqli_connect("localhost", "root", "Carlo016", "mapecon");
 
 // Check connection
 if ($conn->connect_error) {
@@ -30,6 +30,9 @@ $result = $conn->query($sql);
   td.days-covered {
     text-align: center; /* Center align text in Days Covered column */
 }
+    th.Action{
+      text-align:center;
+    }
 </style>
 </head>
 
@@ -125,7 +128,7 @@ $result = $conn->query($sql);
       <th class="th">Leave Until</th>
       <th class="th">Days Covered</th>
       <th class="th"></th>
-      <th class="th" colspan="3">Actions</th>
+      <th class="th Action" colspan="3">Actions</th>
     </tr>
     <?php
     if ($result->num_rows > 0) {
