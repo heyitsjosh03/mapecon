@@ -3,7 +3,7 @@ session_start();
 
 include("../sql/config.php");
 // Connect to database
-$conn = mysqli_connect("localhost", "root", "", "mapecon");
+$conn = $connection;
 
 // Check connection
 if ($conn->connect_error) {

@@ -3,7 +3,7 @@ session_start();
 
 include("../sql/config.php");
 // Connect to database
-$conn = mysqli_connect("localhost", "root", "", "mapecon");
+$conn = $connection;
 
 // Check connection
 if ($conn->connect_error) {
@@ -26,6 +26,14 @@ $result = $conn->query($sql);
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="/mapecon/Pictures/favicon.png">
 <link rel="stylesheet" href="/mapecon/style3.css">
+<style>
+  td.days-covered {
+    text-align: center; /* Center align text in Days Covered column */
+}
+    th.Action{
+      text-align:center;
+    }
+</style>
 </head>
 
 <body>
@@ -120,7 +128,7 @@ $result = $conn->query($sql);
       <th class="th">Leave Until</th>
       <th class="th">Days Covered</th>
       <th class="th"></th>
-      <th class="th" colspan="3">Actions</th> 
+      <th class="th Action" colspan="3">Actions</th>
     </tr>
     <?php
     if ($result->num_rows > 0) {
@@ -133,8 +141,8 @@ $result = $conn->query($sql);
                 echo "<td class='td'>" . $row["date_filed"] . "</td>";
                 echo "<td class='td'>" . $row["from_date"] . "</td>";
                 echo "<td class='td'>" . $row["to_date"] . "</td>";
-                echo "<td class='td'>" . $row["working_days_covered"] . "</td>";
-                echo "<td class='td'>-</td>";
+                echo "<td class='td days-covered'>" . $row["working_days_covered"] . "</td>";
+                echo "<td class='td'> - </td>";
                 echo "<td class='td actions eye tooltip'><a href='view leave docs.php?application_id=" . $row["application_id"] . "' target='_blank'><i class='fa fa-eye'></i><span class='tooltiptext-eye'>View Leave Document</span></a></td>";
                 
                 echo "<td class='td actions tooltip'>";
