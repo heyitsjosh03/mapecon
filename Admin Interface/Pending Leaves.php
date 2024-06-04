@@ -128,11 +128,7 @@ $result = $conn->query($sql);
       <th class="th">Leave Until</th>
       <th class="th">Days Covered</th>
       <th class="th"></th>
-<<<<<<< Updated upstream
       <th class="th Action" colspan="3">Actions</th>
-=======
-      <th class="th" colspan="3">Actions</th>
->>>>>>> Stashed changes
     </tr>
     <?php
     if ($result->num_rows > 0) {
