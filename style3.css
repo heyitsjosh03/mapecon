@@ -198,7 +198,8 @@ header {
 
 .th-history, .td-history {
   padding: 8px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #000000;
+  
 }
 
 .th-history:nth-child(1), td-history:nth-child(1){
