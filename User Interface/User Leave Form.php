@@ -179,13 +179,8 @@ $user_data = check_login($connection);
         <div class="leave-type">
             <select name="leave-type" id="leave-type">
                 <option value="">Select</option>
-                <option value="Casual Leave">Casual Leave</option>
-                <option value="Compensatory Off">Compensatory Off</option>
-                <option value="Leave Without Pay">Leave Without Pay</option>
-                <option value="Privilege Leave">Privilege Leave</option>
                 <option value="Sick Leave">Sick Leave</option>
                 <option value="Vacation Leave">Vacation Leave</option>
-                <option value="Others">Others</option>
             </select>
         </div>
         <div class="others" id="others-container" style="display: none;">

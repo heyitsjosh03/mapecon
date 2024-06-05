@@ -6,15 +6,21 @@ include("../sql/function.php");
 
 // Check if the user is already logged in
 if (isset($_SESSION['user_id'])) {
-    if ($_SESSION['user_status'] == 'Admin') {
-        header("Location: ../Admin Interface/Admin Home.php");
-        exit;
-    } elseif ($_SESSION['user_status'] == 'User') {
-        header("Location: ../User Interface/User Leave Home.php");
-        exit;
+    switch ($_SESSION['user_status']) {
+        case 'Admin':
+            header("Location: ../Admin Interface/Admin Home.php");
+            exit;
+        case 'Approver':
+            header("Location: ../Approver Interface/Approver home.php");
+            exit;
+        case 'User':
+            header("Location: ../User Interface/User Leave Home.php");
+            exit;
+        default:
+            // Handle other cases if necessary
+            break;
     }
 }
-
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // Something was posted
     $email = $_POST['email'];
@@ -127,6 +133,7 @@ if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
 
     </div>
   </div>
+  <script src="path/to/script.js"></script>
 </body>
 
 </html>

@@ -72,7 +72,7 @@ mysqli_close($connection);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+  <title>Approver</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="shortcut icon" href="/mapecon/Pictures/favicon.png">
   <link rel="stylesheet" href="/mapecon/style.css">
@@ -82,7 +82,7 @@ mysqli_close($connection);
 <body>
 <header>
   <div class="logo_header">
-    <a href="../Admin Interface/Admin Home.php"> 
+    <a href="../Approver Interface/Approver home.php"> 
       <img src="/mapecon/Pictures/MAPECON_logo.png" alt="MAPECON Logo">
     </a> 
   </div>
@@ -100,7 +100,7 @@ mysqli_close($connection);
 </header>
 <div class="menu">
   <span class="openbtn" onclick="toggleNav()">&#9776;</span>  
-   HR(Human Resources Management)
+   Approver
   <div id="name-greeting">Welcome <span class='user-name'><?php echo $firstName; ?></span>!</div>
 </div>
     
@@ -109,7 +109,7 @@ mysqli_close($connection);
 
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
-    <a href="Admin Home.php" class="home-sidebar" id="active"><i class="fa fa-home"></i> Home</a>
+    <a href="Approver home.php" class="home-sidebar" id="active"><i class="fa fa-home"></i> Home</a>
     <!-- <a href="Admin Dashboard.php" class="home-sidebar"><i class="fa fa-pie-chart"></i> Dashboard</a> -->
     <span class="leave-label">LEAVE REPORTS</span>
     <a href="Pending Leaves.php"><i class="fa fa-file-text-o"></i> Pending Leaves</a>
@@ -127,7 +127,7 @@ mysqli_close($connection);
         
         <div class="card-container-admin">
           <div class="card-container-wrapper">
-            <div class="card" onclick="location.href='/mapecon/Admin Interface/Pending Leaves.php';" style="cursor: pointer;">
+            <div class="card" onclick="location.href='/mapecon/Approver Interface/Pending Leaves.php';" style="cursor: pointer;">
               <div class="card-content">
                 <img src="/mapecon/Pictures/pending.png" alt="Pending">
               </div>
@@ -135,7 +135,7 @@ mysqli_close($connection);
             <p class="phrase">Pending</p>
           </div>
           <div class="card-container-wrapper">
-            <div class="card" onclick="location.href='/mapecon/Admin Interface/Admin Leaves.php';" style="cursor: pointer;">
+            <div class="card" onclick="location.href='/mapecon/Approver Interface/Approved Leaves.php';" style="cursor: pointer;">
               <div class="card-content">
                 <img src="/mapecon/Pictures/approved.png" alt="Approved">
               </div>
@@ -143,7 +143,7 @@ mysqli_close($connection);
             <p class="phrase">Approved</p>
           </div>
           <div class="card-container-wrapper">
-            <div class="card" onclick="location.href='/mapecon/Admin Interface/Declined Leaves.php';" style="cursor: pointer;">
+            <div class="card" onclick="location.href='/mapecon/Approver Interface/Declined Leaves.php';" style="cursor: pointer;">
               <div class="card-content">
                 <img src="/mapecon/Pictures/declined.png" alt="Declined">
               </div>
