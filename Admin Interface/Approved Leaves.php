@@ -42,7 +42,7 @@ $result = $connection->query($sql);
   </div>
 </header>
 
-<div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span>  HR<div id="date-time"></div></div>
+<div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span> Human Resources<div id="date-time"></div></div>
 
 <!-- Content -->
 <div class="content" id="content">
