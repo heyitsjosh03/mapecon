@@ -16,7 +16,6 @@ $sql = "SELECT l.*, UCASE(CONCAT(u.lastname, ', ', u.firstname)) AS full_name
         ORDER BY l.id DESC";
 $result = $conn->query($sql);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,8 +30,7 @@ $result = $conn->query($sql);
     text-align: center; /* Center align text in Days Covered column */
 }
     th.Action{
-      text-align: left; /* Align text to the left */
-      padding-left: 40px; /* Adjust this value to set your desired margin-left */
+      text-align:center;
     }
 </style>
 </head>
@@ -40,7 +38,7 @@ $result = $conn->query($sql);
 <body>
 <header>
   <div class="logo_header">
-    <a href="../Admin Interface/Admin Home.php"> 
+    <a href="../Approver Interface/Approver Home.php"> 
       <img src="/mapecon/Pictures/MAPECON_logo.png" alt="MAPECON Logo">
     </a> 
   </div>
@@ -57,7 +55,7 @@ $result = $conn->query($sql);
   </div>
 </header>
 
-<div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span>  HR<div id="date-time"></div></div>
+<div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span> HR(Human Resources Management) <div id="date-time"></div></div>
 
  <!-- Content -->
  <div class="content" id="content">
@@ -65,7 +63,7 @@ $result = $conn->query($sql);
   
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
-    <a href="Admin Home.php" class="home-sidebar"><i class="fa fa-home"></i> Home</a>
+    <a href="Approver home.php" class="home-sidebar"><i class="fa fa-home"></i> Home</a>
     <span class="leave-label">LEAVE REPORTS</span>
     <a href="Pending Leaves.php" id="active"><i class="fa fa-file-text-o"></i> Pending Leaves</a>
     <a href="Approved Leaves.php"><i class="fa fa-file-word-o"></i> Approved Leaves</a>
@@ -129,7 +127,6 @@ $result = $conn->query($sql);
       <th class="th">Leave Until</th>
       <th class="th">Days Covered</th>
       <th class="th Action" colspan="3">Actions</th>
-      
     </tr>
     <?php
     if ($result->num_rows > 0) {
@@ -145,20 +142,7 @@ $result = $conn->query($sql);
                 echo "<td class='td days-covered'>" . $row["working_days_covered"] . "</td>";
                 echo "<td class='td actions eye tooltip'><a href='view leave docs.php?application_id=" . $row["application_id"] . "' target='_blank'><i class='fa fa-eye'></i><span class='tooltiptext-eye'>View Leave Document</span></a></td>";
                 
-                echo "<td class='td actions tooltip'>";
-                echo "<button class='btn-approved' onclick='openModal(\"approve\", " . $row['application_id'] . ")'>";
-                echo "<i class='fa fa-check'></i>";
-                echo "<span class='tooltiptext-approve'>Approve Leave</span>";
-                echo "</button>";
-                echo "</td>";
-
-                echo "<td class='td actions tooltip'>";
-                echo "<button class='btn-leaveHistory' onclick='openModal(\"decline\", " . $row['application_id'] . ")'>";
-                echo "<i class='fa fa-close'></i>";
-                echo "<span class='tooltiptext-reject'>Decline Leave</span>";
-                echo "</button>";
-                echo "</td>";
-                echo "</tr>";
+             
             }
         }
     } else {

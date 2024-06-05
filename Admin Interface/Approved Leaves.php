@@ -2,6 +2,7 @@
 session_start();
 
 include("../sql/config.php");
+include("../sql/function.php");
 
 $sql = "SELECT l.*, UCASE(CONCAT(u.lastname, ', ', u.firstname)) AS full_name
         FROM leave_applications AS l 
@@ -19,6 +20,11 @@ $result = $connection->query($sql);
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="/mapecon/Pictures/favicon.png">
 <link rel="stylesheet" href="/mapecon/style3.css">
+<style>
+  td.dash{
+    text-align: center;
+  }
+</style>
 </head>
 
 
@@ -42,7 +48,7 @@ $result = $connection->query($sql);
   </div>
 </header>
 
-<div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span> Human Resources<div id="date-time"></div></div>
+<div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span>  HR(Human Resource Management)<div id="date-time"></div></div>
 
 <!-- Content -->
 <div class="content" id="content">
@@ -134,7 +140,7 @@ $result = $connection->query($sql);
                 echo "<td class='td'>" . $row["date_filed"] . "</td>";
                 echo "<td class='td'>" . $row["from_date"] . "</td>";
                 echo "<td class='td'>" . $row["to_date"] . "</td>";
-                echo "<td class='td'>-</td>";
+                echo "<td class='td dash'> - </td>";
                 echo "<td class='td actions eye tooltip'><a href='view leave docs.php?application_id=" . $row["application_id"] . "' target='_blank'><i class='fa fa-eye'></i><span class='tooltiptext-eye'>View Leave Document</span></a></td>";
                 echo "</tr>";
             }
