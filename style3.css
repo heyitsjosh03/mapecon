@@ -192,8 +192,8 @@ header {
 
 .th-history{
   background-color: #f6f6f6;
-  border-top: 1px solid #000000;
-  border-bottom: 1px solid #000000;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
 
 .th-history, .td-history {
@@ -350,14 +350,16 @@ td:nth-child(5), .th:nth-child(6), td:nth-child(6){
 }
 
 .th-checkboxes{
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #000000;
+  border-left: 1px solid #000000;
+  border-bottom: 1px solid #000000;
   background-color: #f6f6f6;
 }
 
 .th-declined{
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #000000;
+  border-left: 1px solid #000000;
+  border-bottom: 1px solid #000000;
   background-color: #f6f6f6;
 }
 
