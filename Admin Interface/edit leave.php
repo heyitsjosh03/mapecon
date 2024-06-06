@@ -220,27 +220,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="reason">
                 <textarea name="reason" id="reason" cols="30" rows="10"><?php echo $application_data['reason']; ?></textarea>
             </div>
-            
+        
             <div class="leave-balances">
-                <label for="vl_wpay_bal">VL with Pay Balance:</label>
-                <input type="number" id="vl_wpay_bal" name="vl_wpay_bal" value="<?php echo $application_data['vl_wpay_bal']; ?>">
-
-                <label for="vl_wopay_bal">VL without Pay Balance:</label>
-                <input type="number" id="vl_wopay_bal" name="vl_wopay_bal" value="<?php echo $application_data['vl_wopay_bal']; ?>">
-
-                <label for="sl_wpay_bal">SL with Pay Balance:</label>
-                <input type="number" id="sl_wpay_bal" name="sl_wpay_bal" value="<?php echo $application_data['sl_wpay_bal']; ?>">
-
-                <label for="sl_wopay_bal">SL without Pay Balance:</label>
-                <input type="number" id="sl_wopay_bal" name="sl_wopay_bal" value="<?php echo $application_data['sl_wopay_bal']; ?>">
-
-                <label for="vl_total_bal">VL Total Balance:</label>
-                <input type="number" id="vl_total_bal" name="vl_total_bal" value="<?php echo $application_data['vl_total_bal']; ?>">
-
-                <label for="sl_total_bal">SL Total Balance:</label>
-                <input type="number" id="sl_total_bal" name="sl_total_bal" value="<?php echo $application_data['sl_total_bal']; ?>">
-            </div>
-
+  <table>
+    <tr>
+      <th>Leave Type</th>
+      <th>With Pay</th>
+      <th>Without Pay</th>
+    </tr>
+    <tr>
+      <td>Vacation Leave</td>
+      <td><input type="number" id="vl_wpay_bal" name="vl_wpay_bal" value="<?php echo $application_data['vl_wpay_bal'];?>"></td>
+      <td><input type="number" id="vl_wopay_bal" name="vl_wopay_bal" value="<?php echo $application_data['vl_wopay_bal'];?>"></td>
+    </tr>
+    <tr>
+      <td>Sick Leave</td>
+      <td><input type="number" id="sl_wpay_bal" name="sl_wpay_bal" value="<?php echo $application_data['sl_wpay_bal'];?>"></td>
+      <td><input type="number" id="sl_wopay_bal" name="sl_wopay_bal" value="<?php echo $application_data['sl_wopay_bal'];?>"></td>
+    </tr>
+    <tr>
+      <td>Total</td>
+      <td><input type="number" id="vl_total_bal" name="vl_total_bal" value="<?php echo $application_data['vl_total_bal'];?>"></td>
+      <td><input type="number" id="sl_total_bal" name="sl_total_bal" value="<?php echo $application_data['sl_total_bal'];?>"></td>
+    </tr>
+  </table>
+</div>
             <div class="buttons">
                 <button type="button" onclick="window.location.href='/mapecon/Admin Interface/Admin Home.php';">Cancel</button>
                 <button type="submit" id="submit-btn">Update Application</button>

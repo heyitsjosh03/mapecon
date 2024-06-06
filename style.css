@@ -1679,7 +1679,42 @@ label {
   }  
 }
 
+.leave-balances table {
+  position: inline-block;
+  margin-left: 10%;
+  margin-bottom: 30px;
+  border-collapse: collapse;
+  width: 100%;
+  }
 
+  .leave-balances th,.leave-balances td {
+   border: 1px solid #ddd;
+   padding: 8px;
+   text-align: center;
+  }
+
+  .leave-balances th {
+   background-color: #f0f0f0;
+  }
+
+  .leave-balances input[type="number"] {
+  text-align: center;
+   width: 50%;
+   padding: 10px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+  }
+
+.leave-balances input[type="number"]:focus {
+border-color: #aaa;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.leave-balances caption {
+font-size: 18px;
+font-weight: bold;
+margin-bottom: 10px;
+}
 
 
 

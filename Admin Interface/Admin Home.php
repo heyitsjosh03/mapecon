@@ -417,4 +417,3 @@ mysqli_close($connection);
 </script>
 </body>
 </html>
-
