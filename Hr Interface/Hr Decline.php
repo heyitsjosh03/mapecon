@@ -37,7 +37,7 @@ $result = $conn->query($sql);
 <body>
 <header>
   <div class="logo_header">
-    <a href="../Approver Interface/Approver home.php"> 
+    <a href="../Hr Interface/Hr Home.php"> 
       <img src="/mapecon/Pictures/MAPECON_logo.png" alt="MAPECON Logo">
     </a> 
   </div>
@@ -46,27 +46,27 @@ $result = $conn->query($sql);
     <label for="profile-dropdown-toggle" class="profile-dropdown">
       <img src="/mapecon/Pictures/profile.png" alt="Profile">
       <div class="dropdown-content">
-        <a href="Approver Profile.php">Profile </a>
-        <a href="Approver Change Password.php">Change Password</a>
+        <a href="Hr Profile.php">Profile </a>
+        <a href="Hr Change Password.php">Change Password</a>
         <a href="../sql/logout.php">Logout</a>
       </div>
     </label>
   </div>
 </header>
 
-<div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span>  Approver <div id="date-time"></div></div>
+<div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span>  HR(Human Resources Management) <div id="date-time"></div></div>
 
  <!-- Content -->
  <div class="content" id="content">
 <div class="container_report_report">
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
-    <a href="Approver home.php" class="home-sidebar"><i class="fa fa-home"></i> Home</a>
+    <a href="Hr Home.php" class="home-sidebar"><i class="fa fa-home"></i> Home</a>
     <!-- <a href="Admin Dashboard.php" class="home-sidebar"><i class="fa fa-pie-chart"></i> Dashboard</a> -->
     <span class="leave-label">LEAVE REPORTS</span>
-    <a href="Pending Leaves.php"><i class="fa fa-file-text-o"></i> Pending Leaves</a>
-    <a href="Approved Leaves.php"><i class="fa fa-file-word-o"></i> Approved Leaves</a>
-    <a href="Declined Leaves.php" class="home-sidebar" id="active"><i class="fa fa-file-excel-o"></i> Declined Leaves</a>
+    <a href="Hr Pending.php"><i class="fa fa-file-text-o"></i> Pending Leaves</a>
+    <a href="Hr Approve.php"><i class="fa fa-file-word-o"></i> Approved Leaves</a>
+    <a href="Hr Decline.php" class="home-sidebar" id="active"><i class="fa fa-file-excel-o"></i> Declined Leaves</a>
   </div>
 
   <!-- Overlay -->
