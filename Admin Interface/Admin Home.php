@@ -99,7 +99,7 @@ mysqli_close($connection);
   </div>
 </header>
 <div class="menu">
-  <span class="openbtn" onclick="toggleNav()">&#9776;</span>  
+  <span class="openbtn" onclick="toggleNav()">&#9776;</span> HR(Human Resources Management) 
   <div id="name-greeting">Welcome <span class='user-name'><?php echo $firstName; ?></span>!</div>
 </div>
     
