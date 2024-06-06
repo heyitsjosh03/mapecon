@@ -54,16 +54,17 @@ $result = $conn->query($sql);
   </div>
 </header>
 
-<div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span>  HR(Human Resource Management) <div id="date-time"></div></div>
+<div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span>  Approver <div id="date-time"></div></div>
 
  <!-- Content -->
  <div class="content" id="content">
 <div class="container_report_report">
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
-    <a href="Admin Home.php" class="home-sidebar"><i class="fa fa-home"></i> Home</a>
+    <a href="Approver home.php" class="home-sidebar"><i class="fa fa-home"></i> Home</a>
     <!-- <a href="Admin Dashboard.php" class="home-sidebar"><i class="fa fa-pie-chart"></i> Dashboard</a> -->
     <span class="leave-label">LEAVE REPORTS</span>
+    <a href="Pending Leaves.php"><i class="fa fa-file-text-o"></i> Pending Leaves</a>
     <a href="Approved Leaves.php"><i class="fa fa-file-word-o"></i> Approved Leaves</a>
     <a href="Declined Leaves.php" class="home-sidebar" id="active"><i class="fa fa-file-excel-o"></i> Declined Leaves</a>
   </div>
