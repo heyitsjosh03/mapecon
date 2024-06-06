@@ -198,7 +198,7 @@ header {
 
 .th-history, .td-history {
   padding: 8px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #000000;
 }
 
 .th-history:nth-child(1), td-history:nth-child(1){
@@ -350,15 +350,22 @@ td:nth-child(5), .th:nth-child(6), td:nth-child(6){
 }
 
 .th-checkboxes{
+<<<<<<< HEAD
+  border-top: 1px solid #000000;
+  border-left: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+=======
   border-left: 1px solid black;
   border-top: 1px solid #0a0a0a;
   border-bottom: 1px solid #050505;
+>>>>>>> d11d62a32bd8c943df31a54b8c57b67a699c8805
   background-color: #f6f6f6;
 }
 
 .th-declined{
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #000000;
+  border-left: 1px solid #000000;
+  border-bottom: 1px solid #000000;
   background-color: #f6f6f6;
 }
 

@@ -57,7 +57,7 @@
     </label>
   </div>
 </header>
-  <div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span>  EMP<div id="name-greeting">Welcome <span class='user-name'><?php echo $firstName; ?></span>!</div></div>
+  <div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span> Employee <div id="name-greeting">Welcome <span class='user-name'><?php echo $firstName; ?></span>!</div></div>
   
   <!-- Content -->
  <div class="content" id="content">

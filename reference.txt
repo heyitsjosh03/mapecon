@@ -1,0 +1,30 @@
+account for approver for user using id number 
+
+USER LEAVE APPLICATION 
+
+THE HR INPUT LEAVE BALANCES AND THEN THE APPROVER APPROVES THE LEAVE COMING FROM THE USER 
+AND THEN THE HR GET NOTIED ABOUT THE LEAVE 
+
+HR ACCOUNTS NOTIFIED ABOUT THE LEAVE AND THEN HR ACCOUNTS NEEDS TABLES 
+FOR SL AND VL AND NUMBER OF DAYS LEAVES 
+
+<th class="th Action" colspan="3">Actions</th>
+
+FOR CHECKBOX APPROVE BTN
+
+echo "<td class='td actions tooltip'>";
+                echo "<button class='btn-approved' onclick='openModal(\"approve\", " . $row['application_id'] . ")'>";
+                echo "<i class='fa fa-check'></i>";
+                echo "<span class='tooltiptext-approve'>Approve Leave</span>";
+                echo "</button>";
+                echo "</td>";
+
+FOR CHECKBOX DECLINE BTN
+
+echo "<td class='td actions tooltip'>";
+                echo "<button class='btn-leaveHistory' onclick='openModal(\"decline\", " . $row['application_id'] . ")'>";
+                echo "<i class='fa fa-close'></i>";
+                echo "<span class='tooltiptext-reject'>Decline Leave</span>";
+                echo "</button>";
+                echo "</td>";
+                echo "</tr>";
