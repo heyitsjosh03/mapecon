@@ -37,7 +37,7 @@ $result = $conn->query($sql);
 <body>
 <header>
   <div class="logo_header">
-    <a href="../Approver Interface/Approver home.php"> 
+    <a href="../Admin Interface/Admin Home.php"> 
       <img src="/mapecon/Pictures/MAPECON_logo.png" alt="MAPECON Logo">
     </a> 
   </div>
