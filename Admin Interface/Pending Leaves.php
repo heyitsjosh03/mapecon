@@ -141,7 +141,7 @@ $result = $conn->query($sql);
                 echo "<td class='td'>" . $row["to_date"] . "</td>";
                 echo "<td class='td days-covered'>" . $row["working_days_covered"] . "</td>";
                 echo "<td class='td actions eye tooltip'><a href='view leave docs.php?application_id=" . $row["application_id"] . "' target='_blank'><i class='fa fa-eye'></i><span class='tooltiptext-eye'>View Leave Document</span></a></td>";
-                
+                echo "<td class='td actions edit tooltip'><a href='edit leave.php?application_id=" . $row["application_id"] . "'><i class='fa fa-pencil'></i><span class='tooltiptext-edit'>Edit</span></a></td>";
              
             }
         }
@@ -152,31 +152,6 @@ $result = $conn->query($sql);
   </table>
 </div>
 </div>
-</div>
-
-<!-- Modals -->
-<div id="approveModal" class="modal">
-  <div class="modal-content">
-    <p>Are you sure you want to <b>approve</b> this leave request?</p>
-    <form action='update_status.php' method='post'>
-      <input type='hidden' name='application_id' id='approveApplicationId'>
-      <input type='hidden' name='status' value='Approved'>
-      <button type='submit' class='btn-approved'>Yes</button>
-      <button type='button' class='btn-grey' onclick="closeModal('approveModal')">No</button>
-    </form>
-  </div>
-</div>
-
-<div id="declineModal" class="modal">
-  <div class="modal-content">
-    <p>Are you sure you want to <b>decline</b> this leave request?</p>
-    <form action='update_status.php' method='post'>
-      <input type='hidden' name='application_id' id='declineApplicationId'>
-      <input type='hidden' name='status' value='Declined'>
-      <button type='submit' class='btn-leaveHistory'>Yes</button>
-      <button type='button' class='btn-grey' onclick="closeModal('declineModal')">No</button>
-    </form>
-  </div>
 </div>
 
 <!-- Scripts -->
