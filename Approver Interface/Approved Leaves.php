@@ -40,8 +40,8 @@ $result = $connection->query($sql);
     <label for="profile-dropdown-toggle" class="profile-dropdown">
       <img src="/mapecon/Pictures/profile.png" alt="Profile">
       <div class="dropdown-content">
-        <a href="Admin Profile.php">Profile </a>
-        <a href="Admin Change Password.php">Change Password</a>
+        <a href="Approver Profile.php">Profile </a>
+        <a href="Approver Change Password.php">Change Password</a>
         <a href="../sql/logout.php">Logout</a>
       </div>
     </label>

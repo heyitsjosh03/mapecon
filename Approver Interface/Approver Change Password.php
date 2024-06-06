@@ -38,7 +38,7 @@
           $_SESSION['alert'] = ['message' => 'Current password is incorrect!', 'type' => 'error'];
       }
 
-      header("Location: Admin Change Password.php");
+      header("Location: Approver Change Password.php");
       exit;
   }
 ?>
@@ -48,7 +48,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Change Password</title>
+  <title>Approver Change Password</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="shortcut icon" href="/mapecon/Pictures/favicon.png">
   <link rel="stylesheet" href="/mapecon/style.css">
@@ -66,14 +66,14 @@
     <label for="profile-dropdown-toggle" class="profile-dropdown">
       <img src="/mapecon/Pictures/profile.png" alt="Profile">
       <div class="dropdown-content">
-        <a href="Admin Profile.php">Profile </a>
-        <a href="Admin Change Password.php">Change Password</a>
+        <a href="Approver Profile.php">Profile </a>
+        <a href="Approver Change Password.php">Change Password</a>
         <a href="../sql/logout.php">Logout</a>
       </div>
     </label>
   </div>
 </header>
-<div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span>  HR<div id="date-time"></div></div>
+<div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span>  Approver <div id="date-time"></div></div>
   
   <!-- Content -->
  <div class="content" id="content">

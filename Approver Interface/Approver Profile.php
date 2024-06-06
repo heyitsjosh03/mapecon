@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $_SESSION['alert'] = ['message' => 'Error updating profile: ' . mysqli_error($connection), 'type' => 'error'];
       }
 
-      header("Location: Admin Profile.php");
+      header("Location: Approver Profile.php");
       exit;
   }
 }
@@ -63,7 +63,7 @@ $row = mysqli_fetch_assoc($result);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Profile</title>
+  <title>Approver Profile</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="shortcut icon" href="/mapecon/Pictures/favicon.png">
   <link rel="stylesheet" href="/mapecon/style.css">
@@ -72,7 +72,7 @@ $row = mysqli_fetch_assoc($result);
 <body>
 <header>
   <div class="logo_header">
-    <a href="../Admin Interface/Admin Home.php"> 
+    <a href="../Approver Interface/Approver home.php"> 
       <img src="/mapecon/Pictures/MAPECON_logo.png" alt="MAPECON Logo">
     </a> 
   </div>
@@ -81,22 +81,22 @@ $row = mysqli_fetch_assoc($result);
     <label for="profile-dropdown-toggle" class="profile-dropdown">
       <img src="/mapecon/Pictures/profile.png" alt="Profile">
       <div class="dropdown-content">
-        <a href="Admin Profile.php">Profile </a>
-        <a href="Admin Change Password.php">Change Password</a>
+        <a href="Approver Profile.php">Profile </a>
+        <a href="Approver Change Password.php">Change Password</a>
         <a href="../sql/logout.php">Logout</a>
       </div>
     </label>
   </div>
 </header>
 
-  <div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span>  HR<div id="date-time"></div></div>
+  <div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span>  Approver <div id="date-time"></div></div>
   
   <!-- Content -->
  <div class="content" id="content">
 
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
-    <a href="Admin Home.php" class="home-sidebar" id="active"><i class="fa fa-home"></i> Home</a>
+    <a href="Approver home.php" class="home-sidebar" id="active"><i class="fa fa-home"></i> Home</a>
     <span class="leave-label">LEAVE REPORTS</span>
     <a href="Pending Leaves.php"><i class="fa fa-file-text-o"></i> Pending Leaves</a>
     <a href="Approved Leaves.php"><i class="fa fa-file-word-o"></i> Approved Leaves</a>
