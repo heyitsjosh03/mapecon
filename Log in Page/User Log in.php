@@ -55,6 +55,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 } elseif ($user_data['user_status'] == 'User') {
                     header("Location: ../User Interface/User Leave Home.php");
                     die;
+                }elseif ($user_data['user_status'] == 'Approver') {
+                    header("Location: ../Approver Interface/Approver home.php");
+                    die;
                 }
             } else {
                 $_SESSION['alert'] = 'Wrong password. Please try again.';
