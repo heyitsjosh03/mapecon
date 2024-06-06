@@ -350,15 +350,9 @@ td:nth-child(5), .th:nth-child(6), td:nth-child(6){
 }
 
 .th-checkboxes{
-<<<<<<< HEAD
-  border-top: 1px solid #000000;
-  border-left: 1px solid #000000;
-  border-bottom: 1px solid #000000;
-=======
   border-left: 1px solid black;
   border-top: 1px solid #0a0a0a;
   border-bottom: 1px solid #050505;
->>>>>>> d11d62a32bd8c943df31a54b8c57b67a699c8805
   background-color: #f6f6f6;
 }
 
@@ -422,6 +416,14 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 
 .eye i{
   color: #68719D;
+  cursor: pointer;
+  border: 1px solid #68719D; /* Add border */
+  border-radius: 5px; /* Optional: Add border radius for rounded corners */
+  padding: 5px; /* Optional: Add padding to adjust the space between the icon and the border */
+}
+
+.edit i{
+  color: #f81414;
   cursor: pointer;
   border: 1px solid #68719D; /* Add border */
   border-radius: 5px; /* Optional: Add border radius for rounded corners */
@@ -535,6 +537,13 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 .eye i:hover {
   color: blue;
   border: 1px solid blue;
+  transition: all 0.3s ease;
+  padding: 7px;
+}
+
+.edit i:hover {
+  color: rgb(240, 58, 3);
+  border: 1px solid rgb(103, 103, 109);
   transition: all 0.3s ease;
   padding: 7px;
 }
@@ -846,7 +855,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
     margin-left: 0px;
     margin-top: 10px; /* Add spacing between inputs */
     width: 305px;
-  }
+}
 
   /* Leave History */
 
@@ -854,6 +863,12 @@ tr:nth-child(even) {background-color: #f2f2f2;}
     padding: 6px;
   }
 
+  .edit i{
+    padding: 6px;
+  }
+
+
+  
   .floppy i{
     padding: 6px 7px;
   }
@@ -911,11 +926,17 @@ tr:nth-child(even) {background-color: #f2f2f2;}
     padding: 6px;
   }
 
+  .edit i:hover{
+    padding: 6px;
+  }
   .floppy i:hover{
     padding: 6px 7px;
   }
 
+
+
   .tooltip:hover .tooltiptext-eye,
+  .tooltip:hover .tooltiptext-edit,
   .tooltip:hover .tooltiptext-approve,
   .tooltip:hover .tooltiptext-reject,
   .tooltip:hover .tooltiptext-disabled {
@@ -1518,9 +1539,31 @@ tr:nth-child(even) {background-color: #f2f2f2;}
   transition: opacity 0.3s;
 }
 
+/* Tooltip text */
+.tooltiptext-edit {
+  font-size: 13px;
+  visibility: hidden;
+  width: max-content;
+  background-color: rgb(255, 0, 0); /* Change the color as needed */
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
 
 /* Tooltip text visibility on hover */
 .tooltip:hover .tooltiptext-eye {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip:hover .tooltiptext-edit {
   visibility: visible;
   opacity: 1;
 }

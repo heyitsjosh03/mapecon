@@ -134,7 +134,7 @@ mysqli_close($connection);
             <p class="phrase">Pending</p>
           </div>
           <div class="card-container-wrapper">
-            <div class="card" onclick="location.href='/mapecon/Admin Interface/Admin Leaves.php';" style="cursor: pointer;">
+            <div class="card" onclick="location.href='/mapecon/Admin Interface/Approved Leaves.php';" style="cursor: pointer;">
               <div class="card-content">
                 <img src="/mapecon/Pictures/approved.png" alt="Approved">
               </div>

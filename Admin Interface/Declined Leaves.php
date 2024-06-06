@@ -37,7 +37,7 @@ $result = $conn->query($sql);
 <body>
 <header>
   <div class="logo_header">
-    <a href="../Approver Interface/Approver home.php"> 
+    <a href="../Admin Interface/Admin Home.php"> 
       <img src="/mapecon/Pictures/MAPECON_logo.png" alt="MAPECON Logo">
     </a> 
   </div>
@@ -54,7 +54,7 @@ $result = $conn->query($sql);
   </div>
 </header>
 
-<div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span>  HR(Human Resource Management) <div id="date-time"></div></div>
+<div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span>  HR(Human Resources Management) <div id="date-time"></div></div>
 
  <!-- Content -->
  <div class="content" id="content">

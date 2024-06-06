@@ -31,7 +31,7 @@ $result = $conn->query($sql);
 }
     th.Action{
       text-align:center;
-      padding-left: 40px;
+      padding-left: 14px;
     }
 </style>
 </head>
