@@ -624,11 +624,12 @@ p {
 
 .leave-application {
   margin: 0 auto;
-  margin-top: -20px;
+  margin-top: -2px;
+  margin-bottom: 20px;
   justify-content: center;
   align-items: center;
   width: 50%;
-  border: 1px solid #ccc;
+  border: 2px solid #0e0d0d;
   padding: 20px;
   border-radius: 5px;
 }
@@ -1679,7 +1680,44 @@ label {
   }  
 }
 
+.leave-balances table {
+  position: inline-block;
+  margin-left: 0%;
+  margin-bottom: 30px;
+  border-collapse: collapse;
+  width: 100%;
+  }
 
+  .leave-balances th,.leave-balances td {
+   border: 1px solid #ddd;
+   padding: 8px;
+   text-align: center;
+  }
+
+  .leave-balances th {
+   font-size: 15px;
+   background-color: #B40000;
+   color: white;
+  }
+
+  .leave-balances input[type="number"] {
+  text-align: center;
+   width: 50%;
+   padding: 10px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+  }
+
+.leave-balances input[type="number"]:focus {
+border-color: #868484;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.leave-balances caption {
+font-size: 18px;
+font-weight: bold;
+margin-bottom: 10px;
+}
 
 
 

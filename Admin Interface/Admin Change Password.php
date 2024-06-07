@@ -73,7 +73,7 @@
     </label>
   </div>
 </header>
-<div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span>  HR<div id="date-time"></div></div>
+<div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span>  HR(Human Resources Management) <div id="date-time"></div></div>
   
   <!-- Content -->
  <div class="content" id="content">
