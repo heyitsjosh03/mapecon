@@ -14,6 +14,15 @@ if (isset($_GET['application_id'])) {
 
     if ($result && mysqli_num_rows($result) > 0) {
         $application_data = mysqli_fetch_assoc($result);
+
+        // Fetch user information based on user_id in leave application
+        $user_id = $application_data['user_id'];
+        $user_query = "SELECT firstname, lastname, contactnumber, department FROM users WHERE user_id = '$user_id'";
+        $user_result = mysqli_query($connection, $user_query);
+        if (!$user_result) {
+            die('Error: ' . mysqli_error($connection));
+        }
+        $user_data = mysqli_fetch_assoc($user_result);
     } else {
         die('Error: Application not found.');
     }
@@ -47,15 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sl_wopay_bal = $_POST['sl_wopay_bal'];
     $vl_total_bal = $_POST['vl_total_bal'];
     $sl_total_bal = $_POST['sl_total_bal'];
-
-    // Get user information from the database
-    $user_id = $_SESSION['user_id'];
-    $user_query = "SELECT firstname, lastname, contactnumber, department FROM users WHERE user_id = '$user_id'";
-    $user_result = mysqli_query($connection, $user_query);
-    if (!$user_result) {
-        die('Error: ' . mysqli_error($connection));
-    }
-    $user_data = mysqli_fetch_assoc($user_result);
 
     // Update leave application data in the database
     $update_query = "UPDATE leave_applications 
@@ -186,70 +186,71 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="overlay" id="overlay" onclick="closeNav()"></div>
     <div class="leave-application">
         <h2>Edit Leave Application</h2>
-        <form action="<?php echo($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="return validateForm()">
+        <form action="<?php echo($_SERVER["PHP_SELF"]); ?>?application_id=<?php echo $application_id; ?>" method="post" onsubmit="return validateForm()">
+            <label for="date_filed">Date Filed:</label>
+            <input type="date" id="date_filed" name="date_filed" value="<?php echo $application_data['date_filed']; ?>" readonly>
+            
+            <label for="department">Department:</label>
+            <input type="text" id="department" name="department" value="<?php echo $user_data['department']; ?>" readonly>
+            
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="<?php echo $user_data['firstname'] . ' ' . $user_data['lastname']; ?>" readonly>
+            
+            <label for="contactnumber">Contact Number:</label>
+            <input type="text" id="contactnumber" name="contactnumber" value="<?php echo $user_data['contactnumber']; ?>" readonly>
+            
             <label for="leave-type">Leave Type:</label>
-            <div class="leave-type">
-                <select name="leave-type" id="leave-type">
-                    <option value="">Select</option>
-                    <?php foreach ($leave_types as $type): ?>
-                        <option value="<?php echo $type; ?>" <?php echo ($application_data['leave_type'] == $type) ? 'selected' : ''; ?>>
-                            <?php echo $type; ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+            <input type="text" id="leave-type" name="leave-type" value="<?php echo $application_data['leave_type']; ?>" readonly>
+
             <div id="others-container" style="display: <?php echo ($application_data['leave_type'] == 'Others') ? 'block' : 'none'; ?>;">
                 <label for="others">Others:</label>
-                <input type="text" id="others" name="others" value="<?php echo $application_data['leave_type_others']; ?>">
+                <input type="text" id="others" name="others" value="<?php echo $application_data['leave_type_others']; ?>" readonly>
             </div>
             <div class="date-range">
                 <div class="from-date">
                     <label for="from-date">From Date:</label>
-                    <input type="date" name="from-date" id="from-date" value="<?php echo $application_data['from_date']; ?>">
+                    <input type="date" name="from-date" id="from-date" value="<?php echo $application_data['from_date']; ?>" readonly>
                 </div>
                 <div class="to-date">
                     <label for="to-date">To Date:</label>
-                    <input type="date" name="to-date" id="to-date" value="<?php echo $application_data['to_date']; ?>">
+                    <input type="date" name="to-date" id="to-date" value="<?php echo $application_data['to_date']; ?>" readonly>
                 </div>
                 <div class="num-of-days">
                     <label for="numofDays">Days covered:</label>
-                    <input type="number" id="numofDays" name="numofDays" value="<?php echo $application_data['working_days_covered']; ?>">
+                    <input type="number" id="numofDays" name="numofDays" value="<?php echo $application_data['working_days_covered']; ?>" readonly>
                 </div>
             </div>
             <label for="reason" class="reason-label">Reason:</label>
             <div class="reason">
-                <textarea name="reason" id="reason" cols="30" rows="10"><?php echo $application_data['reason']; ?></textarea>
+                <textarea name="reason" id="reason" cols="30" rows="10" readonly><?php echo $application_data['reason']; ?></textarea>
             </div>
         
             <div class="leave-balances">
-  <table>
-    <tr>
-      <th>Number of Leave
-          Days Available
-      </th>
-      <th>With Pay</th>
-      <th>Without Pay</th>
-      <th>Balance as of:</th>
-    </tr>
-    <tr>
-      <td>Vacation Leave</td>
-      <td><input type="number" id="vl_wpay_bal" name="vl_wpay_bal" value="<?php echo $application_data['vl_wpay_bal'];?>"></td>
-      <td><input type="number" id="vl_wopay_bal" name="vl_wopay_bal" value="<?php echo $application_data['vl_wopay_bal'];?>"></td>
-      <td><input type="number" id="vl_total_bal" name="vl_total_bal" value="<?php echo $application_data['vl_total_bal'];?>"></td>
-    </tr>
-    <tr>
-      <td>Sick Leave</td>
-      <td><input type="number" id="sl_wpay_bal" name="sl_wpay_bal" value="<?php echo $application_data['sl_wpay_bal'];?>"></td>
-      <td><input type="number" id="sl_wopay_bal" name="sl_wopay_bal" value="<?php echo $application_data['sl_wopay_bal'];?>"></td>
-      <td><input type="number" id="sl_total_bal" name="sl_total_bal" value="<?php echo $application_data['sl_total_bal'];?>"></td>
-    </tr>
-  </table>
-</div>
+                <table>
+                    <tr>
+                        <th>Number of Leave Days Available</th>
+                        <th>With Pay</th>
+                        <th>Without Pay</th>
+                        <th>Balance as of:</th>
+                    </tr>
+                    <tr>
+                        <td>Vacation Leave</td>
+                        <td><input type="number" id="vl_wpay_bal" name="vl_wpay_bal" value="<?php echo $application_data['vl_wpay_bal']; ?>"></td>
+                        <td><input type="number" id="vl_wopay_bal" name="vl_wopay_bal" value="<?php echo $application_data['vl_wopay_bal']; ?>"></td>
+                        <td><input type="number" id="vl_total_bal" name="vl_total_bal" value="<?php echo $application_data['vl_total_bal']; ?>"></td>
+                    </tr>
+                    <tr>
+                        <td>Sick Leave</td>
+                        <td><input type="number" id="sl_wpay_bal" name="sl_wpay_bal" value="<?php echo $application_data['sl_wpay_bal']; ?>"></td>
+                        <td><input type="number" id="sl_wopay_bal" name="sl_wopay_bal" value="<?php echo $application_data['sl_wopay_bal']; ?>"></td>
+                        <td><input type="number" id="sl_total_bal" name="sl_total_bal" value="<?php echo $application_data['sl_total_bal']; ?>"></td>
+                    </tr>
+                </table>
+            </div>
             <div class="buttons">
                 <button type="button" onclick="window.location.href='/mapecon/Admin Interface/Admin Home.php';">Cancel</button>
                 <button type="submit" id="submit-btn">Update Application</button>
             </div>
-            <input type="hidden" id="date_filed" name="date_filed" value="<?php echo $application_data['date_filed']; ?>">
         </form>
     </div>
 </div>
