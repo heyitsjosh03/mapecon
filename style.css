@@ -1700,6 +1700,10 @@ label {
    color: white;
   }
 
+  .leave-balances td {
+    font-size: 15px;
+   
+   }
   .leave-balances input[type="number"] {
   text-align: center;
    width: 50%;
