@@ -5,15 +5,31 @@ include("../sql/function.php");
 $user_data = check_login($connection);
 
 // Check if application_id is provided
+// Check if application_id is provided
 if (isset($_GET['application_id'])) {
     $application_id = $_GET['application_id'];
 
-    // Fetch the leave application details
-    $query = "SELECT * FROM leave_applications WHERE application_id = '$application_id'";
-    $result = mysqli_query($connection, $query);
+    // Fetch the leave application details using prepared statements
+    $query = "SELECT * FROM leave_applications WHERE application_id = ?";
+    $stmt = $connection->prepare($query);
+    $stmt->bind_param("i", $application_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if ($result && mysqli_num_rows($result) > 0) {
-        $application_data = mysqli_fetch_assoc($result);
+    if ($result && $result->num_rows > 0) {
+        $application_data = $result->fetch_assoc();
+
+        // Fetch user information based on user_id in leave application
+        $user_id = $application_data['user_id'];
+        $user_query = "SELECT firstname, lastname, contactnumber, department FROM users WHERE user_id = ?";
+        $user_stmt = $connection->prepare($user_query);
+        $user_stmt->bind_param("i", $user_id);
+        $user_stmt->execute();
+        $user_result = $user_stmt->get_result();
+        if (!$user_result) {
+            die('Error: ' . $connection->error);
+        }
+        $user_data = $user_result->fetch_assoc();
     } else {
         die('Error: Application not found.');
     }
@@ -21,12 +37,12 @@ if (isset($_GET['application_id'])) {
 
 // Fetch leave types from the database
 $leave_types_query = "SELECT DISTINCT leave_type FROM leave_applications";
-$leave_types_result = mysqli_query($connection, $leave_types_query);
+$leave_types_result = $connection->query($leave_types_query);
 if (!$leave_types_result) {
-    die('Error: ' . mysqli_error($connection));
+    die('Error: ' . $connection->error);
 }
 $leave_types = [];
-while ($row = mysqli_fetch_assoc($leave_types_result)) {
+while ($row = $leave_types_result->fetch_assoc()) {
     $leave_types[] = $row['leave_type'];
 }
 
@@ -48,26 +64,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $vl_total_bal = $_POST['vl_total_bal'];
     $sl_total_bal = $_POST['sl_total_bal'];
 
-    // Get user information from the database
-    $user_id = $_SESSION['user_id'];
-    $user_query = "SELECT firstname, lastname, contactnumber, department FROM users WHERE user_id = '$user_id'";
-    $user_result = mysqli_query($connection, $user_query);
-    if (!$user_result) {
-        die('Error: ' . mysqli_error($connection));
-    }
-    $user_data = mysqli_fetch_assoc($user_result);
-
-    // Update leave application data in the database
+    // Update leave application data in the database using prepared statements
     $update_query = "UPDATE leave_applications 
-                     SET date_filed = '$date_filed', leave_type = '$leave_type', from_date = '$leave_from', 
-                         to_date = '$leave_to', working_days_covered = '$working_days_covered', reason = '$reason',
-                         vl_wpay_bal = '$vl_wpay_bal', vl_wopay_bal = '$vl_wopay_bal', sl_wpay_bal = '$sl_wpay_bal',
-                         sl_wopay_bal = '$sl_wopay_bal', vl_total_bal = '$vl_total_bal', sl_total_bal = '$sl_total_bal'
-                     WHERE application_id = '$application_id'";
-
-    $update_result = mysqli_query($connection, $update_query);
+                     SET date_filed = ?, leave_type = ?, from_date = ?, 
+                         to_date = ?, working_days_covered = ?, reason = ?,
+                         vl_wpay_bal = ?, vl_wopay_bal = ?, sl_wpay_bal = ?, sl_wopay_bal = ?, vl_total_bal = ?, sl_total_bal = ?
+                     WHERE application_id = ?";
+    $update_stmt = $connection->prepare($update_query);
+    $update_stmt->bind_param("ssssssiiiiiii", $date_filed, $leave_type, $leave_from, $leave_to, $working_days_covered, $reason, $vl_wpay_bal, $vl_wopay_bal, $sl_wpay_bal, $sl_wopay_bal, $vl_total_bal, $sl_total_bal, $application_id);
+    $update_result = $update_stmt->execute();
     if (!$update_result) {
-        die('Error: ' . mysqli_error($connection));
+        die('Error: ' . $connection->error);
     }
 
     // Generate PDF (same as before)
@@ -92,48 +99,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die('Background image not found: ' . $background);
     }
 
-    // Set font
-    $pdf->SetFont('Arial', 'B', 16);
-
-    // Set position for the content
-    $pdf->SetXY(10, 10);
-
-    // Output the title
-    $pdf->Cell(0, 10, '', 0, 1, 'C');
-
-    // Set font for the content
-    $pdf->SetFont('Arial', 'B', 14);
-    $pdf->SetTextColor(0, 0, 139);
-
-    // Output form
-    $pdf->Cell(0, 15, '', 0, 1);
-    $pdf->Cell(35, 10, '', 0, 0);
-    $pdf->Cell(91, 15, $date_filed, 0, 0);
-    $pdf->Cell(0, 15, $user_data['department'], 0, 1);
-    $pdf->Cell(20, 10, '', 0, 0);
-    $pdf->Cell(0, 1, $user_data['firstname'] . ' ' . $user_data['lastname'], 0, 1);
-    $pdf->Cell(96, 10, '', 0, 0);
-    $pdf->Cell(0, 15, $user_data['contactnumber'], 0, 1);
-    $pdf->Cell(21, 10, '', 0, 0);
-    $pdf->Cell(81, 16, $leave_from, 0, 0);
-    $pdf->Cell(0, 16, $leave_to, 0, 1);
-    $pdf->Cell(102, 10, '', 0, 0);
-    $pdf->Cell(0, 1, $working_days_covered, 0, 1);
-    $pdf->Cell(46, 10, '', 0, 0);
-    if ($leave_type == "Others") {
-        $pdf->Cell(0, 14, "Others ", 0, 1);
-        $pdf->Cell(57, 0, '', 0, 0);
-        $pdf->Cell(0, 1, $leave_type_others, 0, 1);
-    } else {
-        $pdf->Cell(0, 14, $leave_type, 0, 1);
-    }
-    $pdf->Cell(3, 10, '', 0, 0);
-    $pdf->Cell(0, 42, $reason, 0, 1);
-
-    // Output the PDF (uncomment one option)
-    // $pdf->Output('leave_form.pdf', 'D'); // Download
-    $pdf->Output('filename.pdf', 'S'); // Display in browser for preview
-    header("Location: User Leave History.php");
+    // Redirect to Pending Leaves after updating
+    header("Location: Pending Leaves.php");
     exit; // Stop further execution
 }
 ?>
@@ -142,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Leave Form</title>
+    <title>Update Leave Form</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="/mapecon/Pictures/favicon.png">
     <link rel="stylesheet" href="/mapecon/style.css">
@@ -167,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </header>
 
-<div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span> Leave Management System<div id="date-time"></div></div>
+<div class="menu"><span class="openbtn" onclick="toggleNav()">&#9776;</span> HR(Human Resources Management)<div id="date-time"></div></div>
 
 <!-- Content -->
 <div class="content" id="content">
@@ -186,8 +153,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="overlay" id="overlay" onclick="closeNav()"></div>
     <div class="leave-application">
         <h2>Edit Leave Application</h2>
-        <form action="<?php echo($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="return validateForm()">
+        <form action="<?php echo($_SERVER["PHP_SELF"]); ?>?application_id=<?php echo $application_id; ?>" method="post" onsubmit="return validateForm()">
+            <label for="date_filed">Date Filed:</label>
+            <input type="date" id="date_filed" name="date_filed" value="<?php echo $application_data['date_filed']; ?>" readonly>
+            
+            <label for="department">Department:</label>
+            <input type="text" id="department" name="department" value="<?php echo $user_data['department']; ?>" readonly>
+            
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="<?php echo $user_data['firstname'] . ' ' . $user_data['lastname']; ?>" readonly>
+            
+            <label for="contactnumber">Contact Number:</label>
+            <input type="text" id="contactnumber" name="contactnumber" value="<?php echo $user_data['contactnumber']; ?>" readonly>
+            
             <label for="leave-type">Leave Type:</label>
+            <input type="text" id="leave-type" name="leave-type" value="<?php echo $application_data['leave_type']; ?>" readonly>
             <div class="leave-type">
                 <select name="leave-type" id="leave-type">
                     <option value="">Select</option>
@@ -200,56 +180,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div id="others-container" style="display: <?php echo ($application_data['leave_type'] == 'Others') ? 'block' : 'none'; ?>;">
                 <label for="others">Others:</label>
-                <input type="text" id="others" name="others" value="<?php echo $application_data['leave_type_others']; ?>">
+                <input type="text" id="others" name="others" value="<?php echo $application_data['leave_type_others']; ?>" readonly>
             </div>
             <div class="date-range">
                 <div class="from-date">
                     <label for="from-date">From Date:</label>
-                    <input type="date" name="from-date" id="from-date" value="<?php echo $application_data['from_date']; ?>">
+                    <input type="date" name="from-date" id="from-date" value="<?php echo $application_data['from_date']; ?>" readonly>
                 </div>
                 <div class="to-date">
                     <label for="to-date">To Date:</label>
-                    <input type="date" name="to-date" id="to-date" value="<?php echo $application_data['to_date']; ?>">
+                    <input type="date" name="to-date" id="to-date" value="<?php echo $application_data['to_date']; ?>" readonly>
                 </div>
                 <div class="num-of-days">
                     <label for="numofDays">Days covered:</label>
-                    <input type="number" id="numofDays" name="numofDays" value="<?php echo $application_data['working_days_covered']; ?>">
+                    <input type="number" id="numofDays" name="numofDays" value="<?php echo $application_data['working_days_covered']; ?>" readonly>
                 </div>
             </div>
             <label for="reason" class="reason-label">Reason:</label>
             <div class="reason">
-                <textarea name="reason" id="reason" cols="30" rows="10"><?php echo $application_data['reason']; ?></textarea>
+                <textarea name="reason" id="reason" cols="30" rows="10" readonly><?php echo $application_data['reason']; ?></textarea>
             </div>
         
             <div class="leave-balances">
-  <table>
-    <tr>
-      <th>Number of Leave
-          Days Available
-      </th>
-      <th>With Pay</th>
-      <th>Without Pay</th>
-      <th>Balance as of:</th>
-    </tr>
-    <tr>
-      <td>Vacation Leave</td>
-      <td><input type="number" id="vl_wpay_bal" name="vl_wpay_bal" value="<?php echo $application_data['vl_wpay_bal'];?>"></td>
-      <td><input type="number" id="vl_wopay_bal" name="vl_wopay_bal" value="<?php echo $application_data['vl_wopay_bal'];?>"></td>
-      <td><input type="number" id="vl_total_bal" name="vl_total_bal" value="<?php echo $application_data['vl_total_bal'];?>"></td>
-    </tr>
-    <tr>
-      <td>Sick Leave</td>
-      <td><input type="number" id="sl_wpay_bal" name="sl_wpay_bal" value="<?php echo $application_data['sl_wpay_bal'];?>"></td>
-      <td><input type="number" id="sl_wopay_bal" name="sl_wopay_bal" value="<?php echo $application_data['sl_wopay_bal'];?>"></td>
-      <td><input type="number" id="sl_total_bal" name="sl_total_bal" value="<?php echo $application_data['sl_total_bal'];?>"></td>
-    </tr>
-  </table>
-</div>
+                <table>
+                    <tr>
+                        <th>Number of Leave Days Available</th>
+                        <th>With Pay</th>
+                        <th>Without Pay</th>
+                        <th>Balance as of:</th>
+                    </tr>
+                    <tr>
+                        <td>Vacation Leave</td>
+                        <td><input type="number" id="vl_wpay_bal" name="vl_wpay_bal" value="<?php echo $application_data['vl_wpay_bal']; ?>"></td>
+                        <td><input type="number" id="vl_wopay_bal" name="vl_wopay_bal" value="<?php echo $application_data['vl_wopay_bal']; ?>"></td>
+                        <td><input type="number" id="vl_total_bal" name="vl_total_bal" value="<?php echo $application_data['vl_total_bal']; ?>"></td>
+                    </tr>
+                    <tr>
+                        <td>Sick Leave</td>
+                        <td><input type="number" id="sl_wpay_bal" name="sl_wpay_bal" value="<?php echo $application_data['sl_wpay_bal']; ?>"></td>
+                        <td><input type="number" id="sl_wopay_bal" name="sl_wopay_bal" value="<?php echo $application_data['sl_wopay_bal']; ?>"></td>
+                        <td><input type="number" id="sl_total_bal" name="sl_total_bal" value="<?php echo $application_data['sl_total_bal']; ?>"></td>
+                    </tr>
+                </table>
+            </div>
             <div class="buttons">
                 <button type="button" onclick="window.location.href='/mapecon/Admin Interface/Admin Home.php';">Cancel</button>
-                <button type="submit" id="submit-btn">Update Application</button>
+                <button type="submit" id="submit-btn">Send to Supervisor</button>
             </div>
-            <input type="hidden" id="date_filed" name="date_filed" value="<?php echo $application_data['date_filed']; ?>">
         </form>
     </div>
 </div>
