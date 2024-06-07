@@ -191,9 +191,12 @@ header {
 /* Leave History */
 
 .th-history{
-  background-color: #f6f6f6;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  background-color: #B40000;
+  color: white;
+  border-top: 1px solid #0a0a0a;
+  border-right:1 px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid #161515;
 }
 
 .th-history, .td-history {
@@ -206,7 +209,7 @@ header {
 }
 
 .th-history:nth-child(1), .td-history:nth-child(1){
-  background-color: red;
+  background-color: #B40000;
   display: none;
 }
 
@@ -389,9 +392,9 @@ td:nth-child(2) {
 .th, td {
   padding: 8px;
   text-align: center;
-  border-bottom: 1px solid #131212;
-  border-left: 1px solid black; 
-  border-right: 1px solid black;
+  border-bottom: 1px solid #0f0f0f;
+  border-left: 1px solid rgb(14, 12, 12); 
+  border-right: 1px solid rgb(14, 12, 12);
 }
 
 td:nth-child(2){
@@ -399,10 +402,10 @@ td:nth-child(2){
 }
 
 .th {
-  background-color: #f6f6f6;
-  color: black;
+  background-color: #b40000;
+  color: rgb(247, 241, 241);
   font-weight: bold;
-  border-top: 1px solid #0c0c0c;
+  border-top: 1px solid #0e0d0d;
 }
 
 .th:nth-child(1), .th:nth-child(2), .th:nth-child(6){
@@ -1178,7 +1181,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 
   .btn-leaveHistory{ /* This is the Cancel Button */
     border: 1px solid #b40000;
-    color: #b40000;
+    color: #faf3f3;
     background-color: white;
     padding: 3px 5px;
     border-radius: 5px;
@@ -1216,6 +1219,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
   }
 
   .th-declined, .td-declined{
+    background-color: #B40000;
     font-size: 10px;
   }
 
