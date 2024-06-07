@@ -6,7 +6,7 @@ include("../sql/config.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $selectedIds = json_decode($_POST['selected']);
 
-    // Select leave applications with the selected ids and user details
+    // Select leave applications with the selected ids and user details 
     $sql = "SELECT l.*, 
                    CONCAT(u.lastname) AS last_name, 
                    CONCAT(u.firstname) AS first_name, 
