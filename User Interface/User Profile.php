@@ -131,7 +131,7 @@ $row = mysqli_fetch_assoc($result);
         <select name="department" id="department-edit" required>
           <option value="">Select</option>
           <option value="Accounting" <?php echo (isset($department) && $department == 'Accounting') ? 'selected' : ($row['department'] == 'Accounting' ? 'selected' : ''); ?>>Accounting</option>
-          <option value="Admin" <?php echo (isset($department) && $department == 'Admin') ? 'selected' : ($row['department'] == 'Admin' ? 'selected' : ''); ?>>Admin and Shared Services</option>
+          <option value="Admin and Shared Services" <?php echo (isset($department) && $department == 'Admin') ? 'selected' : ($row['department'] == 'Admin and Shared Services' ? 'selected' : ''); ?>>Admin and Shared Services</option>
           <option value="Ads" <?php echo (isset($department) && $department == 'Ads') ? 'selected' : ($row['department'] == 'Ads' ? 'selected' : ''); ?>>Ads and Promo</option>
           <option value="Business" <?php echo (isset($department) && $department == 'Business') ? 'selected' : ($row['department'] == 'Business' ? 'selected' : ''); ?>>Business Development Group</option>
           <option value="Chem Room" <?php echo (isset($department) && $department == 'Chem Room') ? 'selected' : ($row['department'] == 'Chem Room' ? 'selected' : ''); ?>>Chem Room</option>
