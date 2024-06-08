@@ -2,7 +2,7 @@
 session_start();
 include("../sql/config.php");
 
-$conn = mysqli_connect("localhost","root","","mapecon") or die("Couldn't connect");
+$conn = mysqli_connect("localhost","root","Carlo016","mapecon") or die("Couldn't connect");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
