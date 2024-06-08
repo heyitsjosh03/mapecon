@@ -50,7 +50,6 @@ $result = $connection->query($sql);
 </style>
 </head>
 
-
 <body>
 <header>
   <div class="logo_header">
