@@ -1726,3 +1726,41 @@ margin-bottom: 10px;
 
 
 
+/* fill up form */
+
+.edit-date{
+  position:inline;
+  font-family: Verdana, Tahoma, sans-serif ;
+  margin-top: 35px;
+  margin-left: 5%;
+  
+}
+.edit-filed{
+  position:inline;
+  font-family: Verdana, Tahoma, sans-serif ;
+  height: 15px;
+  padding: 2px 3px;
+  margin-top: 5%;
+  margin-bottom: 8px;
+  margin-left: -10%;
+  
+}
+
+.department{
+  position:inline;
+  font-family: Verdana, Tahoma, sans-serif ;
+  height: 20px;
+  margin-top: 35px;
+  margin-right: 35%;
+}
+
+.edit-department{
+  position:inline;
+  font-family: Verdana, Tahoma, sans-serif ;
+  width: 300px;
+  height: 15px;
+  margin-top: -5%;
+  margin-bottom: 6%;
+  margin-right: 2%;
+  margin-left: 65%;
+}

@@ -126,8 +126,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="profile-dropdown-toggle" class="profile-dropdown">
             <img src="/mapecon/Pictures/profile.png" alt="Profile">
             <div class="dropdown-content">
-                <a href="../User Interface/User Profile.php">Profile </a>
-                <a href="../User Interface/User Change Password.php">Change Password</a>
+                <a href="../Admin Interface/Admin Profile.php">Profile </a>
+                <a href="../Admin Interface/Admin Change Password.php">Change Password</a>
                 <a href="../sql/logout.php">Logout</a>
             </div>
         </label>
@@ -152,13 +152,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Overlay -->
     <div class="overlay" id="overlay" onclick="closeNav()"></div>
     <div class="leave-application">
-        <h2>Edit Leave Application</h2>
+        <h2 class="edit-text">Edit Leave Application</h2>
         <form action="<?php echo($_SERVER["PHP_SELF"]); ?>?application_id=<?php echo $application_id; ?>" method="post" onsubmit="return validateForm()">
-            <label for="date_filed">Date Filed:</label>
-            <input type="date" id="date_filed" name="date_filed" value="<?php echo $application_data['date_filed']; ?>" readonly>
             
-            <label for="department">Department:</label>
-            <input type="text" id="department" name="department" value="<?php echo $user_data['department']; ?>" readonly>
+            <label for="date_filed" class="edit-date">Date Filed:</label>
+            <input type="date" id="date_filed" class="edit-filed" name="date_filed" value="<?php echo $application_data['date_filed']; ?>" readonly>
+            
+            <label for="department" class="department">Department:</label>
+            <input type="text" id="department"  class="edit-department" name="department" value="<?php echo $user_data['department']; ?>" readonly>
             
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" value="<?php echo $user_data['firstname'] . ' ' . $user_data['lastname']; ?>" readonly>

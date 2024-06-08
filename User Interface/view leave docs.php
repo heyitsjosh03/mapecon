@@ -2,7 +2,6 @@
 include("../sql/config.php");
 include("../sql/function.php");
 
-
 // Include the FPDF library
 require("/xampp/htdocs/mapecon/fpdf/fpdf.php");
 
@@ -69,6 +68,32 @@ if ($row['leave_type'] == "Others") {
 }
 $pdf->Cell(3, 10, '', 0, 0);
 $pdf->Cell(0, 42, $row['reason'], 0, 1);
+//Vacation Leave Balances
+// Set the position for the 'With Pay' leave balance
+$pdf->SetXY(50, 201); // Adjust X and Y as needed
+$pdf->Cell(31, 10, $row['vl_wpay_bal'], 0, 0, 'R');
+
+// Set the position for the 'Without Pay' leave balance
+$pdf->SetXY(30, 201); // Adjust X and Y as needed
+$pdf->Cell(0, 10, $row['vl_wopay_bal'], 0, 0, 'C');
+
+// Set the position for the 'Total Balance' leave balance
+$pdf->SetXY(150, 201); // Adjust X and Y as needed
+$pdf->Cell(30, 10, $row['vl_total_bal'], 0, 1, 'C');
+
+//Sick Leave Balances
+// Set the position for the 'With Pay' leave balance
+$pdf->SetXY(50, 210); // Adjust X and Y as needed
+$pdf->Cell(31, 10, $row['sl_wpay_bal'], 0, 0, 'R');
+
+// Set the position for the 'Without Pay' leave balance
+$pdf->SetXY(30, 210); // Adjust X and Y as needed
+$pdf->Cell(0, 10, $row['sl_wopay_bal'], 0, 0, 'C');
+
+// Set the position for the 'Total Balance' leave balance
+$pdf->SetXY(150, 210); // Adjust X and Y as needed
+$pdf->Cell(30, 10, $row['sl_total_bal'], 0, 1, 'C');
+
 
 // Output the PDF
 $pdf->Output();
