@@ -126,8 +126,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="profile-dropdown-toggle" class="profile-dropdown">
             <img src="/mapecon/Pictures/profile.png" alt="Profile">
             <div class="dropdown-content">
-                <a href="../User Interface/User Profile.php">Profile </a>
-                <a href="../User Interface/User Change Password.php">Change Password</a>
+                <a href="../Admin Interface/Admin Profile.php">Profile </a>
+                <a href="../Admin Interface/Admin Change Password.php">Change Password</a>
                 <a href="../sql/logout.php">Logout</a>
             </div>
         </label>
