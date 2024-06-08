@@ -2,20 +2,30 @@
 session_start();
 
 include("../sql/config.php");
-// Connect to database
-$conn = $connection;
+include("../sql/function.php");
+$user_data = check_login($connection);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// Get the approver's department
+$approver_id = $_SESSION['user_id'];
+$approver_query = "SELECT department FROM users WHERE user_id = '$approver_id'";
+$approver_result = mysqli_query($connection, $approver_query);
+
+if ($approver_result && mysqli_num_rows($approver_result) > 0) {
+    $approver_data = mysqli_fetch_assoc($approver_result);
+    $approver_department = $approver_data['department'];
+} else {
+    die('Error: Approver data not found.');
 }
 
+// Fetch leave applications for the same department as the approver
 $sql = "SELECT l.*, UCASE(CONCAT(u.lastname, ', ', u.firstname)) AS full_name
         FROM leave_applications AS l 
         INNER JOIN users AS u ON l.user_id = u.user_id
+        WHERE u.department = '$approver_department'
         ORDER BY l.id DESC";
-$result = $conn->query($sql);
+$result = $connection->query($sql);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
