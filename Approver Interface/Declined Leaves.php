@@ -36,9 +36,13 @@ $result = $connection->query($sql);
 <link rel="shortcut icon" href="/mapecon/Pictures/favicon.png">
 <link rel="stylesheet" href="/mapecon/style3.css">
 <style>
-    td.dash{
-    text-align: center;
-  }
+  td.days-covered {
+    text-align: center; /* Center align text in Days Covered column */
+}
+    th.Action{
+      text-align:center;
+      padding-left: 14px;
+    }
   </style>
 </head>
 
@@ -55,8 +59,8 @@ $result = $connection->query($sql);
     <label for="profile-dropdown-toggle" class="profile-dropdown">
       <img src="/mapecon/Pictures/profile.png" alt="Profile">
       <div class="dropdown-content">
-        <a href="Admin Profile.php">Profile </a>
-        <a href="Admin Change Password.php">Change Password</a>
+        <a href="Approver Profile.php">Profile </a>
+        <a href="Approver Change Password.php">Change Password</a>
         <a href="../sql/logout.php">Logout</a>
       </div>
     </label>

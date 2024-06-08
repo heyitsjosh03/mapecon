@@ -36,17 +36,13 @@ $result = $connection->query($sql);
 <link rel="shortcut icon" href="/mapecon/Pictures/favicon.png">
 <link rel="stylesheet" href="/mapecon/style3.css">
 <style>
-  td.dash{
-    text-align: center;
-  }
-
   td.days-covered {
     text-align: center; /* Center align text in Days Covered column */
-}
+  }
     th.Action{
       text-align:center;
       padding-left: 14px;
-   }
+    }
 </style>
 </head>
 
