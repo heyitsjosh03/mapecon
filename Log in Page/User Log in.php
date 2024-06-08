@@ -16,9 +16,6 @@ if (isset($_SESSION['user_id'])) {
         case 'User':
             header("Location: ../User Interface/User Leave Home.php");
             exit;
-        case 'Hr':
-                header("Location: ../Hr Interface/Hr Home.php");
-                exit;
         default:
             // Handle other cases if necessary
             break;
@@ -60,9 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     die;
                 }elseif ($user_data['user_status'] == 'Approver') {
                     header("Location: ../Approver Interface/Approver home.php");
-                    die;
-                }elseif ($user_data['user_status'] == 'Hr') {
-                    header("Location: ../Hr Interface/Hr Home.php");
                     die;
                 }
             } else {
