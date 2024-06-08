@@ -147,8 +147,8 @@ $result = $stmt->get_result();
       <th class="th-history">Date Filed</th>
       <th class="th-history">Date Requested</th>
       <th class="th-history">Leave Until</th>
+      <th class="th-history">Days Covered</th>
       <th class="th-history">Status</th>
-      <th class="th-history"></th>
       <th class="th-history" colspan="3">Actions</th>
     </tr>
     <?php 
@@ -161,6 +161,7 @@ $result = $stmt->get_result();
             echo "<td class='td-history'>" . $row["date_filed"] . "</td>";
             echo "<td class='td-history'>" . $row["from_date"] . "</td>";
             echo "<td class='td-history'>" . $row["to_date"] . "</td>";
+            echo "<td class='td days-covered'>" . $row["working_days_covered"] . "</td>";
             echo "<td class='td-history'>";
             switch ($row["status"]) {
                 case 'Pending':
@@ -176,7 +177,6 @@ $result = $stmt->get_result();
                     echo "-";
             }
             echo "</td>";
-            echo "<td class='td-history'> -</td>";
             echo "<td class='actions eye tooltip td-history'><a href='view leave docs.php?application_id=" . $row["application_id"] . "' target='_blank'><i class='fa fa-eye'></i><span class='tooltiptext-eye'>View Leave Document</span></a></td>";
             echo "<td class='td actions floppy tooltip td-history'><a href='download leave docs.php?application_id=" . $row["application_id"] . "' target='_blank'><i class='fa fa-floppy-o'></i><span class='tooltiptext-approve'>Save as PDF</span></a></td>";
             // Check if the status is "Pending"

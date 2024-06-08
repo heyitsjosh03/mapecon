@@ -143,7 +143,7 @@ $result = $connection->query($sql);
     <?php
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            if($row["status"] === "Pending") {
+            if($row["status"] === "Declined") {
                 echo "<tr>";
                 echo "<td class='td'></td>";
                 echo "<td class='td'>" . $row["full_name"] . "</td>";
