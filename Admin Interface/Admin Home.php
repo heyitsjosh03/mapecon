@@ -197,10 +197,10 @@ mysqli_close($connection);
             </div>
             <div class="navigation-buttons">
             <button id="prevButton" class="nav-button" onclick="showPreviousVisualization()" style="display: none;">
-              <i class="fa fa-bar-chart" aria-hidden="true"></i> Bar 
+              <i class="fa fa-pie-chart" aria-hidden="true"></i> Wheel 
             </button>
             <button id="nextButton" class="nav-button" onclick="showNextVisualization()">
-              <i class="fa fa-pie-chart" aria-hidden="true"></i> Pie 
+              <i class="fa fa-pie-chart" aria-hidden="true"></i> Pie
             </button>
             </div>
           </div>
@@ -294,32 +294,20 @@ mysqli_close($connection);
     document.addEventListener("DOMContentLoaded", function() {
       var ctx = document.getElementById('leavetypeChart').getContext('2d');
       var myChart = new Chart(ctx, {
-        type: 'bar', // Change chart type to bar
+        type: 'doughnut', // Change chart type to bar
       data: {
-        labels: ['Casual Leave', 'Compensatory Off', 'Leave without Pay', 'Privilege Leave', 'Sick Leave', 'Vacation Leave'],
+        labels: ['Sick Leave', 'Vacation Leave'],
         datasets: [{
           label: 'Leave Count',
           data: [
-            <?php echo $rowCasual['casual_count']; ?>, 
-            <?php echo $rowCompensatory['compensatory_count']; ?>, 
-            <?php echo $rowWithoutPay['withoutpay_count']; ?>, 
-            <?php echo $rowPrivilege['privilege_count']; ?>, 
             <?php echo $rowSick['sick_count']; ?>, 
             <?php echo $rowVacation['vacation_count']; ?>
           ],
           backgroundColor: [
-            'rgb(58, 58, 58)', // Casual Leave - Gray
-            'rgba(255,214,213,255)', // Compensatory Off - Light Pink
-            'rgb(192, 0, 0)', // Leave without Pay - Red
-            'rgb(0, 128, 0)', // Privilege Leave - Green
-            'rgb(0, 0, 255)', // Sick Leave - Blue
+            'rgb(192, 0, 0)', // Sick Leave - Red
             'rgb(255, 165, 0)' // Vacation Leave - Orange
           ],
           borderColor: [
-            'rgb(255, 255, 255)',
-            'rgb(255, 255, 255)',
-            'rgb(255, 255, 255)',
-            'rgb(255, 255, 255)',
             'rgb(255, 255, 255)',
             'rgb(255, 255, 255)'
           ],
