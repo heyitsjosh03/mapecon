@@ -8,7 +8,7 @@ include("../sql/function.php");
 if (isset($_SESSION['user_id'])) {
     switch ($_SESSION['user_status']) {
         case 'Admin':
-            header("Location: ../Admin Interface/Admin Home.php");
+            header("Location: ../Hr Interface/Hr Home.php");
             exit;
         case 'Approver':
             header("Location: ../Approver Interface/Approver home.php");
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 }
 
                 if ($user_data['user_status'] == 'Admin') {
-                    header("Location: ../Admin Interface/Admin Home.php");
+                    header("Location: ../Hr Interface/Hr Home.php");
                     die;
                 } elseif ($user_data['user_status'] == 'Supervisor') {
                     header("Location: ../Supervisor Interface/Supervisor Home.php");
