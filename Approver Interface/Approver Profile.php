@@ -154,7 +154,7 @@ $row = mysqli_fetch_assoc($result);
       </div>
 
       <div class="buttons">
-        <button type="button" onclick="window.location.href='/mapecon/User Interface/User Leave Home.php';">Cancel</button>
+        <button type="button" onclick="window.location.href='/mapecon/Approver Interface/Approver Home.php';">Cancel</button>
         <button type="submit" id="submit-btn">Save</button>
       </div>
     </form>
