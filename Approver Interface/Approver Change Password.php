@@ -111,7 +111,7 @@
       <input type="password" id="password" name="confirm-new-password" required>
 
       <div class="buttons">
-        <button type="button">Cancel</button>
+        <button type="button" onclick="window.location.href='/mapecon/Approver Interface/Approver Home.php';">Cancel</button>
         <button type="submit" id="submit-btn">Save</button>
       </div>
     </form>
