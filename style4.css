@@ -1,0 +1,1783 @@
+body {
+  margin: 0;
+  font-family: "Oxygen", Arial, sans-serif;
+}
+
+/* Header Styling */
+header {
+  background-color: #303033;
+  border-bottom: 4px solid #B40000;
+  color: #fff;
+  padding: 9.5px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  }
+
+   /* Date and Time and Name Greeting! */
+  
+   #date-time {
+    font-size: 0.8rem; /* Adjust font size as needed */
+    color: black; /* Adjust color as needed */
+    display: inline;
+    position: absolute;
+    right: 55px;
+  }
+
+  #name-greeting{
+    font-size: 0.8rem; /* Adjust font size as needed */
+    color: black; /* Adjust color as needed */
+    display: inline;
+    position: absolute;
+    right: 50px;
+  }
+
+  .user-name{
+    color: red;
+    text-transform: uppercase;
+  }
+
+  .logo_header img {
+  width: 120px;
+  height: auto;
+  margin-top: 5px;
+  margin-left: 40px;
+  }
+
+  .profile-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 20px;
+  }
+
+  .profile-dropdown img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-right: 30px;
+
+  }
+
+  .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: max-content;
+  /* Set the width to expand as wide as necessary */
+  white-space: nowrap;
+  /* Prevent line breaks */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 10px;
+  /* Adjust the value to change the amount of rounding */
+  padding: 8px;
+  /* Adjust the padding to create space around the dropdown content */
+  transition: all 0.3s ease;
+  /* Smooth transition on hover */
+  margin-right: 30px;
+  }
+
+  .dropdown-content:hover {
+  padding: 12px;
+  /* Increase padding on hover to create space */
+  }
+
+  .dropdown-content a {
+  color: #fff;
+  padding: 8px 16px;
+  /* Adjust padding for each dropdown item */
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  /* Ensure each item takes full width */
+  box-sizing: border-box;
+  /* Include padding and border in the width */
+  }
+
+  .dropdown-content a:hover {
+  border-radius: 10px;
+  color: #b40000;
+  /* White font color on hover */
+  }
+
+  /* PROFILE DROPDOWN */
+  /* Style for the profile dropdown */
+  .profile-dropdown-toggle {
+      display: none; /* Hide the checkbox input */
+  }
+  
+  .profile-dropdown {
+      position: relative;
+      display: inline-block;
+  }
+  
+  .profile-dropdown img {
+      width: 40px; /* Adjust the width of the profile image */
+      height: 40px; /* Adjust the height of the profile image */
+      border-radius: 50%; /* Make the profile image circular */
+      cursor: pointer;
+  }
+  
+  .dropdown-content {
+      position: absolute;
+      right: 0; /* Adjust the right position of the dropdown content */
+      background-color: #f9f9f9;
+      min-width: 120px; /* Set the minimum width of the dropdown content */
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); /* Add shadow to the dropdown content */
+      z-index: 1;
+      display: none; /* Hide the dropdown content by default */
+  }
+  
+  .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+  }
+  
+  .dropdown-content a:hover {
+      background-color: #f1f1f1; /* Change background color on hover */
+  }
+  
+  /* Show dropdown content when checkbox is checked */
+  .profile-dropdown-toggle:checked + .profile-dropdown .dropdown-content {
+      display: block;
+  }
+
+  /* Media query for responsiveness */
+@media only screen and (max-width: 600px) {
+  header {
+    padding: 10px 20px; 
+  }
+  .logo_header img{
+    width: 100px;
+    margin-left: 10px;
+  }
+
+  .profile-dropdown img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .file-leave-container {
+    padding: 10px;
+  }
+}
+  
+
+.container-sign {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  justify-content: center; 
+  align-items: center; 
+}
+
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  justify-content: center; /* Center elements horizontally */
+  align-items: center; /* Center elements vertically */
+}
+
+/* Leave History */
+
+.th-history{
+  background-color: #B40000;
+  color: white;
+  border-top: 1px solid #0a0a0a;
+  border-right:1 px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid #161515;
+}
+
+.th-history, .td-history {
+  padding: 8px;
+  border-bottom: 1px solid #000000;
+}
+
+.th-history:nth-child(1), td-history:nth-child(1){
+  width: 85px;
+}
+
+.th-history:nth-child(1), .td-history:nth-child(1){
+  background-color: #B40000;
+  display: none;
+}
+
+.th-history:nth-child(2), .td-history:nth-child(2), 
+.th-history:nth-child(3), .td-history:nth-child(3), 
+.th-history:nth-child(4), .td-history:nth-child(4), 
+.th-history:nth-child(5), .td-history:nth-child(5){
+  width: 150px;
+}
+
+.td-history:nth-child(2){
+  font-weight: 400;
+}
+
+.th-history:nth-child(6), .td-history:nth-child(6){
+  width: 120px;
+  text-align: center;
+}
+
+.th-history:nth-child(7), .td-history:nth-child(7){
+  width: 180px;
+  text-align: center;
+}
+
+
+.pending-leave{
+  display: block;
+  background-color: blue;
+  font-weight: bold;
+  color:white;
+  font-size: 14px;
+  padding: 4px;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.approved-leave{
+  display: block;
+  background-color: green;
+  font-weight: bold;
+  color:white;
+  font-size: 14px;
+  padding: 4px;
+  border-radius: 7px;
+  text-align: center;
+}
+
+.rejected-leave{
+  display: block;
+  background-color: red;
+  font-weight: bold;
+  color:white;
+  font-size: 14px;
+  padding: 4px;
+  border-radius: 7px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+
+  .th-history, .td-history{
+    font-size: 13.5px;
+  }
+
+  .th-history:nth-child(2), .td-history:nth-child(2){
+   width: 100px;
+  }
+
+  .th-history:nth-child(3), .td-history:nth-child(3),
+  .th-history:nth-child(7), .td-history:nth-child(7){
+    width: 120px;
+  }
+ 
+  .th-history:nth-child(4), .td-history:nth-child(4), 
+  .th-history:nth-child(5), .td-history:nth-child(5),
+  .th-history:nth-child(6), .td-history:nth-child(6),
+  .th-history:nth-child(7), .td-history:nth-child(7){
+    display: none;
+  }
+
+  .pending-leave{
+    font-size: small;
+  }
+  
+  .approved-leave{
+    font-size: small;
+  }
+  
+  .rejected-leave{
+    font-size: small;
+  }
+}
+
+
+/* Leave Pending */
+
+.container_report_report {
+  display: block;
+  margin: 0 auto;
+  padding: 40px;
+  border: 1px solid #D6DDE1;
+  border-radius: 7px;
+  width: 90%;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Adjust as needed */
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+
+.filter-row th{
+  border: none;
+}
+
+input[type="checkbox"] {
+  width: 15px; /* Set width */
+  height: 15px; /* Set height */
+}
+
+td{
+  background-color: white;
+}
+
+/* Edit Users Table */
+
+.th:nth-child(3), td:nth-child(3), .th:nth-child(4), td:nth-child(4), .th:nth-child(5), 
+td:nth-child(5), .th:nth-child(6), td:nth-child(6){
+  text-align: center;
+}
+
+.th:nth-child(7), td:nth-child(7){
+  text-align: center;
+  width: 200px;
+}
+
+.th:nth-child(1), .td:nth-child(1){
+  display: none;
+}
+
+.th-checkboxes{
+  border-left: 1px solid black;
+  border-top: 1px solid #0a0a0a;
+  border-bottom: 1px solid #050505;
+  background-color: #f6f6f6;
+}
+
+.th-declined{
+  border-top: 1px solid #000000;
+  border-left: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  background-color: #f6f6f6;
+}
+
+.th-checkboxes, .td-checkboxes{
+  width: 30px;  
+  text-align: center;
+}
+
+td:nth-child(2) {
+  text-align: center; /* Align content to the center */
+  max-width: 80px;
+}
+
+ .th:nth-child(8), td:nth-child(8) {
+  text-align: center;
+  width: 5px;
+}
+
+.th:nth-child(9), td:nth-child(9){
+  width: 5px;
+}
+
+.th:nth-child(10), td:nth-child(10){
+  width: 5px;
+}
+
+.th, td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #0f0f0f;
+  border-left: 1px solid rgb(14, 12, 12); 
+  border-right: 1px solid rgb(14, 12, 12);
+}
+
+td:nth-child(2){
+  font-weight: bold;
+}
+
+.th {
+  background-color: #b40000;
+  color: rgb(247, 241, 241);
+  font-weight: bold;
+  border-top: 1px solid #0e0d0d;
+}
+
+.th:nth-child(1), .th:nth-child(2), .th:nth-child(6){ 
+  text-align: center;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+.actions {
+  text-align: center;
+}
+
+.eye i{
+  color: #68719D;
+  cursor: pointer;
+  border: 1px solid #68719D; /* Add border */
+  border-radius: 5px; /* Optional: Add border radius for rounded corners */
+  padding: 5px; /* Optional: Add padding to adjust the space between the icon and the border */
+}
+
+.edit i{
+  color: #f81414;
+  cursor: pointer;
+  border: 1px solid #68719D; /* Add border */
+  border-radius: 5px; /* Optional: Add border radius for rounded corners */
+  padding: 5px; /* Optional: Add padding to adjust the space between the icon and the border */
+}
+
+.check i{
+  color: green;
+  cursor: pointer;
+  border: 1px solid green; /* Add border */
+  border-radius: 5px; /* Optional: Add border radius for rounded corners */
+  padding: 5px 5px; /* Optional: Add padding to adjust the space between the icon and the border */
+}
+
+.close i {
+  color: #b40000;
+  cursor: pointer;
+  border: 1px solid #b40000; /* Add border */
+  border-radius: 5px; /* Optional: Add border radius for rounded corners */
+  padding: 5px 7px; /* Optional: Add padding to adjust the space between the icon and the border */
+}
+
+/* PHP echo button */
+.btn-grey { /* This is for "No" Button */
+  border: 1px solid #303033;
+  color: #303033;
+  background-color: white;
+  padding: 5.5px 8px;
+  border-radius: 5px;
+  margin-left: 20%;
+}
+
+.btn-leaveHistory{ /* This is the Cancel Button */
+  border: 1px solid #b40000;
+  color: #b40000;
+  background-color: white;
+  padding: 5.5px 8px;
+  border-radius: 5px;
+  margin-left: 5%;
+  
+}
+
+.btn-approved{
+  color: green;
+  border: 1px solid green; /* Add border */
+  border-radius: 5px; /* Optional: Add border radius for rounded corners */
+  padding: 5.5px 7px; /* Optional: Add padding to adjust the space between the icon and the border */
+  background-color: white;
+  margin-left: 10%;
+}
+
+.btn-leaveHistory-disabled{
+  border: 1px solid;
+  background-color: white;
+  padding: 5.5px 8px;
+  border-radius: 5px;
+}
+
+.trash i {
+  color: #b40000;
+  cursor: pointer;
+  border: 1px solid #b40000; /* Add border */
+  border-radius: 5px; /* Optional: Add border radius for rounded corners */
+  padding: 5px 7px; /* Optional: Add padding to adjust the space between the icon and the border */
+  height: 100%;
+}
+
+.floppy i{
+  color: green;
+  cursor: pointer;
+  border: 1px solid green; /* Add border */
+  border-radius: 5px; /* Optional: Add border radius for rounded corners */
+  padding: 5px 7px;
+}
+
+.floppy i:hover{
+  color: #08ac6c;
+  border: 1px solid #08ac6c;
+  transition: all 0.3s ease;
+  padding: 7px 9px;
+}
+
+.btn-grey:hover {
+  color: #404040;
+  border: 1px solid #404040;
+  transition: all 0.3s ease;
+  padding: 7px 9px;
+}
+
+.btn-leaveHistory:hover{
+  color: red;
+  border: 1px solid red;
+  transition: all 0.3s ease;
+  padding: 7px 10px;
+}
+
+.btn-approved:hover{
+  color: #08ac6c;
+  border: 1px solid #08ac6c;
+  transition: all 0.3s ease;
+  padding: 7px 9px;
+}
+
+.btn-leaveHistory-disabled:hover{
+  color: black;
+  border: 1px solid black;
+  transition: all 0.3s ease;
+  padding: 7px 9px;
+}
+
+.eye i:hover {
+  color: blue;
+  border: 1px solid blue;
+  transition: all 0.3s ease;
+  padding: 7px;
+}
+
+.edit i:hover {
+  color: rgb(240, 58, 3);
+  border: 1px solid rgb(103, 103, 109);
+  transition: all 0.3s ease;
+  padding: 7px;
+}
+
+.close i:hover {
+  color: red;
+  border: 1px solid red;
+  transition: all 0.3s ease;
+  padding: 7px 9px;
+}
+
+.trash i:hover {
+  color: red;
+  border: 1px solid red;
+  transition: all 0.3s ease;
+  padding: 7px 9px;
+}
+
+.check i:hover{
+  color: #08ac6c;
+  border: 1px solid #08ac6c;
+  transition: all 0.3s ease;
+  padding: 7px;
+}
+
+.filter-row, .filter-row-approved, .filter-row-pending{
+  display: flex;
+  width: min-content;
+  border: none;
+}
+
+.filter-row-name{
+  display: flex;
+  width: min-content;
+  border: none;
+}
+
+.filter-row input[type="number"], .filter-row-approved input[type="number"], .filter-row-pending input[type="number"] {
+  width: 30px;
+  padding: 5px;
+  border: none;
+  margin-right: 2px;
+  border-radius: 8px;
+  background-color: #F3F3F3;
+}
+
+.filter-row-name input[type="number"] {
+  width: 30px;
+  padding: 5px;
+  border: none;
+  margin-right: 2px;
+  border-radius: 8px;
+  background-color: #F3F3F3;
+}
+ 
+.filter-row input[type="date"],  
+.filter-row-approved input[type="date"],  
+.filter-row-pending input[type="date"] {
+  margin-left: 10px;
+  width: 120px;
+  padding: 5px;
+  border: none;
+  border-radius: 8px;
+  background-color: #D9D9D9;
+  color: black;
+}
+
+.filter-row input[type="text"],
+.filter-row-approved input[type="text"],
+.filter-row-pending input[type="text"]
+{
+  width: 120px;
+  padding: 5px;
+  border: none;
+  border-radius: 8px;
+  background-color: #D9D9D9;
+  color: black;
+}
+
+.filter-row-name input[type="text"]
+{
+  width: 250px;
+  padding: 5px;
+  border: none;
+  border-radius: 8px;
+  background-color: #D9D9D9;
+  color: black;
+}
+
+#monthFilter{
+  width: 120px;
+  padding: 5px;
+  border: none;
+  border-radius: 8px;
+  background-color: #EBEBEB;
+  color: black;
+}
+
+#yearFilter{
+  margin-left: 10px;
+  width: 120px;
+  padding: 5px;
+  border: none;
+  border-radius: 8px;
+  background-color: #EBEBEB;
+  color: black;
+}
+
+#monthFilter-pending{
+  width: 120px;
+  padding: 5px;
+  border: none;
+  border-radius: 8px;
+  background-color: #EBEBEB;
+  color: black;
+  margin-left: 10px;
+}
+
+#yearFilter-pending{
+  margin-left: 10px;
+  width: 120px;
+  padding: 5px;
+  border: none;
+  border-radius: 8px;
+  background-color: #EBEBEB;
+  color: black;
+}
+
+#monthFilter option:active{
+ border: 2px solid black;
+}
+
+#monthFilter option, #yearFilter option{
+  background: white;
+}
+
+.filters {
+  border: none;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.entries {
+  font-weight: normal;
+  margin-right: 15px;
+  white-space: nowrap;
+}
+
+.leave-report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-button {
+  background-color: #343434;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 8px 8px;
+  width: 90px;
+}
+
+.dropdown-menu {
+  display: none;
+  background-color: white;
+  border-radius: 6px;
+  width: 140px;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  list-style: none;
+  padding: 0;
+  position: absolute;
+  margin-top: 1px;
+  right: 0%; /* Adjust left positioning as needed */
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu li {
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.dropdown-menu:hover{
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+
+.dropdown-menu li:hover {  /* Added hover state styles */
+  background-color: #e0e0e0; /* Change hover background color */
+  border-radius: 7px;
+}
+
+.dropdown-menu a {
+  text-decoration: none; /* Remove default link underline */
+  color: black;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+@media only screen and (max-width: 920px) {
+
+  .th:nth-child(2), .td:nth-child(2){
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .openbtn{
+    margin-left: -30px;
+  }
+  
+  #date-time {
+    right: 20px;
+  }
+
+  .th:nth-child(5), .th:nth-child(6), .th:nth-child(7), 
+  .td:nth-child(5), .td:nth-child(6), .td:nth-child(7) {
+    display: none;
+  }
+  .content{
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 630px) {
+
+  .openbtn{
+    margin-left: 0px;
+  }
+  
+  #date-time {
+    right: 55px;
+  }
+
+  .th-declined, .td-declined{
+    font-size: 13.5px;
+  }
+
+  .th, td {
+    font-size: 13.5px;
+  }
+
+  td input[type="checkbox"], th input[type="checkbox"]{
+    margin-right: -5px;
+    } 
+
+  .th:nth-child(2), .td:nth-child(2){
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .th-declined, .td-declined{
+    font-size: 13.5px;
+    width: 70px;
+  }
+
+  .th:nth-child(3), td.th:nth-child(3){
+    width: 100px;
+  }
+  
+  .th:nth-child(1), .th:nth-child(4), .th:nth-child(5), .th:nth-child(6), .th:nth-child(7), 
+  .td:nth-child(1), .td:nth-child(4), .td:nth-child(5), .td:nth-child(6), .td:nth-child(7) {
+    display: none;
+  }
+
+  .th.th:nth-child(6){
+    column-span: 4;
+  }
+
+  td:nth-child(6), td:nth-child(7) {
+    max-width: 20px; 
+  }
+
+
+/* Pending Leaves */
+
+  .filter-row, .filter-row-approved, .filter-row-pending{
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center; /* Center horizontally */
+  }
+
+  /* Declined Leaves */
+
+  .filter-row input[type="text"],
+  .filter-row input[type="date"] {
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background-color: #D9D9D9;
+    color: black;
+    margin-left: -2px;
+    margin-top: 10px; /* Add spacing between inputs */
+    width: 308px;
+  }   
+
+  /* Pending Leaves */
+
+  .filter-row-pending input[type="text"],
+  .filter-row-pending input[type="date"] {
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background-color: #D9D9D9;
+    color: black;
+    margin-left: 0px;
+    margin-top: 10px; /* Add spacing between inputs */
+    width: 305px;
+  }
+
+  /* Approved Leaves */
+
+  .filter-row-approved input[type="text"],
+  .filter-row-approved input[type="date"] {
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background-color: #D9D9D9;
+    color: black;
+    margin-left: 0px;
+    margin-top: 10px; /* Add spacing between inputs */
+    width: 305px;
+}
+
+  /* Leave History */
+
+  .eye i{
+    padding: 6px;
+  }
+
+  .edit i{
+    padding: 6px;
+  }
+
+
+  
+  .floppy i{
+    padding: 6px 7px;
+  }
+
+  #monthFilter{
+    width: 164%;
+  }
+  #yearFilter{
+    width: 118%;
+    margin-left: 70px;
+  }
+
+  #monthFilter-pending{
+    margin-top: 10px;
+    margin-left: 0px;
+    width: 164%;
+  }
+
+  #yearFilter-pending{
+    width: 118%;
+    margin-top: 10px;
+    margin-left: 70px;
+  }
+
+  .btn-approved{
+    padding: 5.5px 6.5px;
+  }
+
+  .btn-leaveHistory-disabled{
+    padding: 5.5px 6.5px;
+  }
+
+  .btn-leaveHistory-disabled:hover{
+    padding: 5.5px 6.5px;
+  }
+
+  .btn-leaveHistory:hover{
+    padding: 5.5px 8px;
+  }
+
+  .btn-approved:hover{
+    padding: 5.5px 6.5px;
+  }
+
+ 
+  
+  .btn-leaveHistory-disabled:hover{
+    color: black;
+    border: 1px solid black;
+    transition: all 0.3s ease;
+    padding: 5px 8px;
+  }
+
+  .eye i:hover{
+    padding: 6px;
+  }
+
+  .edit i:hover{
+    padding: 6px;
+  }
+  .floppy i:hover{
+    padding: 6px 7px;
+  }
+
+
+
+  .tooltip:hover .tooltiptext-eye,
+  .tooltip:hover .tooltiptext-edit,
+  .tooltip:hover .tooltiptext-approve,
+  .tooltip:hover .tooltiptext-reject,
+  .tooltip:hover .tooltiptext-disabled {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .container_report_report {
+    width: 70%;
+  }
+
+}
+
+@media only screen and (max-width: 440px) {
+
+  .openbtn{
+    margin-left: -20px;
+  }
+
+  h2{
+    font-size: 20px;
+  }
+
+  .th-declined, .td-declined{
+    font-size: 10px;
+  }
+
+
+  .th, .td{
+    font-size: 10px;
+  }
+
+  .th-history, .td-history {
+    font-size: 10px;
+  }
+
+
+  #date-time {
+    font-size: 0.7rem; /* Adjust font size as needed */
+    right: 30px;
+  
+  }
+
+
+  #monthFilter{
+    font-size: 10px;
+    margin-top: 10px;
+    margin-left: 0px;
+    width: 165%;
+  }
+
+  #yearFilter{
+    font-size: 10px;
+    width: 120%;
+    margin-top: 10px;
+    margin-left: 60px;
+  }
+
+  /* Pending Leave */
+
+  #monthFilter-pending{
+    font-size: 10px;
+    margin-top: 10px;
+    margin-left: 0px;
+    width: 165%;
+  }
+
+  #yearFilter-pending{
+    font-size: 10px;
+    width: 120%;
+    margin-top: 10px;
+    margin-left: 60px;
+  }
+
+  .filter-row-pending input[type="text"],
+  .filter-row-pending input[type="date"] {
+    font-size: 10px;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background-color: #D9D9D9;
+    color: black;
+    margin-left: 0px;
+    width: 260px;
+  }
+
+  /* Declined Leaves */
+
+  .filter-row input[type="text"],
+  .filter-row input[type="date"] {
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background-color: #D9D9D9;
+    color: black;
+    width: 260px;
+  }   
+
+   /* Approved Leaves */
+
+   .filter-row-approved input[type="text"],
+   .filter-row-approved input[type="date"] {
+     padding: 8px;
+     border: none;
+     border-radius: 8px;
+     background-color: #D9D9D9;
+     color: black;
+     margin-left: 0px;
+     width: 260px;
+   }
+
+  .btn-leaveHistory{ /* This is the Cancel Button */
+    border: 1px solid #b40000;
+    color: #b40000;
+    background-color: white;
+    padding: 3px 5px;
+    border-radius: 5px;
+  }
+  
+  .btn-approved{
+    padding: 3px 4px; /* Optional: Add padding to adjust the space between the icon and the border */
+  }
+
+  .btn-leaveHistory-disabled{
+    padding: 3px 5px;
+  }
+
+  .btn-leaveHistory-disabled:hover{
+    padding: 3px 5px;
+  }
+
+  .btn-leaveHistory:hover{
+    padding: 3px 5px;
+  }
+
+  .btn-approved:hover{
+    padding: 3px 4px;
+  }
+}
+
+
+@media only screen and (max-width: 420px) {
+
+  .openbtn{
+    margin-left: -20px;
+  }
+
+  h2{
+    font-size: 20px;
+  }
+
+  .th-declined, .td-declined{
+    font-size: 10px;
+
+  }
+
+  .th, .td{
+    font-size: 10px;
+    
+  }
+
+
+  #date-time {
+    font-size: 0.7rem; /* Adjust font size as needed */
+    right: 30px;
+  
+  }
+
+  #monthFilter{
+    font-size: 10px;
+    margin-top: 10px;
+    margin-left: 0px;
+    width: 160%;
+  }
+
+  #yearFilter{
+    font-size: 10px;
+    width: 130%;
+    margin-top: 10px;
+    margin-left: 50px;
+  }
+
+  #monthFilter-pending{
+    font-size: 10px;
+    margin-top: 10px;
+    margin-left: 0px;
+    width: 160%;
+  }
+
+  #yearFilter-pending{
+    font-size: 10px;
+    width: 130%;
+    margin-top: 10px;
+    margin-left: 50px;
+  }
+
+  /* Pending Leave */
+
+  .filter-row-pending input[type="text"],
+  .filter-row-pending input[type="date"] {
+    font-size: 10px;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background-color: #D9D9D9;
+    color: black;
+    margin-left: 0px;
+    width: 250px;
+  }
+
+  /* Declined Leave */
+
+  .filter-row input[type="text"],
+  .filter-row input[type="date"] {
+    font-size: 10px;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background-color: #D9D9D9;
+    color: black;
+    margin-right: 0px;
+    margin-left: 60%;
+    width: 250px;
+  }   
+
+   /* Approved Leaves */
+
+   .filter-row-approved input[type="text"],
+   .filter-row-approved input[type="date"] {
+     padding: 8px;
+     border: none;
+     border-radius: 8px;
+     background-color: #D9D9D9;
+     color: black;
+     font-size: 10px;
+     margin-left: 5px;
+     width: 250px;
+   }
+
+  .btn-leaveHistory{ /* This is the Cancel Button */
+    border: 1px solid #b40000;
+    color: #faf3f3;
+    background-color: white;
+    padding: 3px 5px;
+    border-radius: 5px;
+  }
+  
+  .btn-approved{
+    padding: 3px 4px; /* Optional: Add padding to adjust the space between the icon and the border */
+  }
+
+  .btn-leaveHistory-disabled{
+    padding: 3px 5px;
+  }
+
+  .btn-leaveHistory-disabled:hover{
+    padding: 3px 5px;
+  }
+
+  .btn-leaveHistory:hover{
+    padding: 3px 5px;
+  }
+
+  .btn-approved:hover{
+    padding: 3px 4px;
+  }
+}
+
+@media only screen and (max-width: 395px) {
+
+  .openbtn{
+    margin-left: -20px;
+  }
+
+  h2{
+    font-size: 20px;
+  }
+
+  .th-declined, .td-declined{
+    background-color: #B40000;
+    font-size: 10px;
+  }
+
+  .th, .td{
+    font-size: 10px;
+    border: 1px solid black;
+  
+  }
+
+  .th:nth-child(2), .td:nth-child(2){
+    max-width: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+
+  #date-time {
+    font-size: 0.7rem; /* Adjust font size as needed */
+    right: 30px;
+  
+  }
+
+  #monthFilter{
+    font-size: 10px;
+    margin-top: 10px;
+    margin-left: 0px;
+    width: 155%;
+  }
+
+  #yearFilter{
+    font-size: 10px;
+    width: 118%;
+    margin-top: 10px;
+    margin-left: 50px;
+  }
+
+  #monthFilter-pending{
+    font-size: 10px;
+    margin-top: 10px;
+    margin-left: 0px;
+    width: 155%;
+  }
+
+  #yearFilter-pending{
+    font-size: 10px;
+    width: 118%;
+    margin-top: 10px;
+    margin-left: 50px;
+  }
+
+  /* Pending Leave */
+
+  .filter-row-pending input[type="text"],
+  .filter-row-pending input[type="date"] {
+    font-size: 10px;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background-color: #D9D9D9;
+    color: black;
+    margin-left: 0px; 
+    width: 235px;
+  }
+
+  /* Declined Leave */
+
+  .filter-row input[type="text"],
+  .filter-row input[type="date"] {
+    font-size: 10px;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background-color: #D9D9D9;
+    color: black;
+    margin-left: 0px;
+    width: 235px;
+  }   
+
+   /* Approved Leaves */
+
+   .filter-row-approved input[type="text"],
+   .filter-row-approved input[type="date"] {
+     padding: 8px;
+     border: none;
+     border-radius: 8px;
+     background-color: #D9D9D9;
+     color: black;
+     font-size: 10px;
+     margin-left: 0px;
+     width: 235px;
+   }
+
+  .btn-leaveHistory{ /* This is the Cancel Button */
+    border: 1px solid #b40000;
+    color: #b40000;
+    background-color: white;
+    padding: 3px 5px;
+    border-radius: 5px;
+  }
+  
+  .btn-approved{
+    padding: 3px 4px; /* Optional: Add padding to adjust the space between the icon and the border */
+  }
+
+  .btn-leaveHistory-disabled{
+    padding: 3px 5px;
+  }
+
+  .btn-leaveHistory-disabled:hover{
+    padding: 3px 5px;
+  }
+
+  .btn-leaveHistory:hover{
+    padding: 3px 5px;
+  }
+
+  .btn-approved:hover{
+    padding: 3px 4px;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+
+  .openbtn{
+    margin-left: -20px;
+  }
+
+  h2{
+    font-size: 20px;
+  }
+
+  .th-declined, .td-declined{
+    font-size: 10px;
+  }
+
+  .th, .td{
+    font-size: 10px;
+  }
+
+
+  #date-time {
+    font-size: 0.7rem; /* Adjust font size as needed */
+    right: 30px;
+  
+  }
+
+  #monthFilter{
+    font-size: 10px;
+    margin-top: 10px;
+    margin-left: 0px;
+    width: 140%;
+  }
+
+  #yearFilter{
+    font-size: 10px;
+    width: 140%;
+    margin-top: 10px;
+    margin-left: 36px;
+  }
+
+  #monthFilter-pending{
+    font-size: 10px;
+    margin-top: 10px;
+    margin-left: 0px;
+    width: 140%;
+  }
+
+  #yearFilter-pending{
+    font-size: 10px;
+    width: 140%;
+    margin-top: 10px;
+    margin-left: 36px;
+  }
+
+  /* Pending Leave */
+
+  .filter-row-pending input[type="text"],
+  .filter-row-pending input[type="date"] {
+    font-size: 10px;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background-color: #D9D9D9;
+    color: black;
+    margin-left: 0px; 
+    width: 225px;
+  }
+
+  /* Declined Leave */
+
+  .filter-row input[type="text"],
+  .filter-row input[type="date"] {
+    font-size: 10px;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background-color: #D9D9D9;
+    color: black;
+    margin-left: 0px;
+    width: 225px;
+  }   
+
+   /* Approved Leaves */
+
+   .filter-row-approved input[type="text"],
+   .filter-row-approved input[type="date"] {
+     padding: 8px;
+     border: none;
+     border-radius: 8px;
+     background-color: #D9D9D9;
+     color: black;
+     font-size: 10px;
+     margin-left: 0px;
+     width: 225px;
+   }
+
+  .btn-leaveHistory{ /* This is the Cancel Button */
+    border: 1px solid #b40000;
+    color: #b40000;
+    background-color: white;
+    padding: 3px 5px;
+    border-radius: 5px;
+  }
+  
+  .btn-approved{
+    padding: 3px 4px; /* Optional: Add padding to adjust the space between the icon and the border */
+  }
+
+  .btn-leaveHistory-disabled{
+    padding: 3px 5px;
+  }
+
+  .btn-leaveHistory-disabled:hover{
+    padding: 3px 5px;
+  }
+
+  .btn-leaveHistory:hover{
+    padding: 3px 5px;
+  }
+
+  .btn-approved:hover{
+    padding: 3px 4px;
+  }
+
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+}
+
+/* Tooltip text */
+.tooltiptext-eye {
+  font-size: 13px;
+  visibility: hidden;
+  width: max-content;
+  background-color: blue; /* Change the color as needed */
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltiptext-approve {
+  font-size: 13px;
+  visibility: hidden;
+  width: max-content;
+  background-color: green; /* Change the color as needed */
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 75%;
+  margin-left: -50px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltiptext-reject, .tooltiptext-delete {
+  font-size: 13px;
+  visibility: hidden;
+  width: max-content;
+  background-color: red; /* Change the color as needed */
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 65%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltiptext-disabled{
+  font-size: 13px;
+  visibility: hidden;
+  width: max-content;
+  background-color: black; /* Change the color as needed */
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 70%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip text */
+.tooltiptext-edit {
+  font-size: 13px;
+  visibility: hidden;
+  width: max-content;
+  background-color: rgb(255, 0, 0); /* Change the color as needed */
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip text visibility on hover */
+.tooltip:hover .tooltiptext-eye {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip:hover .tooltiptext-edit {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip:hover .tooltiptext-approve {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip:hover .tooltiptext-reject {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip:hover .tooltiptext-delete {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip:hover .tooltiptext-disabled{
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Style the sidebar */
+.sidebar {
+  height: 100%;
+  visibility: hidden;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  margin-top: 160px;
+}
+
+/* The sidebar links */
+.sidebar a {
+  color: black;
+  border-radius: 7px;
+  margin-top: 10px;
+  margin-left: 20% ;
+  width: 60%;
+  padding: 10px 15px;
+  text-decoration: none;
+  font-size: 16px;
+  display: flex; /* Use flexbox */
+  align-items: center; /* Vertically center items */
+  justify-content: flex-start; /* Align items to the start (left) */
+  transition: 0.3s;
+}
+
+.leave-label{
+  margin-left: 20% ;
+  font-size: small;
+}
+
+.home-sidebar{
+  margin-bottom: 20px;
+}
+
+#active{
+  color: white;
+  background-color: #b40000;
+}
+
+/* Style the sidebar icons */
+.sidebar a i {
+  margin-right: 10px; /* Add margin between icon and text */
+}
+
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+  color: white;
+  background-color: #b40000;
+  transition: none;
+}
+
+/* Position and style the close button (top right corner) */
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+/* Style the content */
+.content {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+.leave-report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.openbtn {
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.menu {
+  font-size: 23px;
+  font-weight: bolder;
+  margin-left: 50px;
+  margin-top: 100px;
+  margin-bottom: 20px;
+}
+
+/* Modal Styles */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.4); /* Black with 40% opacity */
+  padding-top: 60px; 
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; 
+  max-width: 400px; 
+  height: auto; 
+  max-height: 80%; 
+  border-radius: 8px;
+  text-align: center; /* Center the text content */ 
+  overflow-y: auto; /* Enable vertical scroll if content overflows */
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* End Modal Styles */
+
+
+@media only screen and (max-width: 768px) {
+.sidebar{
+  margin-top: 0%;
+  z-index: 1002;
+}
+
+.sidebar a{
+  width: 80%;
+  margin-left: 3.5%;
+}
+
+.leave-label{
+  margin-left: 5% ;
+}
+
+.overlay {
+  display: none;
+  position: fixed; 
+  width: 100%; 
+  height: 100%; 
+  top: 0; 
+  left: 0;
+  background-color: rgba(0,0,0,0.5); /* Semi-transparent black */
+  z-index: 1001; /* Ensure it's above everything else */
+}
+}
