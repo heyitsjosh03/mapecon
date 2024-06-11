@@ -23,7 +23,7 @@ $result = $conn->query($sql);
 <title>Pending Leaves</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="/mapecon/Pictures/favicon.png">
-<link rel="stylesheet" href="/mapecon/style3.css">
+<link rel="stylesheet" href="/mapecon/style4.css">
 <style>
   td.days-covered {
     text-align: center; /* Center align text in Days Covered column */
@@ -226,19 +226,21 @@ function confirmDecline() {
 
   // Filter table rows based on name
   document.getElementById('nameFilter').addEventListener('input', function() {
-    var input = this.value.toUpperCase();
-    var rows = document.querySelectorAll('table tr');
-    for (var i = 1; i < rows.length; i++) {
-        var name = rows[i].getElementsByTagName("td")[1];
-        if (name) {
-            var textValue = name.textContent || name.innerText;
-            if (textValue.toUpperCase().indexOf(input) > -1) {
-                rows[i].style.display = "";
-            } else {
-                rows[i].style.display = "none";
+        var input = this.value.toUpperCase();
+        var rows = document.querySelectorAll('table tr');
+        for (var i = 1; i < rows.length; i++) {
+            var lastNameCell = rows[i].getElementsByTagName("td")[2]; // Assuming first name is in the second column
+            var firstNameCell = rows[i].getElementsByTagName("td")[3];  // Assuming last name is in the third column
+            if (firstNameCell && lastNameCell) {
+                var lastName = lastNameCell.textContent || lastNameCell.innerText;
+                var firstName = firstNameCell.textContent || firstNameCell.innerText;
+                if (firstName.toUpperCase().indexOf(input) > -1 || lastName.toUpperCase().indexOf(input) > -1) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
             }
         }
-    }
     });
 
     // Filter table rows based on date filed
