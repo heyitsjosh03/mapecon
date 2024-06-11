@@ -12,7 +12,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-$connection = mysqli_connect("localhost", "root", "", "mapecon"); // Update database name here
+$connection = mysqli_connect("localhost", "root", "Carlo016", "mapecon"); // Update database name here
 mysqli_query($connection, "SET time_zone = '+08:00'");
 date_default_timezone_set("Asia/Singapore");
 
@@ -68,7 +68,7 @@ function sendEmail($email, $otp) {
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'sorpresabakeshop2019@gmail.com';
+    $mail->Username = 'Mapecon@gmail.com';
     $mail->Password = 'qgmb eomy gogu rsux';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
@@ -81,7 +81,7 @@ function sendEmail($email, $otp) {
         )
     );
 
-    $mail->setFrom('sorpresabakeshop2019@gmail.com', 'Sorpresa Bakeshop');
+    $mail->setFrom('Mapecon@gmail.com', 'MAPECON');
     $mail->addAddress($email);
 
     $mail->isHTML(true);
