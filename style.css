@@ -856,9 +856,9 @@ label {
 
 .card {
   position: relative; 
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); 
-  width: 120px;
-  height: 120px; 
+  box-shadow: 10px 8px 16px 0 rgba(0, 0, 0, 0.2); 
+  width: 100px;
+  height: 100px; 
   margin: 20px; 
   text-align: center;
   font-family: arial;
@@ -867,8 +867,8 @@ label {
 }
 
 .card:hover {
-  padding: 20px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4); 
+  padding: 5px;
+  box-shadow: 0 8px 16px 0 #141414; 
   transition: all 0.3s ease;
 }
 
