@@ -10,6 +10,26 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Check if cancel request button is clicked
+if (isset($_POST['id_to_delete'])) {
+  $id_to_delete = $_POST['id_to_delete'];
+
+  // Prepare the SQL statement to prevent SQL injection
+  $stmt = $connection->prepare("DELETE FROM users WHERE id = ?");
+  $stmt->bind_param("i", $id_to_delete);
+
+  if ($stmt->execute()) {
+      // Send success response
+      header("Location: " . $_SERVER['REQUEST_URI']);
+  } else {
+      // Send error response
+      echo "Error deleting record: " . $connection->error;
+  }
+
+  $stmt->close();
+  exit();
+}
+
 $sql = "SELECT * FROM users
         ORDER BY lastname DESC";
 $result = $conn->query($sql);
@@ -20,7 +40,7 @@ $result = $conn->query($sql);
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pending Leaves</title>
+<title>Edit Users</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="/mapecon/Pictures/favicon.png">
 <link rel="stylesheet" href="/mapecon/style4.css">
@@ -64,9 +84,10 @@ $result = $conn->query($sql);
   <div class="sidebar" id="sidebar">
     <a href="Hr Home.php" class="home-sidebar"><i class="fa fa-home"></i> Home</a>
     <span class="leave-label">LEAVE REPORTS</span>
-    <a href="Pending Leaves.php" id="active"><i class="fa fa-file-text-o"></i> Pending Leaves</a>
+    <a href="Pending Leaves.php"><i class="fa fa-file-text-o"></i> Pending Leaves</a>
     <a href="Approved Leaves.php"><i class="fa fa-file-word-o"></i> Approved Leaves</a>
     <a href="Declined Leaves.php"><i class="fa fa-file-excel-o"></i> Declined Leaves</a>
+    <a href="Users Table.php" id="active"><i class="fa fa-user-o"></i> Edit Users</a>
   </div>
 
   <!-- Overlay -->
@@ -89,7 +110,7 @@ $result = $conn->query($sql);
     <tr>
       <!-- <th class="th"><input type="checkbox"></th> -->
       <th class="th"></th>
-      <th class="th">User Status</th>
+      <th class="th">User Type</th>
       <th class="th">Last Name</th>
       <th class="th">First Name</th>
       <th class="th">Contact Number</th>
@@ -109,6 +130,11 @@ $result = $conn->query($sql);
                 echo "<td class='td'>" . $row["email"] . "</td>";
                 echo "<td class='td'>" . $row["department"] . "</td>";
                 echo "<td class='td actions edit tooltip'><a href='edit leave.php?user_id=" . $row["user_id"] . "'><i class='fa fa-pencil'></i><span class='tooltiptext-edit'>Edit</span></a></td>";
+                echo "<td class='td actions cancel-history tooltip td-history'>";
+                echo "<button class='btn-leaveHistory' onclick='openCancelModal(" . $row['id'] . ")'>
+                      <i class='fa fa-trash'></i><span class='tooltiptext-reject'>Delete User</span> 
+                      </button>";
+                echo "</td>";
         }
     } else {
         echo "<tr><td colspan='10'>No data found</td></tr>";
@@ -117,6 +143,18 @@ $result = $conn->query($sql);
   </table>
 </div>
 </div>
+</div>
+
+<!-- Modals -->
+<div id="cancelModal" class="modal">
+    <div class="modal-content">
+        <p>Are you sure you want to delete this user?</p>
+        <form method='post'>
+            <input type='hidden' name='id_to_delete' id='cancelIdToDelete'>
+            <button type='submit' class='btn-leaveHistory' name='cancel_request'>Yes</button>
+            <button type='button' class='btn-grey' onclick="closeModal('cancelModal')">No</button>
+        </form>
+    </div>
 </div>
 
 <!-- Scripts -->
@@ -133,6 +171,15 @@ function openModal(action, applicationId) {
 
 function closeModal(modalId) {
   document.getElementById(modalId).style.display = 'none';
+}
+
+function openCancelModal(idToDelete) {
+    document.getElementById('cancelIdToDelete').value = idToDelete;
+    document.getElementById('cancelModal').style.display = 'block';
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
 }
 
 window.onclick = function(event) {
