@@ -68,7 +68,7 @@ function sendEmail($email, $otp) {
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'Mapecon@gmail.com';
+    $mail->Username = 'sorpresabakeshop2019@gmail.com';
     $mail->Password = 'qgmb eomy gogu rsux';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
