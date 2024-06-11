@@ -153,7 +153,7 @@ mysqli_close($connection);
           <div class="card-container-wrapper">
             <div class="card" onclick="location.href='/mapecon/Hr Interface/Users Table.php';" style="cursor: pointer;">
               <div class="card-content">
-                <img src="/mapecon/Pictures/user.png" alt="Edit Users">
+                <img src="/mapecon/Pictures/users.png" alt="Edit Users">
               </div>
             </div>
             <p class="phrase">Edit Users</p>
