@@ -111,8 +111,8 @@ $result = $conn->query($sql);
       <!-- <th class="th"><input type="checkbox"></th> -->
       <th class="th"></th>
       <th class="th">User Type</th>
-      <th class="th">Last Name</th>
       <th class="th">First Name</th>
+      <th class="th">Last Name</th>
       <th class="th">Contact Number</th>
       <th class="th">Email</th>
       <th class="th">Department</th>
@@ -124,12 +124,12 @@ $result = $conn->query($sql);
           echo "<tr>";
                 echo "<td class='td'></td>";
                 echo "<td class='td'>" . $row["user_status"] . "</td>";
-                echo "<td class='td'>" . strtoupper($row["lastname"]) . "</td>";
                 echo "<td class='td'>" . strtoupper($row["firstname"]) . "</td>";
+                echo "<td class='td'>" . strtoupper($row["lastname"]) . "</td>";
                 echo "<td class='td'>" . $row["contactnumber"] . "</td>";
                 echo "<td class='td'>" . $row["email"] . "</td>";
                 echo "<td class='td'>" . $row["department"] . "</td>";
-                echo "<td class='td actions edit tooltip'><a href='edit leave.php?user_id=" . $row["user_id"] . "'><i class='fa fa-pencil'></i><span class='tooltiptext-edit'>Edit</span></a></td>";
+                echo "<td class='td actions edit tooltip'><a href='edit user.php?user_id=" . $row["user_id"] . "'><i class='fa fa-pencil'></i><span class='tooltiptext-edit'>Edit</span></a></td>";
                 echo "<td class='td actions cancel-history tooltip td-history'>";
                 echo "<button class='btn-leaveHistory' onclick='openCancelModal(" . $row['id'] . ")'>
                       <i class='fa fa-trash'></i><span class='tooltiptext-reject'>Delete User</span> 
@@ -276,11 +276,11 @@ function confirmDecline() {
         var input = this.value.toUpperCase();
         var rows = document.querySelectorAll('table tr');
         for (var i = 1; i < rows.length; i++) {
-            var lastNameCell = rows[i].getElementsByTagName("td")[2]; // Assuming first name is in the second column
-            var firstNameCell = rows[i].getElementsByTagName("td")[3];  // Assuming last name is in the third column
+            var firstNameCell = rows[i].getElementsByTagName("td")[2]; // Assuming first name is in the second column
+            var lastNameCell = rows[i].getElementsByTagName("td")[3];  // Assuming last name is in the third column
             if (firstNameCell && lastNameCell) {
-                var lastName = lastNameCell.textContent || lastNameCell.innerText;
                 var firstName = firstNameCell.textContent || firstNameCell.innerText;
+                var lastName = lastNameCell.textContent || lastNameCell.innerText;
                 if (firstName.toUpperCase().indexOf(input) > -1 || lastName.toUpperCase().indexOf(input) > -1) {
                     rows[i].style.display = "";
                 } else {

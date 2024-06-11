@@ -649,6 +649,7 @@ label {
 
 /* Style the leave type label and select */
 .department-edit,
+.user-edit,
 .leave-type,
 #others {
   width: 100%; 
@@ -660,6 +661,7 @@ label {
 }
 
 .department-edit select,
+.user-edit select
 .leave-type select {
   width: 100%;
   padding: 10px;
@@ -1744,6 +1746,25 @@ margin-bottom: 10px;
   margin-bottom: 8px;
   margin-left: -10%;
   
+}
+
+.user{
+  position:inline;
+  font-family: Verdana, Tahoma, sans-serif ;
+  height: 20px;
+  margin-top: 35px;
+  margin-right: 35%;
+}
+
+.edit-user{
+  position:inline;
+  font-family: Verdana, Tahoma, sans-serif ;
+  width: 300px;
+  height: 15px;
+  margin-top: -5%;
+  margin-bottom: 6%;
+  margin-right: 2%;
+  margin-left: 65%;
 }
 
 .department{
