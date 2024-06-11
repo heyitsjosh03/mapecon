@@ -12,7 +12,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-$connection = mysqli_connect("localhost", "root", "Carlo016", "mapecon"); // Update database name here
 mysqli_query($connection, "SET time_zone = '+08:00'");
 date_default_timezone_set("Asia/Singapore");
 

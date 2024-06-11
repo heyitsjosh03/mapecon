@@ -68,6 +68,11 @@ if ($row['leave_type'] == "Others") {
 }
 $pdf->Cell(3, 10, '', 0, 0);
 $pdf->Cell(0, 42, $row['reason'], 0, 1);
+
+$pdf->SetXY(20, 155); // Adjust X and Y as needed
+$pdf->Cell(75, 1, strtoupper($row['firstname']) . ' ' . strtoupper($row['lastname']), 0, 0, "C");
+
+
 //Vacation Leave Balances
 // Set the position for the 'With Pay' leave balance
 $pdf->SetXY(50, 201); // Adjust X and Y as needed
@@ -98,3 +103,4 @@ $pdf->Cell(30, 10, $row['sl_total_bal'], 0, 1, 'C');
 // Output the PDF
 $pdf->Output();
 ?>
+ 
