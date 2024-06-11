@@ -149,6 +149,14 @@ mysqli_close($connection);
             </div>
             <p class="phrase">Declined</p>
           </div>
+          <div class="card-container-wrapper">
+            <div class="card" onclick="location.href='#';" style="cursor: pointer;">
+              <div class="card-content">
+                <img src="/mapecon/Pictures/user.png" alt="Edit Users">
+              </div>
+            </div>
+            <p class="phrase">Edit Users</p>
+          </div>
         </div>
       </div>
     </div>

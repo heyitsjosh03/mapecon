@@ -103,3 +103,4 @@ $pdf->Cell(30, 10, $row['sl_total_bal'], 0, 1, 'C');
 // Output the PDF
 $pdf->Output();
 ?>
+ 
