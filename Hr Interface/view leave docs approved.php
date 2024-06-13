@@ -14,7 +14,6 @@ $query = "SELECT l.*,
                  u.lastname AS user_lastname, 
                  u.department, 
                  u.contactnumber, 
-                 a.checkedby
                  a.firstname AS approver_firstname, 
                  a.lastname AS approver_lastname
           FROM leave_applications AS l
@@ -130,7 +129,7 @@ $pdf->Cell(30, 10, $row['sl_total_bal'], 0, 1, 'C');
 
 // Output the logged-in user's name at the bottom
 $pdf->SetXY(20, 251); // Adjust X and Y as needed
-$pdf->Cell(54, 1, strtoupper($row['checkedby']) . ' ' . strtoupper($row['checkedby']), 0, 0, 'C');
+$pdf->Cell(54, 1, strtoupper($row['checked_by']), 0, 0, 'C');
 
 // Output the PDF
 $pdf->Output();

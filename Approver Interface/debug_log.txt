@@ -16,7 +16,7 @@ Array
     [sl_wopay_bal] => 
     [vl_total_bal] => 
     [sl_total_bal] => 
-    [checked_by] => JOJO CINCO
+    [checked_by] => 
     [user_firstname] => Paulo
     [user_lastname] => Danque
     [department] => Admin and Shared Services

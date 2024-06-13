@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include("../sql/config.php");
 include("../sql/function.php");
 
@@ -29,6 +31,11 @@ $row = mysqli_fetch_assoc($result);
 if (!$row) {
     die('No application found with ID: ' . $application_id);
 }
+
+// Fetch the logged-in user details from the session
+$user_data = check_login($connection);
+$logged_in_user_firstname = $user_data['firstname'];
+$logged_in_user_lastname = $user_data['lastname'];
 
 // Debugging: Log the fetched data to a file
 file_put_contents('debug_log.txt', print_r($row, true));
@@ -119,6 +126,10 @@ $pdf->Cell(0, 10, $row['sl_wopay_bal'], 0, 0, 'C');
 // Set the position for the 'Total Balance' leave balance
 $pdf->SetXY(150, 210); // Adjust X and Y as needed
 $pdf->Cell(30, 10, $row['sl_total_bal'], 0, 1, 'C');
+
+// Output the logged-in user's name at the bottom
+$pdf->SetXY(20, 251); // Adjust X and Y as needed
+$pdf->Cell(54, 1, strtoupper($row['checked_by']), 0, 0, 'C');
 
 // Output the PDF
 $pdf->Output();

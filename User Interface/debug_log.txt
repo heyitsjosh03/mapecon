@@ -16,6 +16,7 @@ Array
     [sl_wopay_bal] => 
     [vl_total_bal] => 
     [sl_total_bal] => 
+    [checked_by] => BONI DE MESA
     [user_firstname] => Joshua
     [user_lastname] => Panambitan
     [department] => Admin and Shared Services

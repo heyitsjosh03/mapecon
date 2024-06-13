@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include("../sql/config.php");
 include("../sql/function.php");
 
@@ -7,12 +9,36 @@ require("/xampp/htdocs/mapecon/fpdf/fpdf.php");
 
 // Fetch leave application details from the database
 $application_id = $_GET['application_id'];
-$query = "SELECT l.*, u.firstname, u.lastname, u.department, u.contactnumber
+$query = "SELECT l.*, 
+                 u.firstname AS user_firstname, 
+                 u.lastname AS user_lastname, 
+                 u.department, 
+                 u.contactnumber, 
+                 a.firstname AS approver_firstname, 
+                 a.lastname AS approver_lastname
           FROM leave_applications AS l
           INNER JOIN users AS u ON l.user_id = u.user_id
-          WHERE l.application_id = '$application_id'";
+          LEFT JOIN users AS a ON a.department = u.department AND a.user_status = 'Approver'
+          WHERE l.application_id = '$application_id'
+          ORDER BY a.user_id LIMIT 1"; // Ensure one approver is selected
+
 $result = mysqli_query($connection, $query);
+if (!$result) {
+    die('Query Failed: ' . mysqli_error($connection));
+}
+
 $row = mysqli_fetch_assoc($result);
+if (!$row) {
+    die('No application found with ID: ' . $application_id);
+}
+
+// Fetch the logged-in user details from the session
+$user_data = check_login($connection);
+$logged_in_user_firstname = $user_data['firstname'];
+$logged_in_user_lastname = $user_data['lastname'];
+
+// Debugging: Log the fetched data to a file
+file_put_contents('debug_log.txt', print_r($row, true));
 
 // Create a new FPDF object
 $pdf = new FPDF();
@@ -44,13 +70,13 @@ $pdf->Cell(0, 10, '', 0, 1, 'C');
 $pdf->SetFont('Arial', 'B', 14);
 $pdf->SetTextColor(0, 0, 139);
 
-// Output form details
+// Output form
 $pdf->Cell(0, 15, '', 0, 1);
 $pdf->Cell(35, 10, '', 0, 0);
 $pdf->Cell(91, 15, $row['date_filed'], 0, 0);
 $pdf->Cell(0, 15, $row['department'], 0, 1);
 $pdf->Cell(20, 10, '', 0, 0);
-$pdf->Cell(0, 1, $row['firstname'] . ' ' . $row['lastname'], 0, 1);
+$pdf->Cell(0, 1, strtoupper($row['user_firstname'] . ' ' . $row['user_lastname']), 0, 1);
 $pdf->Cell(96, 10, '', 0, 0);
 $pdf->Cell(0, 15, $row['contactnumber'], 0, 1);
 $pdf->Cell(21, 10, '', 0, 0);
@@ -69,11 +95,13 @@ if ($row['leave_type'] == "Others") {
 $pdf->Cell(3, 10, '', 0, 0);
 $pdf->Cell(0, 42, $row['reason'], 0, 1);
 
-// Employee's name
 $pdf->SetXY(20, 155); // Adjust X and Y as needed
-$pdf->Cell(75, 1, strtoupper($row['firstname']) . ' ' . strtoupper($row['lastname']), 0, 0, "C");
+$pdf->Cell(75, 1, strtoupper($row['user_firstname']) . ' ' . strtoupper($row['user_lastname']), 0, 0, "C");
 
-//Vacation Leave Balances
+// Output the approver's details
+$pdf->Cell(0, 1, strtoupper($row['approver_firstname']) . ' ' . strtoupper($row['approver_lastname']), 0, 0, "C");
+
+// Vacation Leave Balances
 // Set the position for the 'With Pay' leave balance
 $pdf->SetXY(50, 201); // Adjust X and Y as needed
 $pdf->Cell(31, 10, $row['vl_wpay_bal'], 0, 0, 'R');
@@ -86,7 +114,7 @@ $pdf->Cell(0, 10, $row['vl_wopay_bal'], 0, 0, 'C');
 $pdf->SetXY(150, 201); // Adjust X and Y as needed
 $pdf->Cell(30, 10, $row['vl_total_bal'], 0, 1, 'C');
 
-//Sick Leave Balances
+// Sick Leave Balances
 // Set the position for the 'With Pay' leave balance
 $pdf->SetXY(50, 210); // Adjust X and Y as needed
 $pdf->Cell(31, 10, $row['sl_wpay_bal'], 0, 0, 'R');
@@ -99,9 +127,9 @@ $pdf->Cell(0, 10, $row['sl_wopay_bal'], 0, 0, 'C');
 $pdf->SetXY(150, 210); // Adjust X and Y as needed
 $pdf->Cell(30, 10, $row['sl_total_bal'], 0, 1, 'C');
 
-// Checked by
-$pdf->SetXY(10, 251); // Adjust X and Y as needed
-$pdf->Cell(75, 1, strtoupper($row['checked_by']), 0, 0, "C");
+// Output the logged-in user's name at the bottom
+$pdf->SetXY(20, 251); // Adjust X and Y as needed
+$pdf->Cell(54, 1, strtoupper($row['checked_by']), 0, 0, 'C');
 
 // Output the PDF
 $pdf->Output();
