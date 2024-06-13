@@ -177,7 +177,15 @@ $result = $stmt->get_result();
                     echo "-";
             }
             echo "</td>";
-            echo "<td class='actions eye tooltip td-history'><a href='view leave docs.php?application_id=" . $row["application_id"] . "' target='_blank'><i class='fa fa-eye'></i><span class='tooltiptext-eye'>View Leave Document</span></a></td>";
+            if ($row["status"] == "Approved") {
+              echo "<td class='actions eye tooltip td-history'><a href='view leave docs approved.php?application_id=" . $row["application_id"] . "' target='_blank'><i class='fa fa-eye'></i><span class='tooltiptext-eye'>View Leave Document</span></a></td>";
+            }
+            elseif ($row["status"] == "Declined") {
+              echo "<td class='actions eye tooltip td-history'><a href='view leave docs declined.php?application_id=" . $row["application_id"] . "' target='_blank'><i class='fa fa-eye'></i><span class='tooltiptext-eye'>View Leave Document</span></a></td>";
+            }
+            else {
+              echo "<td class='actions eye tooltip td-history'><a href='view leave docs.php?application_id=" . $row["application_id"] . "' target='_blank'><i class='fa fa-eye'></i><span class='tooltiptext-eye'>View Leave Document</span></a></td>";
+            }
             echo "<td class='td actions floppy tooltip td-history'><a href='download leave docs.php?application_id=" . $row["application_id"] . "' target='_blank'><i class='fa fa-floppy-o'></i><span class='tooltiptext-approve'>Save as PDF</span></a></td>";
             // Check if the status is "Pending"
             if ($row["status"] == "Pending") {

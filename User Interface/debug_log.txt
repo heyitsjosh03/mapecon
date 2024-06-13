@@ -1,0 +1,25 @@
+Array
+(
+    [id] => 30
+    [application_id] => 73453
+    [user_id] => 45988
+    [date_filed] => 2024-05-20
+    [leave_type] => Vacation Leave
+    [from_date] => 2024-05-25
+    [to_date] => 2024-05-25
+    [working_days_covered] => 1
+    [reason] => Graduation rites at PICC
+    [status] => Approved
+    [vl_wpay_bal] => 
+    [vl_wopay_bal] => 
+    [sl_wpay_bal] => 
+    [sl_wopay_bal] => 
+    [vl_total_bal] => 
+    [sl_total_bal] => 
+    [user_firstname] => Joshua
+    [user_lastname] => Panambitan
+    [department] => Admin and Shared Services
+    [contactnumber] => 09123456789
+    [approver_firstname] => Mariel
+    [approver_lastname] => Pajita
+)

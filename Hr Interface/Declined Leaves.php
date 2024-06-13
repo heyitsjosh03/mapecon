@@ -144,7 +144,7 @@ $result = $conn->query($sql);
                 echo "<td class='td'>" . $row["from_date"] . "</td>";
                 echo "<td class='td'>" . $row["to_date"] . "</td>";
                 echo "<td class='td days-covered'>" . $row["working_days_covered"] . "</td>";
-                echo "<td class='td actions eye tooltip'><a href='view leave docs.php?application_id=" . $row["application_id"] . "' target='_blank'><i class='fa fa-eye'></i><span class='tooltiptext-eye'>View Leave Document</span></a></td>";
+                echo "<td class='td actions eye tooltip'><a href='view leave docs declined.php?application_id=" . $row["application_id"] . "' target='_blank'><i class='fa fa-eye'></i><span class='tooltiptext-eye'>View Leave Document</span></a></td>";
                 echo "</tr>";
             }
         }
