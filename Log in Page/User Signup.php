@@ -127,8 +127,8 @@ session_start();
           <option value="Clinic">Clinic</option>
           <option value="Collection">Collection</option>
           <option value="EVP Office">EVP Office</option>
-          <option value="Greenovations (1st and 2nd Floor)">Greenovations (1st and 2nd Floor)</option>
-          <option value="Greenovations (MGCPI Table)">Greenovations (MGCPI Table)</option>
+          <option value="Greenovations-Floor">Greenovations (1st and 2nd Floor)</option>
+          <option value="Greenovations-Table">Greenovations (MGCPI Table)</option>
           <option value="Operator and HR">Operator and HR</option>
           <option value="OTD">OTD</option>
           <option value="Research and Development">Research and Development</option>
