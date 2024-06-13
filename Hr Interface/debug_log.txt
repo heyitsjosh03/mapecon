@@ -1,25 +1,25 @@
 Array
 (
-    [id] => 20
-    [application_id] => 23492
-    [user_id] => 45861
-    [date_filed] => 2024-05-08
+    [id] => 21
+    [application_id] => 28320
+    [user_id] => 17598
+    [date_filed] => 2024-06-13
     [leave_type] => Sick Leave
-    [from_date] => 0024-08-01
-    [to_date] => 0000-00-00
-    [working_days_covered] => 0
-    [reason] => 
-    [status] => Declined
-    [vl_wpay_bal] => 
-    [vl_wopay_bal] => 
-    [sl_wpay_bal] => 
-    [sl_wopay_bal] => 
-    [vl_total_bal] => 
-    [sl_total_bal] => 
-    [user_firstname] => Jasmine
-    [user_lastname] => Tantoy
-    [department] => OTD
-    [contactnumber] => 09123456789
-    [approver_firstname] => Polly
-    [approver_lastname] => Misenas
+    [from_date] => 2024-06-13
+    [to_date] => 2024-06-16
+    [working_days_covered] => 3
+    [reason] => nothing
+    [status] => Approved
+    [vl_wpay_bal] => 1
+    [vl_wopay_bal] => 2
+    [sl_wpay_bal] => 4
+    [sl_wopay_bal] => 5
+    [vl_total_bal] => 3
+    [sl_total_bal] => 6
+    [user_firstname] => Carlo
+    [user_lastname] => Doroteo
+    [department] => Research and Development
+    [contactnumber] => 09950984157
+    [approver_firstname] => Sheena
+    [approver_lastname] => Rodil
 )

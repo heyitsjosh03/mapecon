@@ -1,4 +1,4 @@
-<?php
+<body?php
 session_start();
 
 include("../sql/config.php");
@@ -18,7 +18,7 @@ $result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -156,7 +156,6 @@ $result = $conn->query($sql);
 </div>
 </div>
 </div>
-</body>
 
 
 <script>
@@ -336,4 +335,6 @@ function updateTime() {
         }
     });
 </script>
+<script src="script.js"></script>
+</body>
 </html>
