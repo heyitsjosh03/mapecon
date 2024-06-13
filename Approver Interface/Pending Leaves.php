@@ -32,8 +32,9 @@ if ($approver_result && mysqli_num_rows($approver_result) > 0) {
 $sql = "SELECT l.*, UCASE(CONCAT(u.lastname, ', ', u.firstname)) AS full_name
         FROM leave_applications AS l 
         INNER JOIN users AS u ON l.user_id = u.user_id
-        WHERE u.department = '$approver_department'
+        WHERE u.department = '$approver_department' 
         ORDER BY l.id DESC";
+
 $result = $connection->query($sql);
 
 if (isset($_POST['btn-approved'])) {
@@ -251,7 +252,7 @@ function sendEmail($email, $otp) {
     <?php
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            if($row["status"] === "Pending") {
+            if (($row["checked_by"] !== null && $row["checked_by"] != 0) && $row["status"] === "Pending") {
                 echo "<tr>";
                 echo "<td class='td'></td>";
                 echo "<td class='td'>" . $row["full_name"] . "</td>";
