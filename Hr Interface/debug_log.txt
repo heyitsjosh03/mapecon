@@ -1,25 +1,25 @@
 Array
 (
-    [id] => 37
-    [application_id] => 8264
-    [user_id] => 91883
-    [date_filed] => 2024-06-08
-    [leave_type] => Sick Leave
-    [from_date] => 2024-06-08
-    [to_date] => 2024-06-08
-    [working_days_covered] => 1
-    [reason] => lagnat
-    [status] => Declined
+    [id] => 33
+    [application_id] => 68675
+    [user_id] => 25000
+    [date_filed] => 2024-05-28
+    [leave_type] => Vacation Leave
+    [from_date] => 2024-06-05
+    [to_date] => 2024-06-12
+    [working_days_covered] => 6
+    [reason] => Mental Health break
+    [status] => Approved
     [vl_wpay_bal] => 
     [vl_wopay_bal] => 
     [sl_wpay_bal] => 
     [sl_wopay_bal] => 
     [vl_total_bal] => 
     [sl_total_bal] => 
-    [user_firstname] => Paulo
-    [user_lastname] => Danque
+    [user_firstname] => Boniface Regine Mari
+    [user_lastname] => De Mesa
     [department] => Admin and Shared Services
-    [contactnumber] => 09987456321
+    [contactnumber] => 09189472141
     [approver_firstname] => Mariel
     [approver_lastname] => Pajita
 )

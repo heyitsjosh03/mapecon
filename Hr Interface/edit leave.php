@@ -2,14 +2,12 @@
 session_start();
 include("../sql/config.php");
 include("../sql/function.php");
+
 $user_data = check_login($connection);
 
-// Check if application_id is provided
-// Check if application_id is provided
 if (isset($_GET['application_id'])) {
     $application_id = $_GET['application_id'];
 
-    // Fetch the leave application details using prepared statements
     $query = "SELECT * FROM leave_applications WHERE application_id = ?";
     $stmt = $connection->prepare($query);
     $stmt->bind_param("i", $application_id);
@@ -18,8 +16,7 @@ if (isset($_GET['application_id'])) {
 
     if ($result && $result->num_rows > 0) {
         $application_data = $result->fetch_assoc();
-
-        // Fetch user information based on user_id in leave application
+        
         $user_id = $application_data['user_id'];
         $user_query = "SELECT firstname, lastname, contactnumber, department FROM users WHERE user_id = ?";
         $user_stmt = $connection->prepare($user_query);
@@ -35,7 +32,6 @@ if (isset($_GET['application_id'])) {
     }
 }
 
-// Fetch leave types from the database
 $leave_types_query = "SELECT DISTINCT leave_type FROM leave_applications";
 $leave_types_result = $connection->query($leave_types_query);
 if (!$leave_types_result) {
@@ -47,7 +43,6 @@ while ($row = $leave_types_result->fetch_assoc()) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data
     $date_filed = $_POST['date_filed'];
     $leave_from = $_POST['from-date'];
     $leave_to = $_POST['to-date'];
@@ -56,7 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $working_days_covered = $_POST['numofDays'];
     $reason = $_POST['reason'];
 
-    // Get leave balance data
     $vl_wpay_bal = $_POST['vl_wpay_bal'];
     $vl_wopay_bal = $_POST['vl_wopay_bal'];
     $sl_wpay_bal = $_POST['sl_wpay_bal'];
@@ -64,19 +58,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $vl_total_bal = $_POST['vl_total_bal'];
     $sl_total_bal = $_POST['sl_total_bal'];
 
-    // Update leave application data in the database using prepared statements
+    $checked_by = $_POST['checked_by'];
+
     $update_query = "UPDATE leave_applications 
                      SET date_filed = ?, leave_type = ?, from_date = ?, 
                          to_date = ?, working_days_covered = ?, reason = ?,
-                         vl_wpay_bal = ?, vl_wopay_bal = ?, sl_wpay_bal = ?, sl_wopay_bal = ?, vl_total_bal = ?, sl_total_bal = ?
+                         vl_wpay_bal = ?, vl_wopay_bal = ?, sl_wpay_bal = ?, sl_wopay_bal = ?, vl_total_bal = ?, sl_total_bal = ?, checked_by = ?
                      WHERE application_id = ?";
     $update_stmt = $connection->prepare($update_query);
-    $update_stmt->bind_param("ssssssiiiiiii", $date_filed, $leave_type, $leave_from, $leave_to, $working_days_covered, $reason, $vl_wpay_bal, $vl_wopay_bal, $sl_wpay_bal, $sl_wopay_bal, $vl_total_bal, $sl_total_bal, $application_id);
+    $update_stmt->bind_param("ssssssiiiiissi", $date_filed, $leave_type, $leave_from, $leave_to, $working_days_covered, $reason, $vl_wpay_bal, $vl_wopay_bal, $sl_wpay_bal, $sl_wopay_bal, $vl_total_bal, $sl_total_bal, $checked_by, $application_id);
     $update_result = $update_stmt->execute();
     if (!$update_result) {
         die('Error: ' . $connection->error);
     }
-
+    
     // Generate PDF (same as before)
 
     // Include the FPDF library
@@ -224,6 +219,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </tr>
                 </table>
             </div>
+
+            <label for="checked_by">Checked by:</label>
+            <input type="text" id="checked_by" name="checked_by" value="<?php echo $application_data['checked_by']; ?>" required>
+
             <div class="buttons">
                 <button type="button" onclick="window.location.href='/mapecon/Hr Interface/Hr Home.php';">Cancel</button>
                 <button type="submit" id="submit-btn">Send to Supervisor</button>
