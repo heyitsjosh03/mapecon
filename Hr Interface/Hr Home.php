@@ -135,6 +135,14 @@ mysqli_close($connection);
             <p class="phrase">Pending</p>
           </div>
           <div class="card-container-wrapper">
+            <div class="card" onclick="location.href='/mapecon/Hr Interface/Approval Leaves.php';" style="cursor: pointer;">
+              <div class="card-content">
+                <img src="/mapecon/Pictures/pending.png" alt="For Approval">
+              </div>
+            </div>
+            <p class="phrase">For Approval</p>
+          </div>
+          <div class="card-container-wrapper">
             <div class="card" onclick="location.href='/mapecon/Hr Interface/Approved Leaves.php';" style="cursor: pointer;">
               <div class="card-content">
                 <img src="/mapecon/Pictures/approved.png" alt="Approved">

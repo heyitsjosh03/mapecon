@@ -221,7 +221,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" id="checked_by" name="checked_by" value="<?php echo $application_data['checked_by']; ?>" required>
 
             <div class="buttons">
-                <button type="button" onclick="window.location.href='/mapecon/Hr Interface/Hr Home.php';">Cancel</button>
+                <button type="button" onclick="window.location.href='/mapecon/Hr Interface/Pending Leaves.php';">Cancel</button>
                 <button type="submit" id="submit-btn" name="approver-btn" action="update_approver">Send to Supervisor</button>
             </div>
         </form>
