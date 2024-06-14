@@ -163,38 +163,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" id="contactnumber" name="contactnumber" value="<?php echo $user_data['contactnumber']; ?>" readonly>
             
             <label for="leave-type">Leave Type:</label>
-            <input type="text" id="leave-type" name="leave-type" value="<?php echo $application_data['leave_type']; ?>" readonly>
-            <div class="leave-type">
-                <select name="leave-type" id="leave-type">
-                    <option value="">Select</option>
-                    <?php foreach ($leave_types as $type): ?>
-                        <option value="<?php echo $type; ?>" <?php echo ($application_data['leave_type'] == $type) ? 'selected' : ''; ?>>
-                            <?php echo $type; ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+            <select name="leave-type" id="leave-type">
+                <option value="">Select</option>
+                <?php foreach ($leave_types as $type): ?>
+                    <option value="<?php echo $type; ?>" <?php echo ($application_data['leave_type'] == $type) ? 'selected' : ''; ?>>
+                        <?php echo $type; ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
             <div id="others-container" style="display: <?php echo ($application_data['leave_type'] == 'Others') ? 'block' : 'none'; ?>;">
                 <label for="others">Others:</label>
-                <input type="text" id="others" name="others" value="<?php echo $application_data['leave_type_others']; ?>" readonly>
+                <input type="text" id="others" name="others" value="<?php echo $application_data['leave_type_others']; ?>">
             </div>
             <div class="date-range">
                 <div class="from-date">
                     <label for="from-date">From Date:</label>
-                    <input type="date" name="from-date" id="from-date" value="<?php echo $application_data['from_date']; ?>" readonly>
+                    <input type="date" name="from-date" id="from-date" value="<?php echo $application_data['from_date']; ?>">
                 </div>
                 <div class="to-date">
                     <label for="to-date">To Date:</label>
-                    <input type="date" name="to-date" id="to-date" value="<?php echo $application_data['to_date']; ?>" readonly>
+                    <input type="date" name="to-date" id="to-date" value="<?php echo $application_data['to_date']; ?>">
                 </div>
                 <div class="num-of-days">
                     <label for="numofDays">Days covered:</label>
-                    <input type="number" id="numofDays" name="numofDays" value="<?php echo $application_data['working_days_covered']; ?>" readonly>
+                    <input type="number" id="numofDays" name="numofDays" value="<?php echo $application_data['working_days_covered']; ?>">
                 </div>
             </div>
             <label for="reason" class="reason-label">Reason:</label>
             <div class="reason">
-                <textarea name="reason" id="reason" cols="30" rows="10" readonly><?php echo $application_data['reason']; ?></textarea>
+                <textarea name="reason" id="reason" cols="30" rows="10"><?php echo $application_data['reason']; ?></textarea>
             </div>
         
             <div class="leave-balances">
@@ -225,11 +222,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="buttons">
                 <button type="button" onclick="window.location.href='/mapecon/Hr Interface/Hr Home.php';">Cancel</button>
-                <button type="submit" id="submit-btn">Send to Supervisor</button>
+                <button type="submit" id="submit-btn" name="approver-btn" action="update_approver">Send to Supervisor</button>
             </div>
         </form>
     </div>
 </div>
+
 </body>
 
 <script>

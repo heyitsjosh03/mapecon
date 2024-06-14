@@ -1,22 +1,22 @@
 Array
 (
-    [id] => 30
-    [application_id] => 73453
+    [id] => 39
+    [application_id] => 66208
     [user_id] => 45988
-    [date_filed] => 2024-05-20
+    [date_filed] => 2024-06-13
     [leave_type] => Vacation Leave
-    [from_date] => 2024-05-25
-    [to_date] => 2024-05-25
+    [from_date] => 2024-06-24
+    [to_date] => 2024-06-24
     [working_days_covered] => 1
-    [reason] => Graduation rites at PICC
-    [status] => Approved
-    [vl_wpay_bal] => 
-    [vl_wopay_bal] => 
-    [sl_wpay_bal] => 
-    [sl_wopay_bal] => 
-    [vl_total_bal] => 
-    [sl_total_bal] => 
-    [checked_by] => BONI DE MESA
+    [reason] => aasd
+    [status] => Declined
+    [vl_wpay_bal] => 3
+    [vl_wopay_bal] => 2
+    [sl_wpay_bal] => 6
+    [sl_wopay_bal] => 7
+    [vl_total_bal] => 5
+    [sl_total_bal] => 12
+    [checked_by] => JOCYL CINCO
     [user_firstname] => Joshua
     [user_lastname] => Panambitan
     [department] => Admin and Shared Services

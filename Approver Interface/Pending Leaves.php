@@ -36,93 +36,6 @@ $sql = "SELECT l.*, UCASE(CONCAT(u.lastname, ', ', u.firstname)) AS full_name
         ORDER BY l.id DESC";
 
 $result = $connection->query($sql);
-
-if (isset($_POST['btn-approved'])) {
-  $email = $_POST['email'];
-
-  // Check if the email exists in the database
-  $checkEmailQuery = "SELECT * FROM users WHERE email = '$email'"; // Update table name here
-  $result = mysqli_query($connection, $checkEmailQuery);
-
-  if (mysqli_num_rows($result) > 0) {
-      // Generate a random OTP
-      $otp = generateOTP(); // Define the function to generate an OTP
-      $expiration = date("Y-m-d H:i:s", strtotime('+5 minutes'));
-
-      // Store the OTP in the database
-      $sql = "UPDATE `users` SET `otp` = '$otp', `token_expired` = '$expiration' WHERE `email` = '$email'"; // Update column name here
-      $result = mysqli_query($connection, $sql);
-
-      if (!$result) {
-          echo "Error updating database: " . mysqli_error($connection);
-          exit();
-      }
-
-      // Send the OTP to the user's email
-      sendEmail($email, $otp); // Define the function to send an email
-
-      // Display the success message and redirect
-      echo '<script type="text/javascript">';
-      echo 'alert("You`re request response submitted.");';
-      echo 'window.location.href = "Pending Leaves.php";';
-      echo '</script>';
-      exit();
-  } else {
-      echo '<script type="text/javascript">';
-      echo 'alert("Email does not exist");';
-      echo 'window.location.href = "forgot password.php";';
-      echo '</script>';
-      exit();
-  }
-} elseif (isset($_POST['btn-declined'])) {
-  // Handle declined action here
-  // You can add your logic for declining a leave request inside this block
-}
-
-// Function to generate a random OTP
-function generateOTP() {
-  // Generate a random 6-digit number
-  $otp = rand(100000, 999999);
-  return $otp;
-}
-
-// Function to send an email with the OTP
-function sendEmail($email, $otp) {
-  $mail = new PHPMailer(true);
-
-  try {
-      // Server settings
-      $mail = new PHPMailer();
-      $mail->isSMTP();
-      $mail->Host = 'smtp.gmail.com';
-      $mail->SMTPAuth = true;
-      $mail->Username = 'sorpresabakeshop2019@gmail.com';
-      $mail->Password = 'qgmb eomy gogu rsux';
-      $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-      $mail->Port = 587;
-  
-      // Recipients
-      $mail->setFrom('hradmin@mapecon.com.ph', 'MAPECON');
-      $mail->addAddress($email); // Add a recipient
-
-      // Content
-      $mail->isHTML(true); // Set email format to HTML
-      $mail->Subject = 'Leave Application';
-      $mail->Body = " <body style='background: #FCFCFC; color: #000; padding: 50px; border-radius: 10px; font-family: \"Oxygen\", Arial, sans-serif; font-size:1rem; border: 2px solid #D6DDE1'>
-            <center><img src='https://github.com/paulopoig/KalyeFeast/assets/78188625/b383b91a-6182-4e5b-950f-23337602412a' alt='MAPECON Logo' class='logo' style='width: 250px;'></center>
-            <p style='color: #000;'><em>Good day!<em></p>
-            <p style='color: #000;'>We have received your leave request form:<br><br></p>
-            <h2> APPROVED! </h2>
-            <center>";
-
-      $mail->send();
-      echo 'Email has been sent';
-  } catch (Exception $e) {
-      echo 'Message could not be sent.';
-      echo 'Mailer Error: ' . $mail->ErrorInfo;
-  }
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -237,16 +150,6 @@ function sendEmail($email, $otp) {
       <th class="th">Leave Until</th>
       <th class="th">Days Covered</th>
       <th class="th Action" colspan="3">Actions</th>
-            <p>Email Approver</p>
-            <form method="POST" action="Pending Leaves.php">
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" name="email" id="email" required>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="login-btn" name="btn-approved">Submit</button>
-                </div>
-            </form>
     </tr>
     
     <?php
@@ -289,23 +192,25 @@ function sendEmail($email, $otp) {
 </div>
 </div>
 
-<!-- Modals -->
+<!-- Modal for Approving Leave -->
 <div id="approveModal" class="modal">
   <div class="modal-content">
     <p>Are you sure you want to <b>approve</b> this leave request?</p>
-    <form action='update_status.php' method='post'>
+    <form id="approveForm" action='update_status.php' method='post'>
       <input type='hidden' name='application_id' id='approveApplicationId'>
       <input type='hidden' name='status' value='Approved'>
+      <input type='hidden' name='email' id='approveEmail'>
       <button type='submit' class='btn-approved'>Yes</button>
       <button type='button' class='btn-grey' onclick="closeModal('approveModal')">No</button>
     </form>
   </div>
 </div>
 
+<!-- Modal for Declining Leave -->
 <div id="declineModal" class="modal">
   <div class="modal-content">
     <p>Are you sure you want to <b>decline</b> this leave request?</p>
-    <form action='update_status.php' method='post'>
+    <form id="declineForm" action='update_status.php' method='post'>
       <input type='hidden' name='application_id' id='declineApplicationId'>
       <input type='hidden' name='status' value='Declined'>
       <button type='submit' class='btn-leaveHistory'>Yes</button>
@@ -314,11 +219,11 @@ function sendEmail($email, $otp) {
   </div>
 </div>
 
-<!-- Scripts -->
 <script>
-function openModal(action, applicationId) {
+function openModal(action, applicationId, email) {
   if (action === 'approve') {
     document.getElementById('approveApplicationId').value = applicationId;
+    document.getElementById('approveEmail').value = email;
     document.getElementById('approveModal').style.display = 'block';
   } else if (action === 'decline') {
     document.getElementById('declineApplicationId').value = applicationId;
@@ -338,6 +243,7 @@ window.onclick = function(event) {
   }
 }
 </script>
+
 
 <script>
 
