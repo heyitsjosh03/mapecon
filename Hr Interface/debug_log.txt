@@ -1,26 +1,26 @@
 Array
 (
-    [id] => 33
-    [application_id] => 68675
-    [user_id] => 25000
-    [date_filed] => 2024-05-28
-    [leave_type] => Vacation Leave
-    [from_date] => 2024-06-05
-    [to_date] => 2024-06-12
-    [working_days_covered] => 6
-    [reason] => Mental Health break
-    [status] => Approved
+    [id] => 37
+    [application_id] => 8264
+    [user_id] => 91883
+    [date_filed] => 2024-06-08
+    [leave_type] => Sick Leave
+    [from_date] => 2024-06-08
+    [to_date] => 2024-06-08
+    [working_days_covered] => 1
+    [reason] => lagnat
+    [status] => Declined
     [vl_wpay_bal] => 
     [vl_wopay_bal] => 
     [sl_wpay_bal] => 
     [sl_wopay_bal] => 
     [vl_total_bal] => 
     [sl_total_bal] => 
-    [checked_by] => YSABELLA GANDA
-    [user_firstname] => Boniface Regine Mari
-    [user_lastname] => De Mesa
+    [checked_by] => JOJO CINCO
+    [user_firstname] => Paulo
+    [user_lastname] => Danque
     [department] => Admin and Shared Services
-    [contactnumber] => 09189472141
-    [approver_firstname] => Mariel
-    [approver_lastname] => Pajita
+    [contactnumber] => 09987456321
+    [approver_firstname] => Joshua
+    [approver_lastname] => Panambitan
 )

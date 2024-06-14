@@ -131,6 +131,8 @@ $pdf->Cell(30, 10, $row['sl_total_bal'], 0, 1, 'C');
 $pdf->SetXY(20, 251); // Adjust X and Y as needed
 $pdf->Cell(54, 1, strtoupper($row['checked_by']), 0, 0, 'C');
 
+$pdf->Image('C:\xampp\htdocs\mapecon\Pictures\approved form.png', 100, 226, 0, 0);
+
 // Output the PDF
 $pdf->Output();
 ?>
