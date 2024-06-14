@@ -47,10 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 }
 
                 if ($user_data['user_status'] == 'Admin') {
-                    header("Location: ../Hr Interface/Hr Home.php");
+                    header("Location: ../Admin Interface/Admin Home.php");
                     die;
-                } elseif ($user_data['user_status'] == 'Supervisor') {
-                    header("Location: ../Supervisor Interface/Supervisor Home.php");
+                } elseif ($user_data['user_status'] == 'Hr') {
+                    header("Location: ../Hr Interface/Hr Home.php");
                     die;
                 } elseif ($user_data['user_status'] == 'User') {
                     header("Location: ../User Interface/User Leave Home.php");
@@ -59,6 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     header("Location: ../Approver Interface/Approver home.php");
                     die;
                 }
+
+                
             } else {
                 $_SESSION['alert'] = 'Wrong password. Please try again.';
                 header("Location: " . $_SERVER['PHP_SELF']);
