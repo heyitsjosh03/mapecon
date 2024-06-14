@@ -107,7 +107,11 @@ function sendApprovalEmail($result,$application_id) {
             If you have any questions or concerns, please do not hesitate to contact us with this email. Thank you for your cooperation. Have a great day ahead! <br><br></p>
             <p style='color: #000;'><em>Best regards, <br><b>MAPECON</b></em> <br></p>
             <br><br>
-            My Almythy's Plan to Exalt Christ Operates Now!
+            <em>
+            My Almythy's Plan to Exalt Christ Operates Now...
+            <br>
+            ...by the power of the Holy Spirit!
+            </em>
         </body>
     ";
 
@@ -155,6 +159,12 @@ function sendDeclinedEmail($result,$application_id) {
             <br><br>
             If you have any questions or concerns, please do not hesitate to contact us with this email. Thank you for your cooperation. Have a great day ahead! <br><br></p>
             <p style='color: #000;'><em>Best regards, <br><b>MAPECON</b></em> <br></p>
+            <br><br>
+            <em>
+            My Almythy's Plan to Exalt Christ Operates Now...
+            <br>
+            ...by the power of the Holy Spirit!
+            </em>
         </body>
     ";
 
