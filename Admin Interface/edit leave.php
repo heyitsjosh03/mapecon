@@ -162,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" id="department"  class="edit-department" name="department" value="<?php echo $user_data['department']; ?>" readonly>
             
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="<?php echo $user_data['firstname'] . ' ' . $user_data['lastname']; ?>" readonly>
+            <input type="text" id="name" name="name" value="<?php echo $user_data['firstname'] . ' ' . $user_data['lastname']; ?>">
             
             <label for="contactnumber">Contact Number:</label>
             <input type="text" id="contactnumber" name="contactnumber" value="<?php echo $user_data['contactnumber']; ?>" readonly>
