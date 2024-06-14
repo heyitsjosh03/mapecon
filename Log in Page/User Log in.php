@@ -47,9 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 }
 
                 if ($user_data['user_status'] == 'Admin') {
-                    header("Location: ../Admin Interface/Admin Home.php");
-                    die;
-                } elseif ($user_data['user_status'] == 'Hr') {
                     header("Location: ../Hr Interface/Hr Home.php");
                     die;
                 } elseif ($user_data['user_status'] == 'User') {
