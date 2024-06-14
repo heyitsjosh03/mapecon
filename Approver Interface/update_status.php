@@ -98,7 +98,7 @@ function sendApprovalEmail($result,$application_id) {
       $mail->Body = " <body style='background: #FCFCFC; color: #000; padding: 50px; border-radius: 10px; font-family: \"Oxygen\", Arial, sans-serif; font-size:1rem; border: 2px solid #D6DDE1'>
             <center><img src='https://github.com/paulopoig/KalyeFeast/assets/78188625/b383b91a-6182-4e5b-950f-23337602412a' alt='MAPECON Logo' class='logo' style='width: 250px;'></center>
             <p style='color: #000;'><em>Good day!<em></p>
-            <p style='color: #000;'>Your request Leave Application is:<br><br></p>
+            <p style='color: #000;'>We are happy to inform you that your request Leave Application is:<br><br></p>
             <h2> APPROVED! </h2>
             <br>
             <a href='http://localhost/mapecon/User%20Interface/view%20leave%20docs%20approved.php?application_id={$application_id}'>View Leave Application</a>
@@ -114,7 +114,7 @@ function sendApprovalEmail($result,$application_id) {
     if (!$mail->send()) {
         echo '<script type="text/javascript">';
         echo 'alert("Error sending email: ' . $mail->ErrorInfo . '");';
-        echo 'window.location.href = "forgot password.php";';
+        echo 'window.location.href = "Pending Leaves.php";';
         echo '</script>';
         exit();
     }
@@ -161,7 +161,7 @@ function sendDeclinedEmail($result,$application_id) {
     if (!$mail->send()) {
         echo '<script type="text/javascript">';
         echo 'alert("Error sending email: ' . $mail->ErrorInfo . '");';
-        echo 'window.location.href = "forgot password.php";';
+        echo 'window.location.href = "Pending Leaves.php";';
         echo '</script>';
         exit();
     }
