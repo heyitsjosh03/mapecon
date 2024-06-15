@@ -140,7 +140,7 @@ mysqli_close($connection);
                 <img src="/mapecon/Pictures/pending.png" alt="For Approval">
               </div>
             </div>
-            <p class="phrase">For Approval</p>
+            <p class="phrase">Request for Approval</p>
           </div>
           <div class="card-container-wrapper">
             <div class="card" onclick="location.href='/mapecon/Hr Interface/Approved Leaves.php';" style="cursor: pointer;">

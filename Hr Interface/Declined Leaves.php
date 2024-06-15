@@ -70,6 +70,7 @@ $result = $conn->query($sql);
     <span class="leave-label">LEAVE REPORTS</span>
     <a href="Pending Leaves.php"><i class="fa fa-file-text-o"></i> Pending Leaves</a>
     <a href="Approved Leaves.php"><i class="fa fa-file-word-o"></i> Approved Leaves</a>
+    <a href="Approval Leaves.php"><i class="fa fa-file-text-o"></i>Request for Approval</a>
     <a href="Declined Leaves.php" class="home-sidebar" id="active"><i class="fa fa-file-excel-o"></i> Declined Leaves</a>
     <a href="Users Table.php"><i class="fa fa-user-o"></i> Edit Users</a>
   </div>

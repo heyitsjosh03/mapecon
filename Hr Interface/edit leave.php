@@ -154,13 +154,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="date" id="date_filed" class="edit-filed" name="date_filed" value="<?php echo $application_data['date_filed']; ?>" readonly>
             
             <label for="department" class="department">Department:</label>
-            <input type="text" id="department"  class="edit-department" name="department" value="<?php echo $user_data['department']; ?>" readonly>
+            <input type="text" id="department"  class="edit-department" name="department" value="<?php echo $user_data['department']; ?>">
             
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="<?php echo $user_data['firstname'] . ' ' . $user_data['lastname']; ?>" readonly>
+            <input type="text" id="name" name="name" value="<?php echo $user_data['firstname'] . ' ' . $user_data['lastname']; ?>">
             
             <label for="contactnumber">Contact Number:</label>
-            <input type="text" id="contactnumber" name="contactnumber" value="<?php echo $user_data['contactnumber']; ?>" readonly>
+            <input type="text" id="contactnumber" name="contactnumber" value="<?php echo $user_data['contactnumber']; ?>">
             
             <label for="leave-type">Leave Type:</label>
             <div class="leave-type">
