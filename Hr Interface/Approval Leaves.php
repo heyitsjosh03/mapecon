@@ -65,7 +65,8 @@ $result = $conn->query($sql);
   <div class="sidebar" id="sidebar">
     <a href="Hr home.php" class="home-sidebar"><i class="fa fa-home"></i> Home</a>
     <span class="leave-label">LEAVE REPORTS</span>
-    <a href="Pending Leaves.php" id="active"><i class="fa fa-file-text-o"></i> Pending Leaves</a>
+    <a href="Pending Leaves.php"><i class="fa fa-file-text-o"></i> Pending Leaves</a>
+    <a href="Approval Leaves.php" id="active"><i class="fa fa-file-text-o"></i> For Approval Leaves</a>
     <a href="Approved Leaves.php"><i class="fa fa-file-word-o"></i> Approved Leaves</a>
     <a href="Declined Leaves.php"><i class="fa fa-file-excel-o"></i> Declined Leaves</a>
     <a href="Users Table.php"><i class="fa fa-user-o"></i> Edit Users</a>

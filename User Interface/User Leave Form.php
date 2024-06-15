@@ -175,7 +175,7 @@ $user_data = check_login($connection);
   <div class="leave-application">
     <h2>New Leave Application</h2>
     <form action="<?php echo($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="return validateForm()">
-        <label for="leave-type">Leave Type:</label>
+    <label for="leave-type">Leave Type:</label>
         <div class="leave-type">
             <select name="leave-type" id="leave-type">
                 <option value="">Select</option>

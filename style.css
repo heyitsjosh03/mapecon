@@ -859,8 +859,8 @@ label {
 .card {
   position: relative; 
   box-shadow: 10px 8px 16px 0 rgba(0, 0, 0, 0.2); 
-  width: 100px;
-  height: 100px; 
+  width: 120px;
+  height: 120px; 
   margin: 20px; 
   text-align: center;
   font-family: arial;

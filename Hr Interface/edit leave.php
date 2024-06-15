@@ -163,18 +163,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" id="contactnumber" name="contactnumber" value="<?php echo $user_data['contactnumber']; ?>" readonly>
             
             <label for="leave-type">Leave Type:</label>
-            <select name="leave-type" id="leave-type">
-                <option value="">Select</option>
-                <?php foreach ($leave_types as $type): ?>
-                    <option value="<?php echo $type; ?>" <?php echo ($application_data['leave_type'] == $type) ? 'selected' : ''; ?>>
-                        <?php echo $type; ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-            <div id="others-container" style="display: <?php echo ($application_data['leave_type'] == 'Others') ? 'block' : 'none'; ?>;">
-                <label for="others">Others:</label>
-                <input type="text" id="others" name="others" value="<?php echo $application_data['leave_type_others']; ?>">
+            <div class="leave-type">
+                <select name="leave-type" id="leave-type">
+                    <option value="">Select</option>
+                    <option value="Sick Leave">Sick Leave</option>
+                    <option value="Vacation Leave">Vacation Leave</option>
+                </select>
             </div>
+            <div class="others" id="others-container" style="display: none;">
+                <label for="others">Others:</label>
+                <input type="others" id="others" name="others">
+            </div>
+
             <div class="date-range">
                 <div class="from-date">
                     <label for="from-date">From Date:</label>
