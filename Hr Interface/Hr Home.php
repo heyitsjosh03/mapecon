@@ -113,6 +113,7 @@ mysqli_close($connection);
     <span class="leave-label">LEAVE REPORTS</span>
     <a href="Pending Leaves.php"><i class="fa fa-file-text-o"></i> Pending Leaves</a>
     <a href="Approved Leaves.php"><i class="fa fa-file-word-o"></i> Approved Leaves</a>
+    <a href="Approval Leaves.php"><i class="fa fa-file-text-o"></i>Request for Approval</a>
     <a href="Declined Leaves.php"><i class="fa fa-file-excel-o"></i> Declined Leaves</a>
     <a href="Users Table.php"><i class="fa fa-user-o"></i> Edit Users</a>
   </div>
@@ -157,6 +158,14 @@ mysqli_close($connection);
               </div>
             </div>
             <p class="phrase">Declined</p>
+          </div>
+          <div class="card-container-wrapper">
+            <div class="card" onclick="location.href='/mapecon/Hr Interface/add users.php';" style="cursor: pointer;">
+              <div class="card-content">
+                <img src="/mapecon/Pictures/users.png" alt="Add Users">
+              </div>
+            </div>
+            <p class="phrase">Add Users</p>
           </div>
           <div class="card-container-wrapper">
             <div class="card" onclick="location.href='/mapecon/Hr Interface/Users Table.php';" style="cursor: pointer;">
