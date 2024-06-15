@@ -154,8 +154,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="date" id="date_filed" class="edit-filed" name="date_filed" value="<?php echo $application_data['date_filed']; ?>" readonly>
             
             <label for="department" class="department">Department:</label>
-            <input type="text" id="department"  class="edit-department" name="department" value="<?php echo $user_data['department']; ?>">
-            
+            <div class="edit-department">
+            <select name="department" id="department" required>
+            <option value="">Select</option>
+            <option value="Accounting" <?php echo (isset($row['department']) && $row['department'] == 'Accounting') ? 'selected' : ''; ?>>Accounting</option>
+            <option value="Admin and Shared Services" <?php echo (isset($row['department']) && $row['department'] == 'Admin and Shared Services') ? 'selected' : ''; ?>>Admin and Shared Services</option>
+            <option value="Ads and Promo" <?php echo (isset($row['department']) && $row['department'] == 'Ads and Promo') ? 'selected' : ''; ?>>Ads and Promo</option>
+            <option value="Business Development Group" <?php echo (isset($row['department']) && $row['department'] == 'Business Development Group') ? 'selected' : ''; ?>>Business Development Group</option>
+            <option value="Chem Room" <?php echo (isset($row['department']) && $row['department'] == 'Chem Room') ? 'selected' : ''; ?>>Chem Room</option>
+            <option value="Clinic" <?php echo (isset($row['department']) && $row['department'] == 'Clinic') ? 'selected' : ''; ?>>Clinic</option>
+            <option value="Collection" <?php echo (isset($row['department']) && $row['department'] == 'Collection') ? 'selected' : ''; ?>>Collection</option>
+            <option value="EVP Office" <?php echo (isset($row['department']) && $row['department'] == 'EVP Office') ? 'selected' : ''; ?>>EVP Office</option>
+            <option value="Greenovations-Floor" <?php echo (isset($row['department']) && $row['department'] == 'Greenovations-Floor') ? 'selected' : ''; ?>>Greenovations (1st and 2nd Floor)</option>
+            <option value="Greenovations-Table" <?php echo (isset($row['department']) && $row['department'] == 'Greenovations-Table') ? 'selected' : ''; ?>>Greenovations (MGCPI Table)</option>
+            <option value="Operator and HR" <?php echo (isset($row['department']) && $row['department'] == 'Operator and HR') ? 'selected' : ''; ?>>Operator and HR</option>
+            <option value="OTD" <?php echo (isset($row['department']) && $row['department'] == 'OTD') ? 'selected' : ''; ?>>OTD</option>
+            <option value="Research" <?php echo (isset($row['department']) && $row['department'] == 'Research') ? 'selected' : ''; ?>>Research and Development</option>
+            <option value="Sales" <?php echo (isset($row['department']) && $row['department'] == 'Sales') ? 'selected' : ''; ?>>Sales</option>
+            <option value="Service" <?php echo (isset($row['department']) && $row['department'] == 'Service') ? 'selected' : ''; ?>>Service</option>
+            </select>
+            </div>
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" value="<?php echo $user_data['firstname'] . ' ' . $user_data['lastname']; ?>">
             
