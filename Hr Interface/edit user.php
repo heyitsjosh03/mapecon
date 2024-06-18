@@ -29,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contact = $_POST['contactnumber'];
     $email = $_POST['email'];
     $department = $_POST['department'];
+    $approver_id = $_POST['approver_id'];
 
     // Validate user type
     if (empty($utype)) {
@@ -60,10 +61,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors['department'] = "Department is required.";
     }
 
+    // Validate approver
+    if (empty($approver_id)) {
+      $errors['approver'] = "Supervisor is required.";
+  }
+
     // If no errors, proceed with the update
     if (empty($errors)) {
         $query = "UPDATE users 
-                  SET user_status = '$utype', firstname = '$fname', lastname = '$lname', contactnumber = '$contact', email = '$email', department = '$department' 
+                  SET user_status = '$utype', firstname = '$fname', lastname = '$lname', contactnumber = '$contact', email = '$email', department = '$department', approver_id = '$approver_id'
                   WHERE user_id = $user_id";
 
         if (mysqli_query($connection, $query)) {
@@ -185,6 +191,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </select>
         <?php if (isset($errors['department'])): ?><span class="error"><?php echo $errors['department']; ?></span><?php endif; ?>
       </div>
+
+      <label for="approver_id">Supervisor ID:</label>
+      <input type="text" id="approver_id" name="approver_id" value="<?php echo htmlspecialchars($row['approver_id']); ?>" required>
+      <?php if (isset($errors['approver_id'])): ?><span class="error"><?php echo $errors['approver_id']; ?></span><?php endif; ?>
 
       <div class="buttons">
         <button type="button" onclick="window.location.href='/mapecon/Hr Interface/Hr Home.php';">Cancel</button>

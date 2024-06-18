@@ -117,6 +117,7 @@ $result = $conn->query($sql);
       <th class="th">Contact Number</th>
       <th class="th">Email</th>
       <th class="th">Department</th>
+      <th class="th">Supervisor ID</th>
       <th class="th Action" colspan="3">Actions</th>
     </tr>
     <?php
@@ -130,6 +131,7 @@ $result = $conn->query($sql);
                 echo "<td class='td'>" . $row["contactnumber"] . "</td>";
                 echo "<td class='td'>" . $row["email"] . "</td>";
                 echo "<td class='td'>" . $row["department"] . "</td>";
+                echo "<td class='td'>" . $row["approver_id"] . "</td>";
                 echo "<td class='td actions edit tooltip'><a href='edit user.php?user_id=" . $row["user_id"] . "'><i class='fa fa-pencil'></i><span class='tooltiptext-edit'>Edit</span></a></td>";
                 echo "<td class='td actions cancel-history tooltip td-history'>";
                 echo "<button class='btn-leaveHistory' onclick='openCancelModal(" . $row['id'] . ")'>
