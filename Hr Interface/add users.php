@@ -154,7 +154,6 @@ if ($resultUser->num_rows > 0) {
 
   <div class="container-sign">
     <div class="sign-form">
-      <img src="/mapecon/Pictures/MAPECON_logo.png" alt="MAPECON Logo" class="logo"> 
       <h2>Add Users </h2>
       <br>
       <?php
@@ -203,6 +202,8 @@ if ($resultUser->num_rows > 0) {
         <input type="password" id="password" name="password" required placeholder="Enter your password">
         <label for="password">Confirm Password:</label>
         <input type="password" id="conpassword" name="conpassword" required placeholder="Re-enter your password">
+        <label for="email">Assigned Supervisor ID:</label>
+        <input type="email" id="approver_id" name="approver_id" required placeholder="Enter your Supervisor ID">
         <button type="submit" class="login-btn">Submit</button>  
       </form>
     </div>
