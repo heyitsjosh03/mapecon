@@ -1,26 +1,26 @@
 Array
 (
-    [id] => 35
-    [application_id] => 21595
-    [user_id] => 17085
-    [date_filed] => 2024-06-13
+    [id] => 49
+    [application_id] => 77912
+    [user_id] => 17598
+    [date_filed] => 2024-06-15
     [leave_type] => Vacation Leave
-    [from_date] => 2024-06-17
-    [to_date] => 2024-06-21
-    [working_days_covered] => 5
-    [reason] => bakasyon
+    [from_date] => 2024-06-15
+    [to_date] => 2024-06-18
+    [working_days_covered] => 3
+    [reason] => sick leave
     [status] => Pending
-    [vl_wpay_bal] => 5
-    [vl_wopay_bal] => 5
-    [sl_wpay_bal] => 0
-    [sl_wopay_bal] => 0
-    [vl_total_bal] => 10
-    [sl_total_bal] => 0
-    [checked_by] => DOROTS
-    [user_firstname] => Joshua
-    [user_lastname] => Panambitan
-    [department] => Admin and Shared Services
-    [contactnumber] => 09321654987
-    [approver_firstname] => Mariel
-    [approver_lastname] => Pajita
+    [vl_wpay_bal] => 1
+    [vl_wopay_bal] => 2
+    [sl_wpay_bal] => 4
+    [sl_wopay_bal] => 5
+    [vl_total_bal] => 3
+    [sl_total_bal] => 6
+    [checked_by] => carlo
+    [user_firstname] => Carlo
+    [user_lastname] => Doroteo
+    [department] => Research and Development
+    [contactnumber] => 09950984157
+    [approver_firstname] => Sheena
+    [approver_lastname] => Rodil
 )

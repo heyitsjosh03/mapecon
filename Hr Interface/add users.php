@@ -3,6 +3,25 @@ session_start();
   include("../sql/config.php");
   include("../sql/function.php");
 
+
+  
+$user_id = $_SESSION['user_id'];
+
+// Retrieve the current user's first name
+$queryUser = "SELECT firstname FROM users WHERE user_id = ?";
+$stmt = $connection->prepare($queryUser);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$resultUser = $stmt->get_result();
+
+if ($resultUser->num_rows > 0) {
+  $rowUser = $resultUser->fetch_assoc();
+  $firstName = $rowUser["firstname"]; // Escape for security
+} else {
+  $firstName = "User";
+}
+
+
   //isset($signuser) || isset($signpass) || isset($signmail) || isset($signconpass)
   //$_SERVER['REQUEST_METHOD'] == "POST"
   if($_SERVER['REQUEST_METHOD'] == "POST"){
@@ -81,22 +100,63 @@ session_start();
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up</title>
+  <title>Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="shortcut icon" href="/mapecon/Pictures/favicon.png">
   <link rel="stylesheet" href="/mapecon/style.css">
-</head>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js library -->
 
-<body class="no-header-padding">
-  <div class="background-image-1">
+</head>
+<body>
+<header>
+  <div class="logo_header">
+    <a href="../Hr Interface/Hr Home.php"> 
+      <img src="/mapecon/Pictures/MAPECON_logo.png" alt="MAPECON Logo">
+    </a> 
   </div>
+  <div class="profile-dropdown">
+    <input type="checkbox" id="profile-dropdown-toggle" class="profile-dropdown-toggle">
+    <label for="profile-dropdown-toggle" class="profile-dropdown">
+      <img src="/mapecon/Pictures/profile.png" alt="Profile">
+      <div class="dropdown-content">
+        <a href="Hr Profile.php">Profile </a>
+        <a href="Hr Change Password.php">Change Password</a>
+        <a href="../sql/logout.php">Logout</a>
+      </div>
+    </label>
+  </div>
+</header>
+<div class="menu">
+  <span class="openbtn" onclick="toggleNav()">&#9776;</span> HR(Human Resources Management) 
+  <div id="name-greeting">Welcome <span class='user-name'><?php echo $firstName; ?></span>!</div>
+</div>
+    
+<!-- Content -->
+<div class="content" id="content">
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <a href="Hr Home.php" class="home-sidebar" id="active"><i class="fa fa-home"></i> Home</a>
+    <!-- <a href="Admin Dashboard.php" class="home-sidebar"><i class="fa fa-pie-chart"></i> Dashboard</a> -->
+    <span class="leave-label">LEAVE REPORTS</span>
+    <a href="Pending Leaves.php"><i class="fa fa-file-text-o"></i> Pending Leaves</a>
+    <a href="Approved Leaves.php"><i class="fa fa-file-word-o"></i> Approved Leaves</a>
+    <a href="Approval Leaves.php"><i class="fa fa-file-text-o"></i>Request for Approval</a>
+    <a href="Declined Leaves.php"><i class="fa fa-file-excel-o"></i> Declined Leaves</a>
+    <a href="Users Table.php"><i class="fa fa-user-o"></i> Edit Users</a>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay" onclick="closeNav()"></div>
+
   <div class="container-sign">
     <div class="sign-form">
       <img src="/mapecon/Pictures/MAPECON_logo.png" alt="MAPECON Logo" class="logo"> 
-      <h2>Sign Up</h2>
+      <h2>Add Users </h2>
+      <br>
       <?php
           if (isset($_SESSION['alert'])) {
               echo '<div class="alert">' . $_SESSION['alert'] . '<button class="close-btn" onclick="this.parentElement.style.display=\'none\';">&times;</button></div>';
@@ -143,11 +203,8 @@ session_start();
         <input type="password" id="password" name="password" required placeholder="Enter your password">
         <label for="password">Confirm Password:</label>
         <input type="password" id="conpassword" name="conpassword" required placeholder="Re-enter your password">
-        <button type="submit" class="login-btn">Register</button>  
+        <button type="submit" class="login-btn">Submit</button>  
       </form>
-      <div class="sign-up-link">
-        Have an account? <a href="User Log in.php">Login</a>
-      </div>
     </div>
   </div>
 </body>
