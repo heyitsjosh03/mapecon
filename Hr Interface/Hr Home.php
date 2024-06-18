@@ -138,7 +138,7 @@ mysqli_close($connection);
           <div class="card-container-wrapper">
             <div class="card" onclick="location.href='/mapecon/Hr Interface/Approval Leaves.php';" style="cursor: pointer;">
               <div class="card-content">
-                <img src="/mapecon/Pictures/pending.png" alt="For Approval">
+                <img src="/mapecon/Pictures/approval.png" alt="For Approval">
               </div>
             </div>
             <p class="phrase">Request for Approval</p>
@@ -162,7 +162,7 @@ mysqli_close($connection);
           <div class="card-container-wrapper">
             <div class="card" onclick="location.href='/mapecon/Hr Interface/add users.php';" style="cursor: pointer;">
               <div class="card-content">
-                <img src="/mapecon/Pictures/users.png" alt="Add Users">
+                <img src="/mapecon/Pictures/addusers.png" alt="Add Users">
               </div>
             </div>
             <p class="phrase">Add Users</p>
@@ -170,7 +170,7 @@ mysqli_close($connection);
           <div class="card-container-wrapper">
             <div class="card" onclick="location.href='/mapecon/Hr Interface/Users Table.php';" style="cursor: pointer;">
               <div class="card-content">
-                <img src="/mapecon/Pictures/users.png" alt="Edit Users">
+                <img src="/mapecon/Pictures/editusers.png" alt="Edit Users">
               </div>
             </div>
             <p class="phrase">Edit Users</p>
