@@ -1,22 +1,22 @@
 Array
 (
-    [id] => 43
-    [application_id] => 1257
+    [id] => 45
+    [application_id] => 76480
     [user_id] => 45988
-    [date_filed] => 2024-06-14
-    [leave_type] => Sick Leave
-    [from_date] => 2024-06-14
-    [to_date] => 2024-06-16
-    [working_days_covered] => 2
-    [reason] => anything
+    [date_filed] => 2024-06-19
+    [leave_type] => Vacation Leave
+    [from_date] => 2024-06-24
+    [to_date] => 2024-06-28
+    [working_days_covered] => 5
+    [reason] => swimming
     [status] => Approved
-    [vl_wpay_bal] => 3
+    [vl_wpay_bal] => 5
     [vl_wopay_bal] => 3
     [sl_wpay_bal] => 5
-    [sl_wopay_bal] => 4
-    [vl_total_bal] => 4
-    [sl_total_bal] => 1
-    [checked_by] => JOCYL CINCO
+    [sl_wopay_bal] => 3
+    [vl_total_bal] => 0
+    [sl_total_bal] => 0
+    [checked_by] => DREIANN DIVINAGRACIA
     [user_firstname] => Joshua
     [user_lastname] => Panambitan
     [department] => Admin and Shared Services

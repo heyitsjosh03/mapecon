@@ -21,7 +21,7 @@ if ($resultUser->num_rows > 0) {
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    $utype = $_POST['utype'];
+    $utype = $_POST['user_status'];
     $fname = ucwords($_POST['fname']);
     $lname = ucwords($_POST['lname']);
     $contact = $_POST['contact'];
@@ -176,9 +176,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
               unset($_SESSION['alert']);
           }
           ?>
-      <form action="" method="post">
+      <form action="<?php echo($_SERVER["PHP_SELF"]); ?>?user_id=<?php echo $user_id; ?>" method="post">
       <div class="name-fields">
         <div class="form-group">
+        <label for="user_status">User Type:</label>
+      <div class="department-edit">
+        <select name="user_status" id="user_status" required>
+          <option value="">Select</option>
+          <option value="Admin" <?php echo (isset($row['user_status']) && $row['user_status'] == 'Admin') ? 'selected' : ''; ?>>Admin</option>
+          <option value="Approver" <?php echo (isset($row['user_status']) && $row['user_status'] == 'Approver') ? 'selected' : ''; ?>>Approver</option>
+          <option value="User" <?php echo (isset($row['user_status']) && $row['user_status'] == 'User') ? 'selected' : ''; ?>>User</option>
+        </select>
+        <?php if (isset($errors['user_status'])): ?><span class="error"><?php echo $errors['user_status']; ?></span><?php endif; ?>
+      </div>
         <label for="fname">First Name:</label>
         <input type="text" id="fname" name="fname" required placeholder="Enter your first name">
         </div>  
