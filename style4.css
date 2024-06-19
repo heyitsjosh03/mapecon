@@ -1629,7 +1629,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
   background-color: white;
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 60px;
+  padding-top: 20px;
   margin-top: 160px;
 }
 

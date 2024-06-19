@@ -85,7 +85,7 @@ header {
   background-color: white;
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 60px;
+  padding-top: 20px;
   margin-top: 160px;
   font-weight: 400;
 }
@@ -849,7 +849,7 @@ label {
   display: flex;
   justify-content: center; 
   flex-wrap: wrap; 
-  margin-top: 120px;
+  margin-top: 80px;
 }
 
 .card-container-wrapper {

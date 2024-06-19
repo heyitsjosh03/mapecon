@@ -1,10 +1,8 @@
 <?php
 session_start();
-  include("../sql/config.php");
-  include("../sql/function.php");
+include("../sql/config.php");
+include("../sql/function.php");
 
-
-  
 $user_id = $_SESSION['user_id'];
 
 // Retrieve the current user's first name
@@ -15,86 +13,86 @@ $stmt->execute();
 $resultUser = $stmt->get_result();
 
 if ($resultUser->num_rows > 0) {
-  $rowUser = $resultUser->fetch_assoc();
-  $firstName = $rowUser["firstname"]; // Escape for security
+    $rowUser = $resultUser->fetch_assoc();
+    $firstName = htmlspecialchars($rowUser["firstname"]); // Escape for security
 } else {
-  $firstName = "User";
+    $firstName = "User";
 }
 
-
-  //isset($signuser) || isset($signpass) || isset($signmail) || isset($signconpass)
-  //$_SERVER['REQUEST_METHOD'] == "POST"
-  if($_SERVER['REQUEST_METHOD'] == "POST"){
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $utype = $_POST['utype'];
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
+    $fname = ucwords($_POST['fname']);
+    $lname = ucwords($_POST['lname']);
     $contact = $_POST['contact'];
     $department = $_POST['department'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $conpassword = $_POST['conpassword'];
 
-    $fname = ucwords($fname);
-    $lname = ucwords($lname);
+    $check_email = "SELECT email FROM users WHERE email = ? LIMIT 1";
+    $stmt = $connection->prepare($check_email);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $stmt->store_result();
 
-    $check_email = "SELECT email FROM users WHERE email = '$email' LIMIT 1";
-    $check_email_query = mysqli_query($connection, $check_email);
-
-    if (mysqli_num_rows($check_email_query) > 0) {
-      $_SESSION['alert'] = 'Email address already exists';
-      header("Location: " . $_SERVER['PHP_SELF']);
-      exit;
+    if ($stmt->num_rows > 0) {
+        $_SESSION['alert'] = 'Email address already exists';
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
     } else {
-      if (!empty($fname) && !empty($lname) && !empty($contact) && !empty($department) && !empty($email) && !empty($password)) {
-          if ($password == $conpassword) {
-              // Validate the password
-              if (preg_match('/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $password)) {
-                  function generate5DigitNumber() {
-                      return str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT);
-                  }
+        if (!empty($fname) && !empty($lname) && !empty($contact) && !empty($department) && !empty($email) && !empty($password)) {
+            if ($password == $conpassword) {
+                // Validate the password
+                if (preg_match('/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $password)) {
+                    function generate5DigitNumber() {
+                        return str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT);
+                    }
 
-                  function numberExistsInDatabase($number, $connection) {
-                      $query = "SELECT COUNT(*) AS count FROM users WHERE user_id = ?";
-                      $statement = $connection->prepare($query);
-                      $statement->bind_param("s", $number);
-                      $statement->execute();
-                      $result = $statement->get_result();
-                      $row = $result->fetch_assoc();
-                      return $row['count'] > 0;
-                  }
+                    function numberExistsInDatabase($number, $connection) {
+                        $query = "SELECT COUNT(*) AS count FROM users WHERE user_id = ?";
+                        $stmt = $connection->prepare($query);
+                        $stmt->bind_param("s", $number);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        $row = $result->fetch_assoc();
+                        return $row['count'] > 0;
+                    }
 
-                  $user_id = generate5DigitNumber();
-                  while (numberExistsInDatabase($user_id, $connection)) {
-                      $user_id = generate5DigitNumber();
-                  }
+                    $user_id = generate5DigitNumber();
+                    while (numberExistsInDatabase($user_id, $connection)) {
+                        $user_id = generate5DigitNumber();
+                    }
 
-                  $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-                  $query = "INSERT INTO users (user_status, user_id, user_status, firstname, lastname, contactnumber, email, password, department) 
-                            VALUES ('$user_id', '$utype', '$fname', '$lname', '$contact', '$email', '$hashed_password', '$department')";
-                  $query_run = mysqli_query($connection, $query);
+                    $query = "INSERT INTO users (user_status, user_id, firstname, lastname, contactnumber, email, password, department) 
+                              VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                    $stmt = $connection->prepare($query);
+                    $stmt->bind_param("ssssssss", $utype, $user_id, $fname, $lname, $contact, $email, $hashed_password, $department);
+                    $query_run = $stmt->execute();
 
-                  if ($query_run) {
-                      $_SESSION['alert-success'] = 'Registration successful! Login your account.';
-                      header("Location: User Log in.php");
-                      exit;
-                  } else {
-                      $_SESSION['alert'] = 'Registration Failed. Please try again';
-                      header("Location: " . $_SERVER['PHP_SELF']);
-                      exit;
-                  }
-              } else {
-                  $_SESSION['alert'] = 'Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character';
-                  header("Location: " . $_SERVER['PHP_SELF']);
-                  exit;
-              }
-          } else {
-              $_SESSION['alert'] = 'Passwords do not match';
-              header("Location: " . $_SERVER['PHP_SELF']);
-              exit;
-          }
-      }
-  }
+                    if ($query_run) {
+                        $_SESSION['alert-success'] = 'Registration successful! Login your account.';
+                        header("Location: User Log in.php");
+                        exit;
+                    } else {
+                        $_SESSION['alert'] = 'Registration Failed. Please try again';
+                        header("Location: " . $_SERVER['PHP_SELF']);
+                        exit;
+                    }
+                } else {
+                    $_SESSION['alert'] = 'Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character';
+                    header("Location: " . $_SERVER['PHP_SELF']);
+                    exit;
+                }
+            } else {
+                $_SESSION['alert'] = 'Passwords do not match';
+                header("Location: " . $_SERVER['PHP_SELF']);
+                exit;
+            }
+        }
+    }
 }
 ?>
 
@@ -108,7 +106,22 @@ if ($resultUser->num_rows > 0) {
   <link rel="shortcut icon" href="/mapecon/Pictures/favicon.png">
   <link rel="stylesheet" href="/mapecon/style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js library -->
-
+  <script>
+    function fetchSupervisorName() {
+      var approverId = document.getElementById('approver_id').value;
+      if (approverId) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'fetch_supervisor.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            document.getElementById('supervisor_name').value = xhr.responseText;
+          }
+        };
+        xhr.send('approver_id=' + encodeURIComponent(approverId));
+      }
+    }
+  </script>
 </head>
 <body>
 <header>
@@ -139,13 +152,14 @@ if ($resultUser->num_rows > 0) {
 
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
-    <a href="Hr Home.php" class="home-sidebar" id="active"><i class="fa fa-home"></i> Home</a>
+    <a href="Hr Home.php" class="home-sidebar"><i class="fa fa-home"></i> Home</a>
     <!-- <a href="Admin Dashboard.php" class="home-sidebar"><i class="fa fa-pie-chart"></i> Dashboard</a> -->
     <span class="leave-label">LEAVE REPORTS</span>
     <a href="Pending Leaves.php"><i class="fa fa-file-text-o"></i> Pending Leaves</a>
-    <a href="Approved Leaves.php"><i class="fa fa-file-word-o"></i> Approved Leaves</a>
     <a href="Approval Leaves.php"><i class="fa fa-file-text-o"></i>Request for Approval</a>
+    <a href="Approved Leaves.php"><i class="fa fa-file-word-o"></i> Approved Leaves</a>
     <a href="Declined Leaves.php"><i class="fa fa-file-excel-o"></i> Declined Leaves</a>
+    <a href="Add users.php" id="active"><i class="fa fa-user-o"></i> Add Users</a>
     <a href="Users Table.php"><i class="fa fa-user-o"></i> Edit Users</a>
   </div>
 
@@ -202,11 +216,73 @@ if ($resultUser->num_rows > 0) {
         <input type="password" id="password" name="password" required placeholder="Enter your password">
         <label for="password">Confirm Password:</label>
         <input type="password" id="conpassword" name="conpassword" required placeholder="Re-enter your password">
-        <label for="email">Assigned Supervisor ID:</label>
-        <input type="email" id="approver_id" name="approver_id" required placeholder="Enter your Supervisor ID">
-        <button type="submit" class="login-btn">Submit</button>  
+        <label for="approver_id">Assigned Supervisor ID:</label>
+        <input type="text" id="approver_id" name="approver_id" required placeholder="Enter your Supervisor ID" oninput="fetchSupervisorName()">
+        <label for="supervisor_name">Supervisor Name:</label>
+        <input type="text" id="supervisor_name" name="supervisor_name" readonly>
+        <button type="submit" class="login-btn">Submit</button>
       </form>
     </div>
   </div>
+</div>
+
 </body>
+
+<script>
+  function toggleNav() {
+    var sidebar = document.getElementById("sidebar");
+    var content = document.getElementById("content");
+    var overlay = document.getElementById("overlay");
+    var openButton = document.querySelector(".openbtn");
+  
+    if (sidebar.style.width === "250px") {
+      closeSidebar();
+    } else {
+      openSidebar();
+    }
+  }
+  
+  function openSidebar() {
+    var sidebar = document.getElementById("sidebar");
+    var content = document.getElementById("content");
+    var overlay = document.getElementById("overlay");
+    var openButton = document.querySelector(".openbtn");
+  
+    sidebar.style.width = "250px";
+    sidebar.style.visibility = "visible";
+    openButton.innerHTML = "&#10005;"; // Change icon to close symbol
+  
+    if (window.innerWidth <= 768) { // Mobile and tablet breakpoint
+      overlay.style.display = "block"; // Display overlay
+    } else {
+      content.style.marginLeft = "250px"; // Move content to the right
+    }
+  }
+  
+  function closeSidebar() {
+    var sidebar = document.getElementById("sidebar");
+    var content = document.getElementById("content");
+    var overlay = document.getElementById("overlay");
+    var openButton = document.querySelector(".openbtn");
+  
+    sidebar.style.width = "0";
+    sidebar.style.visibility = "hidden";
+    openButton.innerHTML = "&#9776;"; // Change icon to hamburger
+  
+    if (window.innerWidth <= 768) { // Mobile and tablet breakpoint
+      overlay.style.display = "none"; // Hide overlay
+    } else {
+      content.style.marginLeft = "0"; // Move content back to its original position
+    }
+  }
+  
+  // Close sidebar when clicking outside it
+  window.onclick = function(event) {
+    if (!event.target.matches('.openbtn') && !event.target.matches('#sidebar')) {
+      if (document.getElementById("sidebar").style.width === "250px") {
+        closeSidebar();
+      }
+    }
+  }
+</script>
 </html>

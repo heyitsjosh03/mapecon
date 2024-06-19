@@ -63,8 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate approver
     if (empty($approver_id)) {
-      $errors['approver'] = "Supervisor is required.";
-  }
+        $errors['approver_id'] = "Supervisor is required.";
+    }
 
     // If no errors, proceed with the update
     if (empty($errors)) {
@@ -73,9 +73,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   WHERE user_id = $user_id";
 
         if (mysqli_query($connection, $query)) {
-            //$_SESSION['alert'] = ['message' => 'Profile updated successfully!', 'type' => 'success'];
+            $_SESSION['alert'] = ['message' => 'Profile updated successfully!', 'type' => 'success'];
         } else {
-            //$_SESSION['alert'] = ['message' => 'Error updating profile: ' . mysqli_error($connection), 'type' => 'error'];
+            $_SESSION['alert'] = ['message' => 'Error updating profile: ' . mysqli_error($connection), 'type' => 'error'];
         }
 
         header("Location: Users Table.php");
@@ -169,7 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($row['email']); ?>" required>
       <?php if (isset($errors['email'])): ?><span class="error"><?php echo $errors['email']; ?></span><?php endif; ?>
 
-      <label for="department">Department:</label>
+        <label for="department">Department:</label>
       <div class="department-edit">
         <select name="department" id="department" required>
           <option value="">Select</option>
@@ -189,12 +189,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <option value="Sales" <?php echo (isset($row['department']) && $row['department'] == 'Sales') ? 'selected' : ''; ?>>Sales</option>
           <option value="Service" <?php echo (isset($row['department']) && $row['department'] == 'Service') ? 'selected' : ''; ?>>Service</option>
         </select>
+
         <?php if (isset($errors['department'])): ?><span class="error"><?php echo $errors['department']; ?></span><?php endif; ?>
+          
       </div>
 
       <label for="approver_id">Supervisor ID:</label>
-      <input type="text" id="approver_id" name="approver_id" value="<?php echo htmlspecialchars($row['approver_id']); ?>" required>
+      <input type="text" id="approver_id" name="approver_id" value="<?php echo htmlspecialchars($row['approver_id']); ?>" required onblur="fetchSupervisorName()">
       <?php if (isset($errors['approver_id'])): ?><span class="error"><?php echo $errors['approver_id']; ?></span><?php endif; ?>
+      
+      <label for="approver_name">Supervisor Name:</label>
+      <input type="text" id="approver_name" name="approver_name" readonly>
 
       <div class="buttons">
         <button type="button" onclick="window.location.href='/mapecon/Hr Interface/Hr Home.php';">Cancel</button>
@@ -203,73 +208,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
   </div>
 </div>
-</body>
 
 <script>
-  function updateTime() {
-    var today = new Date();
-    var time = today.toLocaleTimeString();
-    var options = { month: 'long', day: 'numeric', year: 'numeric' };
-    var date = today.toLocaleDateString("en-US", options);
-    document.getElementById("date-time").innerHTML = "Today is " + date + " | " + time;
-    setTimeout(updateTime, 1000);
-  }
+function toggleNav() {
+  var sidebar = document.getElementById("sidebar");
+  var overlay = document.getElementById("overlay");
+  sidebar.classList.toggle("active");
+  overlay.classList.toggle("active");
+}
 
-  updateTime();
+function closeNav() {
+  var sidebar = document.getElementById("sidebar");
+  var overlay = document.getElementById("overlay");
+  sidebar.classList.remove("active");
+  overlay.classList.remove("active");
+}
 
-  function toggleNav() {
-    var sidebar = document.getElementById("sidebar");
-    var content = document.getElementById("content");
-    var overlay = document.getElementById("overlay");
-    var openButton = document.querySelector(".openbtn");
+function updateTime() {
+  
+  var today = new Date();
+  var time = today.toLocaleTimeString();
+  var options = { month: 'long', day: 'numeric', year: 'numeric' };
+  var date = today.toLocaleDateString("en-US", options); // May 12, 2024
+  
+  document.getElementById("date-time").innerHTML = "Today is " +  date + " | " + time;
+  setTimeout(updateTime, 1000); // Update time every second
+}
 
-    if (sidebar.style.width === "250px") {
-      closeSidebar();
-    } else {
-      openSidebar();
-    }
-  }
+updateTime();
 
-  function openSidebar() {
-    var sidebar = document.getElementById("sidebar");
-    var content = document.getElementById("content");
-    var overlay = document.getElementById("overlay");
-    var openButton = document.querySelector(".openbtn");
-
-    sidebar.style.width = "250px";
-    sidebar.style.visibility = "visible";
-    openButton.innerHTML = "&#10005;";
-
-    if (window.innerWidth <= 768) {
-      overlay.style.display = "block";
-    } else {
-      content.style.marginLeft = "250px";
-    }
-  }
-
-  function closeSidebar() {
-    var sidebar = document.getElementById("sidebar");
-    var content = document.getElementById("content");
-    var overlay = document.getElementById("overlay");
-    var openButton = document.querySelector(".openbtn");
-
-    sidebar.style.width = "0";
-    sidebar.style.visibility = "hidden";
-    openButton.innerHTML = "&#9776;";
-
-    if (window.innerWidth <= 768) {
-      overlay.style.display = "none";
-    } else {
-      content.style.marginLeft = "0";
-    }
-  }
-
-  window.onclick = function(event) {
-    if (!event.target.matches('.openbtn') && !event.target.matches('#sidebar')) {
-      if (document.getElementById("sidebar").style.width === "250px") {
-        closeSidebar();
+function fetchSupervisorName() {
+  var approverId = document.getElementById("approver_id").value;
+  if (approverId) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "get_supervisor_name.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        document.getElementById("approver_name").value = xhr.responseText;
       }
-    }
+    };
+    xhr.send("approver_id=" + approverId);
   }
+}
+
+window.onload = function() {
+  fetchSupervisorName();
+};
 </script>
+</body>
 </html>

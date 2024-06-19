@@ -83,13 +83,16 @@ $result = $conn->query($sql);
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <a href="Hr Home.php" class="home-sidebar"><i class="fa fa-home"></i> Home</a>
+    <!-- <a href="Admin Dashboard.php" class="home-sidebar"><i class="fa fa-pie-chart"></i> Dashboard</a> -->
     <span class="leave-label">LEAVE REPORTS</span>
     <a href="Pending Leaves.php"><i class="fa fa-file-text-o"></i> Pending Leaves</a>
-    <a href="Approved Leaves.php"><i class="fa fa-file-word-o"></i> Approved Leaves</a>
     <a href="Approval Leaves.php"><i class="fa fa-file-text-o"></i>Request for Approval</a>
+    <a href="Approved Leaves.php"><i class="fa fa-file-word-o"></i> Approved Leaves</a>
     <a href="Declined Leaves.php"><i class="fa fa-file-excel-o"></i> Declined Leaves</a>
-    <a href="Users Table.php" id="active"><i class="fa fa-user-o"></i> Edit Users</a>
+    <a href="Add users.php"><i class="fa fa-user-o"></i> Add Users</a>
+    <a href="Users Table.php"  id="active"><i class="fa fa-user-o"></i> Edit Users</a>
   </div>
+
 
   <!-- Overlay -->
   <div class="overlay" id="overlay" onclick="closeNav()"></div>
@@ -112,6 +115,7 @@ $result = $conn->query($sql);
       <!-- <th class="th"><input type="checkbox"></th> -->
       <th class="th"></th>
       <th class="th">User Type</th>
+      <th class="th">User ID</th>
       <th class="th">First Name</th>
       <th class="th">Last Name</th>
       <th class="th">Contact Number</th>
@@ -126,6 +130,7 @@ $result = $conn->query($sql);
           echo "<tr>";
                 echo "<td class='td'></td>";
                 echo "<td class='td'>" . $row["user_status"] . "</td>";
+                echo "<td class='td'>" . $row["user_id"] . "</td>";
                 echo "<td class='td'>" . strtoupper($row["firstname"]) . "</td>";
                 echo "<td class='td'>" . strtoupper($row["lastname"]) . "</td>";
                 echo "<td class='td'>" . $row["contactnumber"] . "</td>";
