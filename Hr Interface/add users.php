@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                     if ($query_run) {
                         $_SESSION['alert-success'] = 'Registration successful! Login your account.';
-                        header("Location: User Log in.php");
+                        header("Location: Users Table.php");
                         exit;
                     } else {
                         $_SESSION['alert'] = 'Registration Failed. Please try again';
@@ -177,8 +177,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
           }
           ?>
       <form action="<?php echo($_SERVER["PHP_SELF"]); ?>?user_id=<?php echo $user_id; ?>" method="post">
-      <div class="name-fields">
-        <div class="form-group">
         <label for="user_status">User Type:</label>
       <div class="department-edit">
         <select name="user_status" id="user_status" required>
@@ -189,6 +187,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         </select>
         <?php if (isset($errors['user_status'])): ?><span class="error"><?php echo $errors['user_status']; ?></span><?php endif; ?>
       </div>
+      <div class="name-fields">
+      <div class="form-group">
         <label for="fname">First Name:</label>
         <input type="text" id="fname" name="fname" required placeholder="Enter your first name">
         </div>  

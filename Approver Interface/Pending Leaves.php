@@ -23,7 +23,7 @@ $approver_result = mysqli_query($connection, $approver_query);
 
 if ($approver_result && mysqli_num_rows($approver_result) > 0) {
     $approver_data = mysqli_fetch_assoc($approver_result);
-    $approver_approver = $approver_data['approver_id'];
+    $approver_id = $approver_data['approver_id'];
 } else {
     die('Error: Approver data not found.');
 }
@@ -32,7 +32,7 @@ if ($approver_result && mysqli_num_rows($approver_result) > 0) {
 $sql = "SELECT l.*, UCASE(CONCAT(u.lastname, ', ', u.firstname)) AS full_name
         FROM leave_applications AS l 
         INNER JOIN users AS u ON l.user_id = u.user_id
-        WHERE u.approver_id = '$approver_approver' 
+        WHERE u.approver_id = '$approver_id' 
         ORDER BY l.id DESC";
 
 $result = $connection->query($sql);
