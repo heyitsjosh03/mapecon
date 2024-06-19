@@ -16,23 +16,23 @@ use PHPMailer\PHPMailer\Exception;
 
 
 
-// Get the approver's department
+// Get the approver's id
 $approver_id = $_SESSION['user_id'];
-$approver_query = "SELECT department FROM users WHERE user_id = '$approver_id'";
+$approver_query = "SELECT approver_id FROM users WHERE user_id = '$approver_id'";
 $approver_result = mysqli_query($connection, $approver_query);
 
 if ($approver_result && mysqli_num_rows($approver_result) > 0) {
     $approver_data = mysqli_fetch_assoc($approver_result);
-    $approver_department = $approver_data['department'];
+    $approver_approver = $approver_data['approver_id'];
 } else {
     die('Error: Approver data not found.');
 }
 
-// Fetch leave applications for the same department as the approver
+// Fetch leave applications for the same approver as the approver
 $sql = "SELECT l.*, UCASE(CONCAT(u.lastname, ', ', u.firstname)) AS full_name
         FROM leave_applications AS l 
         INNER JOIN users AS u ON l.user_id = u.user_id
-        WHERE u.department = '$approver_department' 
+        WHERE u.approver_id = '$approver_approver' 
         ORDER BY l.id DESC";
 
 $result = $connection->query($sql);

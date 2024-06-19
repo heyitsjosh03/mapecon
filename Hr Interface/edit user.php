@@ -200,7 +200,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       
       <label for="approver_name">Supervisor Name:</label>
       <input type="text" id="approver_name" name="approver_name" readonly>
-
+        
       <div class="buttons">
         <button type="button" onclick="window.location.href='/mapecon/Hr Interface/Hr Home.php';">Cancel</button>
         <button type="submit" id="submit-btn">Save</button>
