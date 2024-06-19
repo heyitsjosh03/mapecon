@@ -27,9 +27,18 @@ if (isset($_GET['application_id'])) {
             die('Error: ' . $connection->error);
         }
         $user_data = $user_result->fetch_assoc();
-    } else {
-        die('Error: Application not found.');
-    }
+
+        $approver_query = "SELECT approver_id FROM users WHERE user_id = ?";
+        $approver_stmt = $connection->prepare($approver_query);
+        $approver_stmt->bind_param("i", $user_id);
+        $approver_stmt->execute();
+        $approver_result = $approver_stmt->get_result();
+        if ($approver_result->num_rows == 0) {
+            echo "<script>alert('Approver Required!!');</script>";
+        }
+   } else {
+       die('Error: Application not found.');
+   }
 }
 
 $leave_types_query = "SELECT DISTINCT leave_type FROM leave_applications";
