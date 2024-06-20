@@ -43,7 +43,8 @@ CREATE TABLE `leave_applications` (
   `sl_wpay_bal` int(6) DEFAULT NULL,
   `sl_wopay_bal` int(6) DEFAULT NULL,
   `vl_total_bal` int(6) DEFAULT NULL,
-  `sl_total_bal` int(6) DEFAULT NULL
+  `sl_total_bal` int(6) DEFAULT NULL,
+  `checked_by` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -63,16 +64,17 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `department` varchar(255) NOT NULL,
   `otp` int(6) DEFAULT NULL,
-  `token_expired` DATETIME DEFAULT NULL
+  `token_expired` DATETIME DEFAULT NULL,
+  `approver_id` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `user_id`, `user_status`, `firstname`, `lastname`, `contactnumber`, `email`, `password`, `department`, `otp`,`token_expired`) VALUES
-(0, 1, 'Admin', 'Admin', '', '', 'admin@gmail.com', '$2y$10$FmjPZzCQbq9ggeBoQOfzMOoK11ecmjzIQxnZqtkMLdZQe5WnIvMxC', '', NULL, NULL), /*Pass: 123456*/
-(1, 2, 'User', 'fname dummy', 'lname dummy', '09999099543', 'dummy@gmail.com', '$2y$10$FmjPZzCQbq9ggeBoQOfzMOoK11ecmjzIQxnZqtkMLdZQe5WnIvMxC', 'Accounting', NULL, NULL); /*Pass: 123456*/
+INSERT INTO `users` (`id`, `user_id`, `user_status`, `firstname`, `lastname`, `contactnumber`, `email`, `password`, `department`, `otp`,`token_expired`, `approver_id`) VALUES
+(0, 1, 'Admin', 'Admin', '', '', 'admin@gmail.com', '$2y$10$FmjPZzCQbq9ggeBoQOfzMOoK11ecmjzIQxnZqtkMLdZQe5WnIvMxC', '', NULL, NULL, NULL), /*Pass: 123456*/
+(1, 2, 'User', 'fname dummy', 'lname dummy', '09999099543', 'dummy@gmail.com', '$2y$10$FmjPZzCQbq9ggeBoQOfzMOoK11ecmjzIQxnZqtkMLdZQe5WnIvMxC', 'Accounting', NULL, NULL, NULL); /*Pass: 123456*/
 
 --
 -- Indexes for dumped tables

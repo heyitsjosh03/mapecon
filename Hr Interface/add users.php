@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $conpassword = $_POST['conpassword'];
+    $approver_id = $_POST['approver_id'];
 
     $check_email = "SELECT email FROM users WHERE email = ? LIMIT 1";
     $stmt = $connection->prepare($check_email);
@@ -66,10 +67,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-                    $query = "INSERT INTO users (user_status, user_id, firstname, lastname, contactnumber, email, password, department) 
-                              VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                    $query = "INSERT INTO users (user_status, user_id, firstname, lastname, contactnumber, email, password, department, approver_id) 
+                              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                     $stmt = $connection->prepare($query);
-                    $stmt->bind_param("ssssssss", $utype, $user_id, $fname, $lname, $contact, $email, $hashed_password, $department);
+                    $stmt->bind_param("sssssssss", $utype, $user_id, $fname, $lname, $contact, $email, $hashed_password, $department, $approver_id);
                     $query_run = $stmt->execute();
 
                     if ($query_run) {

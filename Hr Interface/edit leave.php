@@ -158,10 +158,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="leave-application">
         <h2 class="edit-text">Edit Leave Application</h2>
         <form action="<?php echo($_SERVER["PHP_SELF"]); ?>?application_id=<?php echo $application_id; ?>" method="post" onsubmit="return validateForm()">
-            
+        
             <label for="date_filed" class="edit-date">Date Filed:</label>
             <input type="date" id="date_filed" class="edit-filed" name="date_filed" value="<?php echo $application_data['date_filed']; ?>" readonly>
-            
             <label for="department" class="department">Department:</label>
             <div class="edit-department">
             <select name="department" id="department" required>
@@ -183,6 +182,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="Service" <?php echo (isset($row['department']) && $row['department'] == 'Service') ? 'selected' : ''; ?>>Service</option>
             </select>
             </div>
+
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" value="<?php echo $user_data['firstname'] . ' ' . $user_data['lastname']; ?>">
             

@@ -31,7 +31,7 @@ if (isset($_POST['id_to_delete'])) {
 }
 
 $sql = "SELECT * FROM users
-        ORDER BY lastname DESC";
+        ORDER BY  user_status DESC, id DESC";
 $result = $conn->query($sql);
 ?>
 

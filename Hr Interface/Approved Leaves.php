@@ -79,7 +79,7 @@ $result = $connection->query($sql);
       <div class="dropdown">
         <button class="dropdown-button" onclick="showDropdown()">Export   <i class="fa fa-caret-down"></i></button>
         <ul class="dropdown-menu">
-          <li><a href="#" onclick="exportToExcel()">Excel Format</a></li>
+          <li><a href="#" onclick="exportToExcel()">CSV File</a></li>
         </ul>
       </div>
     </div>

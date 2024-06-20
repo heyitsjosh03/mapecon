@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['alert'] = ['message' => 'Error updating profile: ' . mysqli_error($connection), 'type' => 'error'];
         }
 
-        header("Location: Users Table.php");
+        header("Location: edit user.php?user_id=$user_id");
         exit;
     }
 }
@@ -141,7 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         unset($_SESSION['alert']);
     }
     ?>
-    <form action="<?php echo($_SERVER["PHP_SELF"]); ?>?user_id=<?php echo $user_id; ?>" method="post">
+    <form id="editForm" action="<?php echo($_SERVER["PHP_SELF"]); ?>?user_id=<?php echo $user_id; ?>" method="post" onsubmit="return validateForm()">
       <label for="user_status">User Type:</label>
       <div class="department-edit">
         <select name="user_status" id="user_status" required>
@@ -169,7 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($row['email']); ?>" required>
       <?php if (isset($errors['email'])): ?><span class="error"><?php echo $errors['email']; ?></span><?php endif; ?>
 
-        <label for="department">Department:</label>
+      <label for="department">Department:</label>
       <div class="department-edit">
         <select name="department" id="department" required>
           <option value="">Select</option>
@@ -189,20 +189,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <option value="Sales" <?php echo (isset($row['department']) && $row['department'] == 'Sales') ? 'selected' : ''; ?>>Sales</option>
           <option value="Service" <?php echo (isset($row['department']) && $row['department'] == 'Service') ? 'selected' : ''; ?>>Service</option>
         </select>
-
         <?php if (isset($errors['department'])): ?><span class="error"><?php echo $errors['department']; ?></span><?php endif; ?>
-          
       </div>
 
       <label for="approver_id">Supervisor ID:</label>
       <input type="text" id="approver_id" name="approver_id" value="<?php echo htmlspecialchars($row['approver_id']); ?>" required onblur="fetchSupervisorName()">
       <?php if (isset($errors['approver_id'])): ?><span class="error"><?php echo $errors['approver_id']; ?></span><?php endif; ?>
-      
+
       <label for="approver_name">Supervisor Name:</label>
       <input type="text" id="approver_name" name="approver_name" readonly>
-        
+
       <div class="buttons">
-        <button type="button" onclick="window.location.href='/mapecon/Hr Interface/Hr Home.php';">Cancel</button>
+        <button type="button" onclick="window.location.href='/mapecon/Hr Interface/Users Table.php';">Cancel</button>
         <button type="submit" id="submit-btn">Save</button>
       </div>
     </form>
@@ -225,13 +223,12 @@ function closeNav() {
 }
 
 function updateTime() {
-  
   var today = new Date();
   var time = today.toLocaleTimeString();
   var options = { month: 'long', day: 'numeric', year: 'numeric' };
   var date = today.toLocaleDateString("en-US", options); // May 12, 2024
   
-  document.getElementById("date-time").innerHTML = "Today is " +  date + " | " + time;
+  document.getElementById("date-time").innerHTML = "Today is " + date + " | " + time;
   setTimeout(updateTime, 1000); // Update time every second
 }
 
@@ -250,6 +247,15 @@ function fetchSupervisorName() {
     };
     xhr.send("approver_id=" + approverId);
   }
+}
+
+function validateForm() {
+  var approverId = document.getElementById("approver_id").value;
+  if (!approverId) {
+    alert("Supervisor is Required!");
+    return false;
+  }
+  return true;
 }
 
 window.onload = function() {
