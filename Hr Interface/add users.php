@@ -165,6 +165,15 @@ if (isset($_POST['add_user'])) {
   padding: 10px;
   width: calc(100% - 20px); /* Adjusted to account for padding */
   border: 2px solid #ccc;
+  cursor:pointer;
+  border-radius: 5px;
+}
+form input[type="file"]:hover {
+  display: block;
+  margin-bottom: 15px;
+  padding: 10px;
+  width: calc(100% - 20px); /* Adjusted to account for padding */
+  border: 2px solid black;
   border-radius: 5px;
 }
 
