@@ -30,8 +30,8 @@ if (isset($_POST['id_to_delete'])) {
   exit();
 }
 
-// Fetch users grouped by department
-$sql = "SELECT * FROM users ORDER BY department, user_status DESC, id DESC";
+// Fetch users grouped by department and user status
+$sql = "SELECT * FROM users ORDER BY user_status OR department DESC, id DESC";
 $result = $conn->query($sql);
 ?>
 

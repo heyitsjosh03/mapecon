@@ -195,7 +195,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <div class="department-edit">
         <select name="user_status" id="user_status" required>
           <option value="">Select</option>
-          <option value="Admin" <?php echo (isset($row['user_status']) && $row['user_status'] == 'Admin') ? 'selected' : ''; ?>>Admin</option>
+          <option value="Hr" <?php echo (isset($row['user_status']) && $row['user_status'] == 'Hr') ? 'selected' : ''; ?>>Hr</option>
           <option value="Approver" <?php echo (isset($row['user_status']) && $row['user_status'] == 'Approver') ? 'selected' : ''; ?>>Approver</option>
           <option value="User" <?php echo (isset($row['user_status']) && $row['user_status'] == 'User') ? 'selected' : ''; ?>>User</option>
         </select>

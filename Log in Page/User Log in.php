@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     setcookie('password', $password, time() + (86400 * 30), "/");
                 }
 
-                if ($user_data['user_status'] == 'Admin') {
+                if ($user_data['user_status'] == 'Hr') {
                     header("Location: ../Hr Interface/Hr Home.php");
                     die;
                 } elseif ($user_data['user_status'] == 'User') {
