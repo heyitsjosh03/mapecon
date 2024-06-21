@@ -98,6 +98,50 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     // Existing form submission code
 }
+// Handle form submission for adding individual users
+if (isset($_POST['add_user'])) {
+  $utype = $_POST['user_status'];
+  $fname = ucwords($_POST['fname']);
+  $lname = ucwords($_POST['lname']);
+  $contact = $_POST['contact'];
+  $department = $_POST['department'];
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  $conpassword = $_POST['conpassword'];
+  $approver_id = !empty($_POST['approver_id']) ? intval($_POST['approver_id']) : null;
+
+  // Validate input data
+  if (!empty($fname) && !empty($lname) && !empty($contact) && !empty($department) && !empty($email) && !empty($password) && ($password == $conpassword)) {
+      if (preg_match('/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $password)) {
+          $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+          $user_id = generate5DigitNumber();
+          while (numberExistsInDatabase($user_id, $connection)) {
+              $user_id = generate5DigitNumber();
+          }
+
+          $query = "INSERT INTO users (user_status, user_id, firstname, lastname, contactnumber, email, password, department, approver_id) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+          $stmt = $connection->prepare($query);
+          $stmt->bind_param("sssssssss", $utype, $user_id, $fname, $lname, $contact, $email, $hashed_password, $department, $approver_id);
+          $query_run = $stmt->execute();
+
+          if ($query_run) {
+              $_SESSION['alert-success'] = 'User added successfully: ' . $email;
+          } else {
+              $_SESSION['alert'] = 'Failed to add user: ' . $email;
+          }
+      } else {
+          $_SESSION['alert'] = 'Password does not meet requirements for: ' . $email;
+      }
+  } else {
+      $_SESSION['alert'] = 'Please fill in all fields and ensure passwords match.';
+  }
+
+  header("Location: Add users.php");
+  exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -109,6 +153,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="shortcut icon" href="/mapecon/Pictures/favicon.png">
   <link rel="stylesheet" href="/mapecon/style.css">
+  <style>
+    form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+    form input[type="file"] {
+  display: block;
+  margin-bottom: 15px;
+  padding: 10px;
+  width: calc(100% - 20px); /* Adjusted to account for padding */
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+  </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js library -->
   <script>
     function fetchSupervisorName() {
@@ -244,7 +304,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="text" id="approver_id" name="approver_id" placeholder="Enter your Supervisor ID" oninput="fetchSupervisorName()">
         <label for="supervisor_name">Supervisor Name:</label>
         <input type="text" id="supervisor_name" name="supervisor_name" readonly>
-        <button type="submit" class="login-btn">Submit</button>
+        <button type="submit" name="add_user" class="login-btn">Submit</button>
       </form>
       <br><br>
     </div>
@@ -309,5 +369,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       }
     }
   }
+
+  function fetchSupervisorName() {
+      var approverId = document.getElementById('approver_id').value;
+      if (approverId) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'fetch_supervisor.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            document.getElementById('supervisor_name').value = xhr.responseText;
+          }
+        };
+        xhr.send('approver_id=' + encodeURIComponent(approverId));
+      }
+    }
 </script>
 </html>
