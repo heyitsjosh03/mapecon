@@ -19,6 +19,20 @@ if ($resultUser->num_rows > 0) {
     $firstName = "User";
 }
 
+function generate5DigitNumber() {
+    return str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT);
+}
+
+function numberExistsInDatabase($number, $connection) {
+    $query = "SELECT COUNT(*) AS count FROM users WHERE user_id = ?";
+    $stmt = $connection->prepare($query);
+    $stmt->bind_param("s", $number);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    return $row['count'] > 0;
+}
+
 // Handle form submission and CSV import
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['import_csv']) && isset($_FILES['csv_file'])) {
@@ -53,20 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if (!empty($fname) && !empty($lname) && !empty($contact) && !empty($department) && !empty($email) && !empty($password)) {
                         if (preg_match('/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $password)) {
                             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-                            function generate5DigitNumber() {
-                                return str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT);
-                            }
-
-                            function numberExistsInDatabase($number, $connection) {
-                                $query = "SELECT COUNT(*) AS count FROM users WHERE user_id = ?";
-                                $stmt = $connection->prepare($query);
-                                $stmt->bind_param("s", $number);
-                                $stmt->execute();
-                                $result = $stmt->get_result();
-                                $row = $result->fetch_assoc();
-                                return $row['count'] > 0;
-                            }
 
                             $user_id = generate5DigitNumber();
                             while (numberExistsInDatabase($user_id, $connection)) {
@@ -189,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="file" id="csv_file" name="csv_file" accept=".csv" required>
         <button type="submit" name="import_csv" class="login-btn">Import CSV</button>
       </form>
-      <br>
+      <br><br><br>
       <form action="<?php echo($_SERVER["PHP_SELF"]); ?>?user_id=<?php echo $user_id; ?>" method="post">
         <label for="user_status">User Type:</label>
       <div class="department-edit">
@@ -246,6 +246,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="text" id="supervisor_name" name="supervisor_name" readonly>
         <button type="submit" class="login-btn">Submit</button>
       </form>
+      <br><br>
     </div>
   </div>
 </div>
