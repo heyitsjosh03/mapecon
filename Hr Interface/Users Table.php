@@ -30,8 +30,8 @@ if (isset($_POST['id_to_delete'])) {
   exit();
 }
 
-$sql = "SELECT * FROM users
-        ORDER BY  user_status DESC, id DESC";
+// Fetch users grouped by department
+$sql = "SELECT * FROM users ORDER BY department, user_status DESC, id DESC";
 $result = $conn->query($sql);
 ?>
 
@@ -50,6 +50,11 @@ $result = $conn->query($sql);
 }
     th.Action{
       text-align:center;
+    }
+    td.department{
+      width: 18%; /* Makes the cell take up the full width */
+    text-align: center; /* Centers the text horizontally */
+    white-space: nowrap; /* Prevents wrapping for exact fitting */
     }
 </style>
 </head>
@@ -135,7 +140,7 @@ $result = $conn->query($sql);
                 echo "<td class='td'>" . strtoupper($row["lastname"]) . "</td>";
                 echo "<td class='td'>" . $row["contactnumber"] . "</td>";
                 echo "<td class='td'>" . $row["email"] . "</td>";
-                echo "<td class='td'>" . $row["department"] . "</td>";
+                echo "<td class='td department'>" . $row["department"] . "</td>";
                 echo "<td class='td'>" . $row["approver_id"] . "</td>";
                 echo "<td class='td actions edit tooltip'><a href='edit user.php?user_id=" . $row["user_id"] . "'><i class='fa fa-pencil'></i><span class='tooltiptext-edit'>Edit</span></a></td>";
                 echo "<td class='td actions cancel-history tooltip td-history'>";

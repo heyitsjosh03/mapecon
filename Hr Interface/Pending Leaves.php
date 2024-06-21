@@ -10,7 +10,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT l.*, UCASE(CONCAT(u.lastname, ', ', u.firstname)) AS full_name
+$sql = "SELECT l.*, UCASE(CONCAT(u.lastname, ', ', u.firstname)) AS full_name, u.department
         FROM leave_applications AS l 
         INNER JOIN users AS u ON l.user_id = u.user_id
         ORDER BY l.id DESC";
@@ -130,6 +130,7 @@ $result = $conn->query($sql);
       <th class="th">Date Requested</th>
       <th class="th">Leave Until</th>
       <th class="th">Days Covered</th>
+      <th class="th">Department</th>
       <th class="th Action" colspan="3">Actions</th>
     </tr>
     <?php
@@ -144,6 +145,7 @@ $result = $conn->query($sql);
                 echo "<td class='td'>" . $row["from_date"] . "</td>";
                 echo "<td class='td'>" . $row["to_date"] . "</td>";
                 echo "<td class='td days-covered'>" . $row["working_days_covered"] . "</td>";
+                echo "<td class='td'>" . $row["department"] . "</td>";
                 echo "<td class='td actions eye tooltip'><a href='view leave docs.php?application_id=" . $row["application_id"] . "' target='_blank'><i class='fa fa-eye'></i><span class='tooltiptext-eye'>View Leave Document</span></a></td>";
                 echo "<td class='td actions edit tooltip'><a href='edit leave.php?application_id=" . $row["application_id"] . "'><i class='fa fa-pencil'></i><span class='tooltiptext-edit'>Edit</span></a></td>";
             }
