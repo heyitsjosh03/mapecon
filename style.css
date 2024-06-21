@@ -1804,7 +1804,7 @@ margin-bottom: 10px;
   background-color: #fefefe;
   margin: 5% auto;
   padding: 20px;
-  border: 1px solid #888;
+  border: 1px solid #e2dfdf;
   width: 50%; 
   max-width: 400px; 
   height: auto; 
@@ -1813,3 +1813,30 @@ margin-bottom: 10px;
   text-align: center; /* Center the text content */ 
   overflow-y: auto; /* Enable vertical scroll if content overflows */
 }
+/* General Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* Label Styles */
+form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* File Input Styles */
+input[type="file"] {
+  padding: 10px 20px;
+  border: 2px solid #6a6b6a;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 88%;
+  text-align: center;
+  outline: none;
+  display: inline-block;
+}
+

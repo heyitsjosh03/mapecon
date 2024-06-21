@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $email = $column[6];
                 $password = $column[7];
                 $department = $column[8];
-                $approver_id = $column[11];
+                $approver_id = !empty($column[11]) ? intval($column[11]) : null; // Ensure approver_id is an integer or NULL
 
                 // Check if the email already exists in the database
                 $check_email = "SELECT email FROM users WHERE email = ? LIMIT 1";
@@ -184,9 +184,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               unset($_SESSION['alert-success']);
           }
       ?>
-      <form action="<?php echo($_SERVER["PHP_SELF"]); ?>?user_id=<?php echo $user_id; ?>" method="post" enctype="multipart/form-data">
+        <form action="<?php echo($_SERVER["PHP_SELF"]); ?>?user_id=<?php echo $user_id; ?>" method="post" enctype="multipart/form-data">
         <label for="csv_file">Upload CSV File:</label>
-        <input type="file" id="csv_file" name="csv_file" accept=".csv" required>
+        <input type="file" id="csv_file"  name="csv_file" accept=".csv" required>
         <button type="submit" name="import_csv" class="login-btn">Import CSV</button>
       </form>
       <br><br><br>
@@ -238,10 +238,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="email" id="email" name="email" required placeholder="Enter your email">
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required placeholder="Enter your password">
-        <label for="password">Confirm Password:</label>
+        <label for="conpassword">Confirm Password:</label>
         <input type="password" id="conpassword" name="conpassword" required placeholder="Re-enter your password">
         <label for="approver_id">Assigned Supervisor ID:</label>
-        <input type="text" id="approver_id" name="approver_id" required placeholder="Enter your Supervisor ID" oninput="fetchSupervisorName()">
+        <input type="text" id="approver_id" name="approver_id" placeholder="Enter your Supervisor ID" oninput="fetchSupervisorName()">
         <label for="supervisor_name">Supervisor Name:</label>
         <input type="text" id="supervisor_name" name="supervisor_name" readonly>
         <button type="submit" class="login-btn">Submit</button>
