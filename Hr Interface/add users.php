@@ -19,81 +19,84 @@ if ($resultUser->num_rows > 0) {
     $firstName = "User";
 }
 
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    $utype = $_POST['user_status'];
-    $fname = ucwords($_POST['fname']);
-    $lname = ucwords($_POST['lname']);
-    $contact = $_POST['contact'];
-    $department = $_POST['department'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $conpassword = $_POST['conpassword'];
-    $approver_id = $_POST['approver_id'];
+// Handle form submission and CSV import
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['import_csv']) && isset($_FILES['csv_file'])) {
+        $fileName = $_FILES['csv_file']['tmp_name'];
 
-    $check_email = "SELECT email FROM users WHERE email = ? LIMIT 1";
-    $stmt = $connection->prepare($check_email);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->store_result();
+        if ($_FILES['csv_file']['size'] > 0) {
+            $file = fopen($fileName, 'r');
 
-    if ($stmt->num_rows > 0) {
-        $_SESSION['alert'] = 'Email address already exists';
-        header("Location: " . $_SERVER['PHP_SELF']);
-        exit;
-    } else {
-        if (!empty($fname) && !empty($lname) && !empty($contact) && !empty($department) && !empty($email) && !empty($password)) {
-            if ($password == $conpassword) {
-                // Validate the password
-                if (preg_match('/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $password)) {
-                    function generate5DigitNumber() {
-                        return str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT);
-                    }
+            // Skip the first line if it contains column headers
+            fgetcsv($file);
 
-                    function numberExistsInDatabase($number, $connection) {
-                        $query = "SELECT COUNT(*) AS count FROM users WHERE user_id = ?";
-                        $stmt = $connection->prepare($query);
-                        $stmt->bind_param("s", $number);
-                        $stmt->execute();
-                        $result = $stmt->get_result();
-                        $row = $result->fetch_assoc();
-                        return $row['count'] > 0;
-                    }
+            while (($column = fgetcsv($file, 10000, ",")) !== FALSE) {
+                $utype = $column[2];
+                $fname = ucwords($column[3]);
+                $lname = ucwords($column[4]);
+                $contact = $column[5];
+                $email = $column[6];
+                $password = $column[7];
+                $department = $column[8];
+                $approver_id = $column[11];
 
-                    $user_id = generate5DigitNumber();
-                    while (numberExistsInDatabase($user_id, $connection)) {
-                        $user_id = generate5DigitNumber();
-                    }
+                // Check if the email already exists in the database
+                $check_email = "SELECT email FROM users WHERE email = ? LIMIT 1";
+                $stmt = $connection->prepare($check_email);
+                $stmt->bind_param("s", $email);
+                $stmt->execute();
+                $stmt->store_result();
 
-                    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-                    $query = "INSERT INTO users (user_status, user_id, firstname, lastname, contactnumber, email, password, department, approver_id) 
-                              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                    $stmt = $connection->prepare($query);
-                    $stmt->bind_param("sssssssss", $utype, $user_id, $fname, $lname, $contact, $email, $hashed_password, $department, $approver_id);
-                    $query_run = $stmt->execute();
-
-                    if ($query_run) {
-                        $_SESSION['alert-success'] = 'Registration successful! Login your account.';
-                        header("Location: Users Table.php");
-                        exit;
-                    } else {
-                        $_SESSION['alert'] = 'Registration Failed. Please try again';
-                        header("Location: " . $_SERVER['PHP_SELF']);
-                        exit;
-                    }
+                if ($stmt->num_rows > 0) {
+                    $_SESSION['alert'] = 'Email address already exists: ' . $email;
                 } else {
-                    $_SESSION['alert'] = 'Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character';
-                    header("Location: " . $_SERVER['PHP_SELF']);
-                    exit;
+                    if (!empty($fname) && !empty($lname) && !empty($contact) && !empty($department) && !empty($email) && !empty($password)) {
+                        if (preg_match('/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $password)) {
+                            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+                            function generate5DigitNumber() {
+                                return str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT);
+                            }
+
+                            function numberExistsInDatabase($number, $connection) {
+                                $query = "SELECT COUNT(*) AS count FROM users WHERE user_id = ?";
+                                $stmt = $connection->prepare($query);
+                                $stmt->bind_param("s", $number);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
+                                $row = $result->fetch_assoc();
+                                return $row['count'] > 0;
+                            }
+
+                            $user_id = generate5DigitNumber();
+                            while (numberExistsInDatabase($user_id, $connection)) {
+                                $user_id = generate5DigitNumber();
+                            }
+
+                            $query = "INSERT INTO users (user_status, user_id, firstname, lastname, contactnumber, email, password, department, approver_id) 
+                                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                            $stmt = $connection->prepare($query);
+                            $stmt->bind_param("sssssssss", $utype, $user_id, $fname, $lname, $contact, $email, $hashed_password, $department, $approver_id);
+                            $query_run = $stmt->execute();
+
+                            if ($query_run) {
+                                $_SESSION['alert-success'] = 'CSV Import successful!';
+                            } else {
+                                $_SESSION['alert'] = 'CSV Import Failed for: ' . $email;
+                            }
+                        } else {
+                            $_SESSION['alert'] = 'Password does not meet requirements for: ' . $email;
+                        }
+                    }
                 }
-            } else {
-                $_SESSION['alert'] = 'Passwords do not match';
-                header("Location: " . $_SERVER['PHP_SELF']);
-                exit;
             }
+
+            fclose($file);
+            header("Location: add users.php");
+            exit;
         }
     }
+    // Existing form submission code
 }
 ?>
 
@@ -176,7 +179,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
               echo '<div class="alert">' . $_SESSION['alert'] . '<button class="close-btn" onclick="this.parentElement.style.display=\'none\';">&times;</button></div>';
               unset($_SESSION['alert']);
           }
-          ?>
+          if (isset($_SESSION['alert-success'])) {
+              echo '<div class="alert-success">' . $_SESSION['alert-success'] . '<button class="close-btn" onclick="this.parentElement.style.display=\'none\';">&times;</button></div>';
+              unset($_SESSION['alert-success']);
+          }
+      ?>
+      <form action="<?php echo($_SERVER["PHP_SELF"]); ?>?user_id=<?php echo $user_id; ?>" method="post" enctype="multipart/form-data">
+        <label for="csv_file">Upload CSV File:</label>
+        <input type="file" id="csv_file" name="csv_file" accept=".csv" required>
+        <button type="submit" name="import_csv" class="login-btn">Import CSV</button>
+      </form>
+      <br>
       <form action="<?php echo($_SERVER["PHP_SELF"]); ?>?user_id=<?php echo $user_id; ?>" method="post">
         <label for="user_status">User Type:</label>
       <div class="department-edit">

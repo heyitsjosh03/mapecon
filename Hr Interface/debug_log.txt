@@ -21,6 +21,6 @@ Array
     [user_lastname] => Panambitan
     [department] => Admin and Shared Services
     [contactnumber] => 09123456789
-    [approver_firstname] => Joshua
-    [approver_lastname] => Panambitan
+    [approver_firstname] => Ruth Catan
+    [approver_lastname] => Atienza
 )
