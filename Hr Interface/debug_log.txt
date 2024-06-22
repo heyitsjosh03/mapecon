@@ -1,26 +1,26 @@
 Array
 (
-    [id] => 47
-    [application_id] => 94429
+    [id] => 40
+    [application_id] => 7808
     [user_id] => 45988
-    [date_filed] => 2024-06-19
-    [leave_type] => Vacation Leave
-    [from_date] => 2024-06-21
-    [to_date] => 2024-06-22
-    [working_days_covered] => 2
-    [reason] => bicol
-    [status] => Pending
-    [vl_wpay_bal] => 2
-    [vl_wopay_bal] => 3
+    [date_filed] => 2024-06-13
+    [leave_type] => Sick Leave
+    [from_date] => 2024-06-13
+    [to_date] => 2024-06-13
+    [working_days_covered] => 1
+    [reason] => SADSDA
+    [status] => Declined
+    [vl_wpay_bal] => 0
+    [vl_wopay_bal] => 0
     [sl_wpay_bal] => 0
     [sl_wopay_bal] => 0
-    [vl_total_bal] => 5
-    [sl_total_bal] => 8
-    [checked_by] => DREIANN DIVINAGRACIA
+    [vl_total_bal] => 0
+    [sl_total_bal] => 0
+    [checked_by] => JOSHUA PANAMBITAN
     [user_firstname] => Joshua
     [user_lastname] => Panambitan
     [department] => Admin and Shared Services
     [contactnumber] => 09123456789
-    [approver_firstname] => Ruth Catan
+    [approver_firstname] => Ruth Marie Catan
     [approver_lastname] => Atienza
 )

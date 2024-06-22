@@ -120,13 +120,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="content" id="content">
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
-    <a href="Hr Home.php" class="home-sidebar" id="active"><i class="fa fa-home"></i> Home</a>
+    <a href="Hr Home.php" class="home-sidebar"><i class="fa fa-home"></i> Home</a>
+    <!-- <a href="Admin Dashboard.php" class="home-sidebar"><i class="fa fa-pie-chart"></i> Dashboard</a> -->
     <span class="leave-label">LEAVE REPORTS</span>
     <a href="Pending Leaves.php"><i class="fa fa-file-text-o"></i> Pending Leaves</a>
+    <a href="Approval Leaves.php"><i class="fa fa-file-text-o"></i>Request for Approval</a>
     <a href="Approved Leaves.php"><i class="fa fa-file-word-o"></i> Approved Leaves</a>
-    <a href="Approval Leaves.php"><i class="fa fa-file-text-o"></i> Request for Approval</a>
     <a href="Declined Leaves.php"><i class="fa fa-file-excel-o"></i> Declined Leaves</a>
-    <a href="Users Table.php"><i class="fa fa-user-o"></i> Edit Users</a>
+    <a href="Add users.php"><i class="fa fa-user-o"></i> Add Users</a>
+    <a href="Users Table.php"  id="active"><i class="fa fa-user-o"></i> Edit Users</a>
   </div>
 
   <!-- Overlay -->
@@ -208,20 +210,62 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 
 <script>
+
 function toggleNav() {
-  var sidebar = document.getElementById("sidebar");
-  var overlay = document.getElementById("overlay");
-  sidebar.classList.toggle("active");
-  overlay.classList.toggle("active");
-}
-
-function closeNav() {
-  var sidebar = document.getElementById("sidebar");
-  var overlay = document.getElementById("overlay");
-  sidebar.classList.remove("active");
-  overlay.classList.remove("active");
-}
-
+    var sidebar = document.getElementById("sidebar");
+    var content = document.getElementById("content");
+    var overlay = document.getElementById("overlay");
+    var openButton = document.querySelector(".openbtn");
+  
+    if (sidebar.style.width === "250px") {
+      closeSidebar();
+    } else {
+      openSidebar();
+    }
+  }
+  
+  function openSidebar() {
+    var sidebar = document.getElementById("sidebar");
+    var content = document.getElementById("content");
+    var overlay = document.getElementById("overlay");
+    var openButton = document.querySelector(".openbtn");
+  
+    sidebar.style.width = "250px";
+    sidebar.style.visibility = "visible";
+    openButton.innerHTML = "&#10005;"; // Change icon to close symbol
+  
+    if (window.innerWidth <= 768) { // Mobile and tablet breakpoint
+      overlay.style.display = "block"; // Display overlay
+    } else {
+      content.style.marginLeft = "250px"; // Move content to the right
+    }
+  }
+  
+  function closeSidebar() {
+    var sidebar = document.getElementById("sidebar");
+    var content = document.getElementById("content");
+    var overlay = document.getElementById("overlay");
+    var openButton = document.querySelector(".openbtn");
+  
+    sidebar.style.width = "0";
+    sidebar.style.visibility = "hidden";
+    openButton.innerHTML = "&#9776;"; // Change icon to hamburger
+  
+    if (window.innerWidth <= 768) { // Mobile and tablet breakpoint
+      overlay.style.display = "none"; // Hide overlay
+    } else {
+      content.style.marginLeft = "0"; // Move content back to its original position
+    }
+  }
+  
+  // Close sidebar when clicking outside it
+  window.onclick = function(event) {
+    if (!event.target.matches('.openbtn') && !event.target.matches('#sidebar')) {
+      if (document.getElementById("sidebar").style.width === "250px") {
+        closeSidebar();
+      }
+    }
+  }
 function updateTime() {
   var today = new Date();
   var time = today.toLocaleTimeString();

@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 
 $sql = "SELECT l.*, 
                UCASE(CONCAT(u.lastname, ', ', u.firstname)) AS full_name,
-               UCASE(CONCAT(s.lastname, ', ', s.firstname)) AS supervisor_name
+               UCASE(CONCAT(s.firstname, ' ', s.lastname)) AS supervisor_name
         FROM leave_applications AS l 
         INNER JOIN users AS u ON l.user_id = u.user_id
         LEFT JOIN users AS s ON u.approver_id = s.user_id
@@ -33,12 +33,18 @@ if (!$result) {
 <link rel="shortcut icon" href="/mapecon/Pictures/favicon.png">
 <link rel="stylesheet" href="/mapecon/style3.css">
 <style>
-  td.days-covered {
-    text-align: center; /* Center align text in Days Covered column */
-}
+    td.days-covered {
+      text-align: center; /* Center align text in Days Covered column */
+  }
     th.Action{
       text-align:center;
     }
+    td.supervisor {
+      width: 18%;
+      text-align: center;
+      white-space: nowrap;
+    }
+
 </style>
 </head>
 
@@ -152,7 +158,7 @@ if (!$result) {
                 echo "<td class='td'>" . $row["from_date"] . "</td>";
                 echo "<td class='td'>" . $row["to_date"] . "</td>";
                 echo "<td class='td days-covered'>" . $row["working_days_covered"] . "</td>";
-                echo "<td class='td'>" . $row["supervisor_name"] . "</td>";
+                echo "<td class='td supervisor'>" . $row["supervisor_name"] . "</td>";
                 echo "<td class='td actions eye tooltip'><a href='view leave docs approval.php?application_id=" . $row["application_id"] . "' target='_blank'><i class='fa fa-eye'></i><span class='tooltiptext-eye'>View Leave Document</span></a></td>";
                 //echo "<td class='td actions edit tooltip'><a href='edit leave.php?application_id=" . $row["application_id"] . "'><i class='fa fa-pencil'></i><span class='tooltiptext-edit'>Edit</span></a></td>";
             }

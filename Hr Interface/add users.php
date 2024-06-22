@@ -19,8 +19,9 @@ if ($resultUser->num_rows > 0) {
     $firstName = "User";
 }
 
+// Function to generate a random 5-digit number
 function generate5DigitNumber() {
-    return str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT);
+  return rand(10000, 99999);
 }
 
 function numberExistsInDatabase($number, $connection) {
@@ -53,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $password = $column[7];
                 $department = $column[8];
                 $approver_id = !empty($column[11]) ? intval($column[11]) : null; // Ensure approver_id is an integer or NULL
+                $user_id = !empty($column[1]) ? $column[1] : null;
 
                 // Check if the email already exists in the database
                 $check_email = "SELECT email FROM users WHERE email = ? LIMIT 1";
@@ -68,10 +70,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         if (preg_match('/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $password)) {
                             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-                            $user_id = generate5DigitNumber();
-                            while (numberExistsInDatabase($user_id, $connection)) {
-                                $user_id = generate5DigitNumber();
-                            }
+                            if (empty($user_id)) {
+                              $user_id = generate5DigitNumber();
+                              while (numberExistsInDatabase($user_id, $connection)) {
+                                  $user_id = generate5DigitNumber();
+                              }
+                          }
 
                             $query = "INSERT INTO users (user_status, user_id, firstname, lastname, contactnumber, email, password, department, approver_id) 
                                       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
