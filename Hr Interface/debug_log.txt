@@ -1,22 +1,22 @@
 Array
 (
-    [id] => 40
-    [application_id] => 7808
+    [id] => 49
+    [application_id] => 28810
     [user_id] => 45988
-    [date_filed] => 2024-06-13
+    [date_filed] => 2024-06-19
     [leave_type] => Sick Leave
-    [from_date] => 2024-06-13
-    [to_date] => 2024-06-13
+    [from_date] => 2024-06-25
+    [to_date] => 2024-06-25
     [working_days_covered] => 1
-    [reason] => SADSDA
-    [status] => Declined
-    [vl_wpay_bal] => 0
-    [vl_wopay_bal] => 0
-    [sl_wpay_bal] => 0
-    [sl_wopay_bal] => 0
-    [vl_total_bal] => 0
-    [sl_total_bal] => 0
-    [checked_by] => JOSHUA PANAMBITAN
+    [reason] => sick sick sick
+    [status] => Pending
+    [vl_wpay_bal] => 
+    [vl_wopay_bal] => 
+    [sl_wpay_bal] => 
+    [sl_wopay_bal] => 
+    [vl_total_bal] => 
+    [sl_total_bal] => 
+    [checked_by] => 
     [user_firstname] => Joshua
     [user_lastname] => Panambitan
     [department] => Admin and Shared Services

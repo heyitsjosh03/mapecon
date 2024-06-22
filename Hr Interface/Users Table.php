@@ -289,8 +289,8 @@ function confirmDecline() {
         var input = this.value.toUpperCase();
         var rows = document.querySelectorAll('table tr');
         for (var i = 1; i < rows.length; i++) {
-            var firstNameCell = rows[i].getElementsByTagName("td")[2]; // Assuming first name is in the second column
-            var lastNameCell = rows[i].getElementsByTagName("td")[3];  // Assuming last name is in the third column
+            var firstNameCell = rows[i].getElementsByTagName("td")[3]; // Assuming first name is in the second column
+            var lastNameCell = rows[i].getElementsByTagName("td")[4];  // Assuming last name is in the third column
             if (firstNameCell && lastNameCell) {
                 var firstName = firstNameCell.textContent || firstNameCell.innerText;
                 var lastName = lastNameCell.textContent || lastNameCell.innerText;
