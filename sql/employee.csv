@@ -1,3 +1,2 @@
 id,user_id,user_status,firstname,lastname,contactnumber,email,password,department,opt,token_expired,approver_id
-,56854,User,Pedro,Penduko,9658457642,pedropenduko.mapecon@gmail.com,Mapecon@2024,Admin and Shared Services,,,
-,78459,User,Juan,Pablo,9876789342,juanpablo.mapecon@gmail.com,Mapecon@2024,Admin and Shared Services,,,
+0,0,Hr,Null,,,null@mapecon.com.ph,Mapecon@2024,,,,0
