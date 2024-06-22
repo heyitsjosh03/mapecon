@@ -120,7 +120,7 @@ $result = $conn->query($sql);
       <!-- <th class="th"><input type="checkbox"></th> -->
       <th class="th"></th>
       <th class="th">User Type</th>
-      <th class="th">User ID</th>
+      <th class="th">Employee ID</th>
       <th class="th">First Name</th>
       <th class="th">Last Name</th>
       <th class="th">Contact Number</th>
