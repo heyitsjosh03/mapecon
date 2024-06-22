@@ -5,23 +5,34 @@ include("../sql/config.php");
 include("../sql/function.php");
 $user_data = check_login($connection);
 
+// Get the approver's id
+$approver_id = $_SESSION['user_id'];
+$approver_query = "SELECT approver_id FROM users WHERE user_id = '$approver_id'";
+$approver_result = mysqli_query($connection, $approver_query);
+
+if ($approver_result && mysqli_num_rows($approver_result) > 0) {
+    $approver_data = mysqli_fetch_assoc($approver_result);
+    $approver_id = $approver_data['approver_id'];
+} else {
+    die('Error: Approver data not found.');
+}
+
 // Get the approver's department
 $approver_id = $_SESSION['user_id'];
 $approver_query = "SELECT department FROM users WHERE user_id = '$approver_id'";
 $approver_result = mysqli_query($connection, $approver_query);
 
 if ($approver_result && mysqli_num_rows($approver_result) > 0) {
-    $approver_data = mysqli_fetch_assoc($approver_result);
-    $approver_department = $approver_data['department'];
+    $approver_dept = mysqli_fetch_assoc($approver_result);
+    $approver_dept = $approver_dept['department'];
 } else {
     die('Error: Approver data not found.');
 }
 
-// Fetch leave applications for the same department as the approver
 $sql = "SELECT l.*, UCASE(CONCAT(u.lastname, ', ', u.firstname)) AS full_name
         FROM leave_applications AS l 
         INNER JOIN users AS u ON l.user_id = u.user_id
-        WHERE u.department = '$approver_department'
+        WHERE u.approver_id = '$approver_id' AND u.department = '$approver_dept'
         ORDER BY l.id DESC";
 $result = $connection->query($sql);
 ?>
@@ -153,6 +164,7 @@ $result = $connection->query($sql);
                 echo "<td class='td'>" . $row["to_date"] . "</td>";
                 echo "<td class='td days-covered'>" . $row["working_days_covered"] . "</td>";
                 echo "<td class='td actions eye tooltip'><a href='view leave docs declined.php?application_id=" . $row["application_id"] . "' target='_blank'><i class='fa fa-eye'></i><span class='tooltiptext-eye'>View Leave Document</span></a></td>";
+                echo "</tr>";
             }
         }
     } else {

@@ -5,7 +5,6 @@ include("../sql/config.php");
 include("../sql/function.php");
 $user_data = check_login($connection);
 
-
 require '../PHPMailer/src/PHPMailer.php';
 require '../PHPMailer/src/SMTP.php';
 require '../PHPMailer/src/Exception.php';
@@ -13,8 +12,6 @@ require '../PHPMailer/src/Exception.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-
-
 
 // Get the approver's id
 $approver_id = $_SESSION['user_id'];
@@ -151,11 +148,12 @@ $result = $connection->query($sql);
       <th class="th">Days Covered</th>
       <th class="th Action" colspan="3">Actions</th>
     </tr>
-    
     <?php
     if ($result->num_rows > 0) {
+        $found = false;
         while($row = $result->fetch_assoc()) {
             if (($row["checked_by"] !== null && $row["checked_by"] != 0) && $row["status"] === "Pending") {
+                $found = true;
                 echo "<tr>";
                 echo "<td class='td'></td>";
                 echo "<td class='td'>" . $row["full_name"] . "</td>";
@@ -182,12 +180,14 @@ $result = $connection->query($sql);
                 echo "</tr>";
             }
         }
+        if (!$found) {
+            echo "<tr><td colspan='10'>No data found</td></tr>";
+        }
     } else {
         echo "<tr><td colspan='10'>No data found</td></tr>";
     }
     ?>
   </table>
-  
 </div>
 </div>
 </div>
@@ -199,9 +199,9 @@ $result = $connection->query($sql);
     <form id="approveForm" action='update_status.php' method='post'>
       <input type='hidden' name='application_id' id='approveApplicationId'>
       <input type='hidden' name='status' value='Approved'>
-      <input type='hidden' name='email' id='approveEmail'>
-      <button type='submit' class='btn-approved'>Yes</button>
-      <button type='button' class='btn-grey' onclick="closeModal('approveModal')">No</button>
+      <input type='hidden' name='email' value='<?php echo $_SESSION['user_email']; ?>'>
+      <button type="submit" name="btn-approved" class="btn-approved">Approve</button>
+      <button type="button" class="btn-cancel" onclick="closeModal('approve')">Cancel</button>
     </form>
   </div>
 </div>
@@ -213,222 +213,108 @@ $result = $connection->query($sql);
     <form id="declineForm" action='update_status.php' method='post'>
       <input type='hidden' name='application_id' id='declineApplicationId'>
       <input type='hidden' name='status' value='Declined'>
-      <button type='submit' class='btn-leaveHistory'>Yes</button>
-      <button type='button' class='btn-grey' onclick="closeModal('declineModal')">No</button>
+      <input type='hidden' name='email' value='<?php echo $_SESSION['user_email']; ?>'>
+      <button type="submit" name="btn-declined" class="btn-declined">Decline</button>
+      <button type="button" class="btn-cancel" onclick="closeModal('decline')">Cancel</button>
     </form>
   </div>
 </div>
 
-<script>
-function openModal(action, applicationId, email) {
-  if (action === 'approve') {
-    document.getElementById('approveApplicationId').value = applicationId;
-    document.getElementById('approveEmail').value = email;
-    document.getElementById('approveModal').style.display = 'block';
-  } else if (action === 'decline') {
-    document.getElementById('declineApplicationId').value = applicationId;
-    document.getElementById('declineModal').style.display = 'block';
-  }
-}
-
-function closeModal(modalId) {
-  document.getElementById(modalId).style.display = 'none';
-}
-
-window.onclick = function(event) {
-  if (event.target == document.getElementById('approveModal')) {
-    closeModal('approveModal');
-  } else if (event.target == document.getElementById('declineModal')) {
-    closeModal('declineModal');
-  }
-}
-</script>
-
+<!-- Modal for Viewing Documents -->
+<div id="viewDocModal" class="modal">
+  <div class="modal-content">
+    <iframe id="docFrame" src="" width="100%" height="500px"></iframe>
+    <button type="button" class="btn-close" onclick="closeModal('viewDoc')">Close</button>
+  </div>
+</div>
 
 <script>
+  function openModal(action, id) {
+    if (action === 'approve') {
+        document.getElementById('approveApplicationId').value = id;
+        document.getElementById('approveModal').style.display = 'block';
+    } else if (action === 'decline') {
+        document.getElementById('declineApplicationId').value = id;
+        document.getElementById('declineModal').style.display = 'block';
+    }
+  }
 
-function updateTime() {
-  
-  var today = new Date();
-  var time = today.toLocaleTimeString();
-  var options = { month: 'long', day: 'numeric', year: 'numeric' };
-  var date = today.toLocaleDateString("en-US", options); // May 12, 2024
-  
-  document.getElementById("date-time").innerHTML = "Today is " +  date + " | " + time;
-  setTimeout(updateTime, 1000); // Update time every second
-}
-
-updateTime();
+  function closeModal(action) {
+    if (action === 'approve') {
+        document.getElementById('approveModal').style.display = 'none';
+    } else if (action === 'decline') {
+        document.getElementById('declineModal').style.display = 'none';
+    } else if (action === 'viewDoc') {
+        document.getElementById('viewDocModal').style.display = 'none';
+    }
+  }
 
   function toggleNav() {
-    var sidebar = document.getElementById("sidebar");
-    var content = document.getElementById("content");
-    var overlay = document.getElementById("overlay");
-    var openButton = document.querySelector(".openbtn");
-  
-    if (sidebar.style.width === "250px") {
-      closeSidebar();
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('overlay');
+    if (sidebar.style.width === '250px') {
+        sidebar.style.width = '0';
+        overlay.style.display = 'none';
     } else {
-      openSidebar();
-    }
-  }
-  
-  function openSidebar() {
-    var sidebar = document.getElementById("sidebar");
-    var content = document.getElementById("content");
-    var overlay = document.getElementById("overlay");
-    var openButton = document.querySelector(".openbtn");
-  
-    sidebar.style.width = "250px";
-    sidebar.style.visibility = "visible";
-    openButton.innerHTML = "&#10005;"; // Change icon to close symbol
-  
-    if (window.innerWidth <= 768) { // Mobile and tablet breakpoint
-      overlay.style.display = "block"; // Display overlay
-    } else {
-      content.style.marginLeft = "250px"; // Move content to the right
-    }
-  }
-  
-  function closeSidebar() {
-    var sidebar = document.getElementById("sidebar");
-    var content = document.getElementById("content");
-    var overlay = document.getElementById("overlay");
-    var openButton = document.querySelector(".openbtn");
-  
-    sidebar.style.width = "0";
-    sidebar.style.visibility = "hidden";
-    openButton.innerHTML = "&#9776;"; // Change icon to hamburger
-  
-    if (window.innerWidth <= 768) { // Mobile and tablet breakpoint
-      overlay.style.display = "none"; // Hide overlay
-    } else {
-      content.style.marginLeft = "0"; // Move content back to its original position
-    }
-  }
-  
-  // Close sidebar when clicking outside it
-  window.onclick = function(event) {
-    if (!event.target.matches('.openbtn') && !event.target.matches('#sidebar')) {
-      if (document.getElementById("sidebar").style.width === "250px") {
-        closeSidebar();
-      }
+        sidebar.style.width = '250px';
+        overlay.style.display = 'block';
     }
   }
 
-function confirmApproval() {
-  return confirm("Are you sure you want to approve this leave application?");
-}
+  function closeNav() {
+    document.getElementById('sidebar').style.width = '0';
+    document.getElementById('overlay').style.display = 'none';
+  }
 
-function confirmDecline() {
-  return confirm("Are you sure you want to decline this leave application?");
-}
-  
+  // Adding event listeners for the filter inputs
+  document.getElementById('nameFilter').addEventListener('input', filterTable);
+  document.getElementById('monthFilter-pending').addEventListener('change', filterTable);
+  document.getElementById('yearFilter-pending').addEventListener('change', filterTable);
+  document.getElementById('dateFilter').addEventListener('input', filterTable);
 
-  // Filter table rows based on name
-  document.getElementById('nameFilter').addEventListener('input', function() {
-    var input = this.value.toUpperCase();
-    var rows = document.querySelectorAll('table tr');
-    for (var i = 1; i < rows.length; i++) {
-        var name = rows[i].getElementsByTagName("td")[1];
-        if (name) {
-            var textValue = name.textContent || name.innerText;
-            if (textValue.toUpperCase().indexOf(input) > -1) {
-                rows[i].style.display = "";
-            } else {
-                rows[i].style.display = "none";
+  function filterTable() {
+    var nameFilter = document.getElementById('nameFilter').value.toUpperCase();
+    var monthFilter = document.getElementById('monthFilter-pending').value;
+    var yearFilter = document.getElementById('yearFilter-pending').value;
+    var dateFilter = document.getElementById('dateFilter').value;
+    var table = document.querySelector('table');
+    var tr = table.getElementsByTagName('tr');
+
+    for (var i = 1; i < tr.length; i++) {
+        var tdName = tr[i].getElementsByTagName('td')[1];
+        var tdDateFiled = tr[i].getElementsByTagName('td')[3];
+        var tdFromDate = tr[i].getElementsByTagName('td')[4];
+
+        if (tdName) {
+            var nameText = tdName.textContent || tdName.innerText;
+            var dateFiledText = tdDateFiled.textContent || tdDateFiled.innerText;
+            var fromDateText = tdFromDate.textContent || tdFromDate.innerText;
+
+            var dateFiled = new Date(dateFiledText);
+            var fromDate = new Date(fromDateText);
+
+            var show = true;
+
+            if (nameFilter && !nameText.toUpperCase().includes(nameFilter)) {
+                show = false;
             }
+
+            if (monthFilter && (dateFiled.getMonth() + 1) != monthFilter && (fromDate.getMonth() + 1) != monthFilter) {
+                show = false;
+            }
+
+            if (yearFilter && dateFiled.getFullYear() != yearFilter && fromDate.getFullYear() != yearFilter) {
+                show = false;
+            }
+
+            if (dateFilter && dateFiledText !== dateFilter && fromDateText !== dateFilter) {
+                show = false;
+            }
+
+            tr[i].style.display = show ? "" : "none";
         }
     }
-    });
-
-    // Filter table rows based on date filed
-    document.getElementById('dateFilter').addEventListener('input', function() {
-    var inputDate = this.value;
-    var rows = document.querySelectorAll('table tr');
-    for (var i = 1; i < rows.length; i++) {
-        var dateFiled = rows[i].getElementsByTagName("td")[3];
-        if (dateFiled) {
-            var textValue = dateFiled.textContent || dateFiled.innerText;
-            if (textValue === inputDate) {
-                rows[i].style.display = "";
-            } else {
-                rows[i].style.display = "none";
-            }
-        }
-      }
-    });
-
-    // Filter table rows based on month and year
-    document.getElementById('monthFilter-pending').addEventListener('change', function() {
-        var inputMonth = this.value;
-        var inputYear = document.getElementById('yearFilter-pending').value;
-        var rows = document.querySelectorAll('table tr');
-        for (var i = 1; i < rows.length; i++) {
-            var dateFiled = rows[i].getElementsByTagName("td")[3];
-            if (dateFiled) {
-                var textValue = dateFiled.textContent || dateFiled.innerText;
-                var month = textValue.split("-")[1];
-                var year = textValue.split("-")[0];
-                if ((inputMonth === "" || month === inputMonth) && (inputYear === "" || year === inputYear)) {
-                    rows[i].style.display = "";
-                } else {
-                    rows[i].style.display = "none";
-                }
-            }
-        }
-    });
-
-    // Filter table rows based on year
-    document.getElementById('yearFilter-pending').addEventListener('change', function() {
-        var inputYear = this.value;
-        var inputMonth = document.getElementById('monthFilter-pending').value;
-        var rows = document.querySelectorAll('table tr');
-        for (var i = 1; i < rows.length; i++) {
-            var dateFiled = rows[i].getElementsByTagName("td")[3];
-            if (dateFiled) {
-                var textValue = dateFiled.textContent || dateFiled.innerText;
-                var month = textValue.split("-")[1];
-                var year = textValue.split("-")[0];
-                if ((inputMonth === "" || month === inputMonth) && (inputYear === "" || year === inputYear)) {
-                    rows[i].style.display = "";
-                } else {
-                    rows[i].style.display = "none";
-                }
-            }
-        }
-    });
-
-    // Reset table rows when date filter is cleared
-    document.getElementById('dateFilter').addEventListener('change', function() {
-        if (this.value === "") {
-            var rows = document.querySelectorAll('table tr');
-            for (var i = 1; i < rows.length; i++) {
-                rows[i].style.display = "";
-            }
-        } else {
-            // Clear month and year filters
-            document.getElementById('monthFilter-pending').value = "";
-            document.getElementById('yearFilter-pending').value = "";
-        }
-    });
-
-    // Clear date filter when month or year filter is utilized
-    document.getElementById('monthFilter-pending').addEventListener('change', function() {
-        var inputMonth = this.value;
-        var inputYear = document.getElementById('yearFilter-pending').value;
-        if (inputMonth !== "" || inputYear !== "") {
-            document.getElementById('dateFilter').value = "";
-        }
-    });
-
-    document.getElementById('yearFilter-pending').addEventListener('change', function() {
-        var inputYear = this.value;
-        var inputMonth = document.getElementById('monthFilter-pending').value;
-        if (inputMonth !== "" || inputYear !== "") {
-            document.getElementById('dateFilter').value = "";
-        }
-    });
+  }
 </script>
 </body>
 </html>

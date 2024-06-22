@@ -1,26 +1,26 @@
 Array
 (
-    [id] => 48
-    [application_id] => 23018
-    [user_id] => 45861
-    [date_filed] => 2024-06-19
+    [id] => 33
+    [application_id] => 68675
+    [user_id] => 25000
+    [date_filed] => 2024-05-28
     [leave_type] => Vacation Leave
-    [from_date] => 2024-06-19
-    [to_date] => 2024-06-21
-    [working_days_covered] => 3
-    [reason] => nothing
-    [status] => Pending
-    [vl_wpay_bal] => 1
-    [vl_wopay_bal] => 2
-    [sl_wpay_bal] => 4
-    [sl_wopay_bal] => 5
-    [vl_total_bal] => 3
-    [sl_total_bal] => 6
-    [checked_by] => carlo
-    [user_firstname] => Jasmine
-    [user_lastname] => Tantoy
+    [from_date] => 2024-06-05
+    [to_date] => 2024-06-12
+    [working_days_covered] => 6
+    [reason] => Mental Health break
+    [status] => Approved
+    [vl_wpay_bal] => 
+    [vl_wopay_bal] => 
+    [sl_wpay_bal] => 
+    [sl_wopay_bal] => 
+    [vl_total_bal] => 
+    [sl_total_bal] => 
+    [checked_by] => YSABELLA GANDA
+    [user_firstname] => Boniface Regine Mari
+    [user_lastname] => De Mesa
     [department] => Admin and Shared Services
-    [contactnumber] => 09123456789
-    [approver_firstname] => Joshua
-    [approver_lastname] => Panambitan
+    [contactnumber] => 09189472141
+    [approver_firstname] => Ruth Marie Catan
+    [approver_lastname] => Atienza
 )
