@@ -102,27 +102,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     // Existing form submission code
 }
+
 // Handle form submission for adding individual users
 if (isset($_POST['add_user'])) {
   $utype = $_POST['user_status'];
+  $user_id = $_POST['userid'];
   $fname = ucwords($_POST['fname']);
   $lname = ucwords($_POST['lname']);
   $contact = $_POST['contact'];
   $department = $_POST['department'];
   $email = $_POST['email'];
-  $password = $_POST['password'];
-  $conpassword = $_POST['conpassword'];
+  $password = 'Mapecon@2024';
   $approver_id = !empty($_POST['approver_id']) ? intval($_POST['approver_id']) : null;
 
   // Validate input data
-  if (!empty($fname) && !empty($lname) && !empty($contact) && !empty($department) && !empty($email) && !empty($password) && ($password == $conpassword)) {
+  if (!empty($fname) && !empty($lname) && !empty($contact) && !empty($department) && !empty($email)) {
       if (preg_match('/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $password)) {
           $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-          $user_id = generate5DigitNumber();
-          while (numberExistsInDatabase($user_id, $connection)) {
-              $user_id = generate5DigitNumber();
-          }
+          if (empty($user_id)) {
+            $user_id = generate5DigitNumber();
+            while (numberExistsInDatabase($user_id, $connection)) {
+                $user_id = generate5DigitNumber();
+            }
+        }
 
           $query = "INSERT INTO users (user_status, user_id, firstname, lastname, contactnumber, email, password, department, approver_id) 
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -139,12 +142,13 @@ if (isset($_POST['add_user'])) {
           $_SESSION['alert'] = 'Password does not meet requirements for: ' . $email;
       }
   } else {
-      $_SESSION['alert'] = 'Please fill in all fields and ensure passwords match.';
+      $_SESSION['alert'] = 'Please fill in all fields.';
   }
 
   header("Location: Add users.php");
   exit;
 }
+
 
 ?>
 
@@ -163,7 +167,7 @@ if (isset($_POST['add_user'])) {
   font-weight: bold;
   margin-bottom: 10px;
 }
-    form input[type="file"] {
+  form input[type="file"] {
   display: block;
   margin-bottom: 15px;
   padding: 10px;
@@ -264,28 +268,34 @@ form input[type="file"]:hover {
       </form>
       <br><br><br>
       <form action="<?php echo($_SERVER["PHP_SELF"]); ?>?user_id=<?php echo $user_id; ?>" method="post">
-        <label for="user_status">User Type:</label>
+      <div class="name-fields">
+      <div class="form-group">
+      <label for="user_status">User Type:</label>
       <div class="department-edit">
         <select name="user_status" id="user_status" required>
           <option value="">Select</option>
-          <option value="Hr" <?php echo (isset($row['user_status']) && $row['user_status'] == 'Hr') ? 'selected' : ''; ?>>Hr</option>
+          <option value="HR" <?php echo (isset($row['user_status']) && $row['user_status'] == 'HR') ? 'selected' : ''; ?>>HR</option>
           <option value="Approver" <?php echo (isset($row['user_status']) && $row['user_status'] == 'Approver') ? 'selected' : ''; ?>>Approver</option>
           <option value="User" <?php echo (isset($row['user_status']) && $row['user_status'] == 'User') ? 'selected' : ''; ?>>User</option>
         </select>
         <?php if (isset($errors['user_status'])): ?><span class="error"><?php echo $errors['user_status']; ?></span><?php endif; ?>
       </div>
-      <div class="name-fields">
+      </div>
       <div class="form-group">
+      <label for="userid">Employee ID:</label>
+        <input type="text" id="userid" name="userid" required placeholder="Input Employee ID ">
+      </div>
+      </div>
+      <div class="name-fields">
+      <div class="form-group1">
         <label for="fname">First Name:</label>
-        <input type="text" id="fname" name="fname" required placeholder="Enter your first name">
-        </div>  
-        <div class="form-group">
+        <input type="text" id="fname" name="fname" required placeholder="Input first name">
         <label for="lname">Last Name:</label>
-        <input type="text" id="lname" name="lname" required placeholder="Enter your last name">
+        <input type="text" id="lname" name="lname" required placeholder="Input last name">
         </div>
       </div>
         <label for="contact">Contact:</label>
-        <input type="tel" id="contact" name="contact" required placeholder="Enter your contact # (Ex. 09#########)">
+        <input type="tel" id="contact" name="contact" required placeholder="Input contact # (Ex. 09#########)">
         <label for="department">Department:</label>
       <div class="department-edit">
         <select name="department" id="department-edit" required>
@@ -308,11 +318,9 @@ form input[type="file"]:hover {
         </select>
       </div>
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required placeholder="Enter your email">
+        <input type="email" id="email" name="email" required placeholder="Input email">
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required placeholder="Enter your password">
-        <label for="conpassword">Confirm Password:</label>
-        <input type="password" id="conpassword" name="conpassword" required placeholder="Re-enter your password">
+        <input type="password" id="password" name="password" required value="Mapecon@2024" readonly>
         <label for="approver_id">Assigned Supervisor ID:</label>
         <input type="text" id="approver_id" name="approver_id" placeholder="Enter your Supervisor ID" oninput="fetchSupervisorName()">
         <label for="supervisor_name">Supervisor Name:</label>

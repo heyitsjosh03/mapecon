@@ -93,6 +93,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="shortcut icon" href="/mapecon/Pictures/favicon.png">
   <link rel="stylesheet" href="/mapecon/style.css">
+  <style>
+    form label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
 <header>
@@ -148,7 +155,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="department-edit">
         <select name="user_status" id="user_status" required>
           <option value="">Select</option>
-          <option value="Hr" <?php echo (isset($row['user_status']) && $row['user_status'] == 'Hr') ? 'selected' : ''; ?>>Hr</option>
+          <option value="HR" <?php echo (isset($row['user_status']) && $row['user_status'] == 'HR') ? 'selected' : ''; ?>>HR</option>
           <option value="Approver" <?php echo (isset($row['user_status']) && $row['user_status'] == 'Approver') ? 'selected' : ''; ?>>Approver</option>
           <option value="User" <?php echo (isset($row['user_status']) && $row['user_status'] == 'User') ? 'selected' : ''; ?>>User</option>
         </select>

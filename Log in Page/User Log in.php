@@ -7,7 +7,7 @@ include("../sql/function.php");
 // Check if the user is already logged in
 if (isset($_SESSION['user_id'])) {
     switch ($_SESSION['user_status']) {
-        case 'Admin':
+        case 'HR':
             header("Location: ../Hr Interface/Hr Home.php");
             exit;
         case 'Approver':
@@ -129,10 +129,6 @@ if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
                 <button type="submit" class="login-btn">Login</button>
             </div>
         </form>
-        <div class="sign-up-link">
-            Don't have an account? <a href="/mapecon/Log in Page/User Signup.php">Sign Up</a>
-        </div>
-
     </div>
   </div>
   <script src="path/to/script.js"></script>

@@ -502,6 +502,16 @@ textarea:hover {
   width: 100%;
 }
 
+.form-group1 {
+  flex-basis: calc(100% - 5px); /* Adjust as needed */
+}
+
+/* Style the labels and inputs */
+.form-group1 label,
+.form-group1 input {
+  width: 100%;
+}
+
 /* Text Styles */
 h2 {
   text-align: center;

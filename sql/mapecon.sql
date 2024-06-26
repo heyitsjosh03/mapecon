@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `leave_applications` (
-  `id` bigint(50) NOT NULL,
+  `id` bigint(20) NOT NULL,
   `application_id` int(20) NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `date_filed` date NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE `leave_applications` (
 --
 
 CREATE TABLE `users` (
-  `id` bigint(50) NOT NULL,
+  `id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `user_status` varchar(100) NOT NULL,
   `firstname` varchar(50) NOT NULL,
@@ -72,9 +72,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `user_id`, `user_status`, `firstname`, `lastname`, `contactnumber`, `email`, `password`, `department`, `otp`,`token_expired`, `approver_id`) VALUES
-(0, 1, 'Admin', 'Admin', '', '', 'admin@gmail.com', '$2y$10$FmjPZzCQbq9ggeBoQOfzMOoK11ecmjzIQxnZqtkMLdZQe5WnIvMxC', '', NULL, NULL, NULL), /*Pass: 123456*/
-(1, 2, 'User', 'fname dummy', 'lname dummy', '09999099543', 'dummy@gmail.com', '$2y$10$FmjPZzCQbq9ggeBoQOfzMOoK11ecmjzIQxnZqtkMLdZQe5WnIvMxC', 'Accounting', NULL, NULL, NULL); /*Pass: 123456*/
+INSERT INTO `users` (`id`, `user_id`, `user_status`, `firstname`, `lastname`, `contactnumber`, `email`, `password`, `department`, `otp`, `token_expired`, `approver_id`) VALUES
+(0, 0, 'Hr', 'HR ADMIN', '', '', 'hradmin@mapecon.com.ph', '$2y$10$FmjPZzCQbq9ggeBoQOfzMOoK11ecmjzIQxnZqtkMLdZQe5WnIvMxC', '', NULL, NULL, NULL); /*Pass: 123456*/
 
 --
 -- Indexes for dumped tables
@@ -82,14 +81,16 @@ INSERT INTO `users` (`id`, `user_id`, `user_status`, `firstname`, `lastname`, `c
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  MODIFY COLUMN `id` bigint(50) NOT NULL AUTO_INCREMENT,
+  MODIFY COLUMN `id` bigint(20) NOT NULL AUTO_INCREMENT,
   ADD PRIMARY KEY (`id`);
+
 --
 -- AUTO_INCREMENT for table `leave_applications`
 --
 ALTER TABLE `leave_applications`
   ADD PRIMARY KEY (`id`),
-  MODIFY `id` bigint(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
