@@ -36,18 +36,22 @@ $result = $conn->query($sql);
 
 // Check if any user is missing an approver
 $missingApprover = false;
+$missingRow = -1;
+$rowIndex = 1; // Start row index from 1
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         if (empty($row["approver_id"])) {
             $missingApprover = true;
+            $missingRow = $rowIndex;
             break;
         }
+        $rowIndex++;
     }
     $result->data_seek(0); // Reset result pointer to the beginning
 }
 
 if ($missingApprover) {
-    echo "<script>alert('APPROVER REQUIRED!');</script>";
+    echo "<script>alert('APPROVER REQUIRED! Missing in row: $missingRow');</script>";
 }
 ?>
 
