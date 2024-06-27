@@ -51,11 +51,6 @@ $result = $conn->query($sql);
     th.Action{
       text-align:center;
     }
-    td.department{
-      width: 18%; /* Makes the cell take up the full width */
-    text-align: center; /* Centers the text horizontally */
-    white-space: nowrap; /* Prevents wrapping for exact fitting */
-    }
 </style>
 </head>
 
@@ -129,9 +124,14 @@ $result = $conn->query($sql);
       <th class="th">Supervisor ID</th>
       <th class="th Action" colspan="3">Actions</th>
     </tr>
+    
     <?php
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        // Check if any required field is empty
+        if ( empty($row["approver_id"])) {
+            echo "<script>alert('APPROVER REQUIRED!');</script>";
+        } 
           echo "<tr>";
                 echo "<td class='td'></td>";
                 echo "<td class='td'>" . $row["user_status"] . "</td>";
