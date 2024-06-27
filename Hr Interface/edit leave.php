@@ -233,13 +233,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <td>Vacation Leave</td>
                         <td><input type="number" id="vl_wpay_bal" name="vl_wpay_bal" value="<?php echo $application_data['vl_wpay_bal']; ?>"></td>
                         <td><input type="number" id="vl_wopay_bal" name="vl_wopay_bal" value="<?php echo $application_data['vl_wopay_bal']; ?>"></td>
-                        <td><input type="number" id="vl_total_bal" name="vl_total_bal" value="<?php echo $application_data['vl_total_bal']; ?>"></td>
+                        <td><input type="number" id="vl_total_bal" name="vl_total_bal" value="<?php echo $application_data['vl_total_bal']; ?>" required></td>
                     </tr>
                     <tr>
                         <td>Sick Leave</td>
                         <td><input type="number" id="sl_wpay_bal" name="sl_wpay_bal" value="<?php echo $application_data['sl_wpay_bal']; ?>"></td>
                         <td><input type="number" id="sl_wopay_bal" name="sl_wopay_bal" value="<?php echo $application_data['sl_wopay_bal']; ?>"></td>
-                        <td><input type="number" id="sl_total_bal" name="sl_total_bal" value="<?php echo $application_data['sl_total_bal']; ?>"></td>
+                        <td><input type="number" id="sl_total_bal" name="sl_total_bal" value="<?php echo $application_data['sl_total_bal']; ?>"required></td>
                     </tr>
                 </table>
             </div>

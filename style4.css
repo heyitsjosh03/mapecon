@@ -310,7 +310,7 @@ header {
   display: block;
   margin: 0 auto;
   padding: 40px;
-  border: 1px solid #D6DDE1;
+  border: 1px solid #606061;
   border-radius: 7px;
   width: 90%;
   justify-content: center;
@@ -1782,3 +1782,26 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 }
 }
 
+#scrollToTopBtn {
+  display: none; /* Hide the button by default */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99; /* Ensure it appears above other content */
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #B40000;
+  color: rgb(221, 214, 214);
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+  transition: opacity 0.3s;
+}
+
+#scrollToTopBtn:hover {
+  opacity: 0.8;
+  background-color: black;
+
+  
+} 
