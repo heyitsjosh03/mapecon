@@ -11,7 +11,7 @@ Array
     [reason] => Renewal Formation
 
 HR: This is noted
-    [status] => Pending
+    [status] => Approved
     [vl_wpay_bal] => 7
     [vl_wopay_bal] => 0
     [sl_wpay_bal] => 8
