@@ -13,16 +13,19 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
+// Check if the session user_id is set
+if (!isset($_SESSION['user_id'])) {
+    die('Error: User ID is not set in the session.');
+}
+
 // Get the approver's id
 $approver_id = $_SESSION['user_id'];
 $approver_query = "SELECT approver_id FROM users WHERE user_id = '$approver_id'";
 $approver_result = mysqli_query($connection, $approver_query);
 
-if ($approver_result && mysqli_num_rows($approver_result) > 0) {
-    $approver_data = mysqli_fetch_assoc($approver_result);
-    $approver_id = $approver_data['approver_id'];
-} else {
-    die('Error: Approver data not found.');
+// Debugging: Output the query result
+if (!$approver_result) {
+    die('Error: Query failed. ' . mysqli_error($connection));
 }
 
 // Fetch leave applications for the same approver as the approver
@@ -33,8 +36,13 @@ $sql = "SELECT l.*, UCASE(CONCAT(u.lastname, ', ', u.firstname)) AS full_name
         ORDER BY l.id DESC";
 
 $result = $connection->query($sql);
-?>
 
+// Debugging: Check if the query executed successfully
+if (!$result) {
+    die('Error: Query failed. ' . $connection->error);
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -200,8 +208,8 @@ $result = $connection->query($sql);
       <input type='hidden' name='application_id' id='approveApplicationId'>
       <input type='hidden' name='status' value='Approved'>
       <input type='hidden' name='email' value='<?php echo $_SESSION['user_email']; ?>'>
-      <button type="submit" name="btn-approved" class="btn-approved">Approve</button>
-      <button type="button" class="btn-cancel" onclick="closeModal('approve')">Cancel</button>
+      <button type="submit" name="btn-approved" class="btn-approved">Yes</button>
+      <button type="button" class="btn-cancel" onclick="closeModal('approve')">No</button>
     </form>
   </div>
 </div>
@@ -214,8 +222,8 @@ $result = $connection->query($sql);
       <input type='hidden' name='application_id' id='declineApplicationId'>
       <input type='hidden' name='status' value='Declined'>
       <input type='hidden' name='email' value='<?php echo $_SESSION['user_email']; ?>'>
-      <button type="submit" name="btn-declined" class="btn-declined">Decline</button>
-      <button type="button" class="btn-cancel" onclick="closeModal('decline')">Cancel</button>
+      <button type="submit" name="btn-declined" class="btn-declined">Yes</button>
+      <button type="button" class="btn-cancel" onclick="closeModal('decline')">No</button>
     </form>
   </div>
 </div>

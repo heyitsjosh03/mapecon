@@ -73,7 +73,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_id`, `user_status`, `firstname`, `lastname`, `contactnumber`, `email`, `password`, `department`, `otp`, `token_expired`, `approver_id`) VALUES
-(0, 0, 'Hr', 'HR ADMIN', '', '', 'hradmin@mapecon.com.ph', '$2y$10$FmjPZzCQbq9ggeBoQOfzMOoK11ecmjzIQxnZqtkMLdZQe5WnIvMxC', '', NULL, NULL, NULL); /*Pass: 123456*/
+(0, 1, 'Hr', 'HR ADMIN', '', '', 'hradmin@mapecon.com.ph', '$2y$10$FmjPZzCQbq9ggeBoQOfzMOoK11ecmjzIQxnZqtkMLdZQe5WnIvMxC', '', NULL, NULL, NULL); /*Pass: 123456*/
 
 --
 -- Indexes for dumped tables

@@ -1,26 +1,28 @@
 Array
 (
-    [id] => 49
-    [application_id] => 28810
-    [user_id] => 45988
-    [date_filed] => 2024-06-19
-    [leave_type] => Sick Leave
-    [from_date] => 2024-06-25
-    [to_date] => 2024-06-25
+    [id] => 1
+    [application_id] => 32381
+    [user_id] => 202401
+    [date_filed] => 2024-06-27
+    [leave_type] => Vacation Leave
+    [from_date] => 2024-06-29
+    [to_date] => 2024-06-29
     [working_days_covered] => 1
-    [reason] => sick sick sick
-    [status] => Pending
-    [vl_wpay_bal] => 
-    [vl_wopay_bal] => 
-    [sl_wpay_bal] => 
-    [sl_wopay_bal] => 
-    [vl_total_bal] => 
-    [sl_total_bal] => 
-    [checked_by] => 
+    [reason] => Renewal Formation
+
+HR: This is noted
+    [status] => Approved
+    [vl_wpay_bal] => 7
+    [vl_wopay_bal] => 0
+    [sl_wpay_bal] => 8
+    [sl_wopay_bal] => 8
+    [vl_total_bal] => 7
+    [sl_total_bal] => 8
+    [checked_by] => DREIANN DIVINAGRACIA
     [user_firstname] => Joshua
     [user_lastname] => Panambitan
     [department] => Admin and Shared Services
-    [contactnumber] => 09123456789
-    [approver_firstname] => Ruth Marie Catan
-    [approver_lastname] => Atienza
+    [contactnumber] => 09757392905
+    [approver_firstname] => Boniface Regine Mari
+    [approver_lastname] => De Mesa
 )

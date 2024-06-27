@@ -478,6 +478,24 @@ tr:nth-child(even) {background-color: #f2f2f2;}
   margin-left: 10%;
 }
 
+.btn-declined{
+  color: green;
+  border: 1px solid green; /* Add border */
+  border-radius: 5px; /* Optional: Add border radius for rounded corners */
+  padding: 5.5px 7px; /* Optional: Add padding to adjust the space between the icon and the border */
+  background-color: white;
+  margin-left: 10%;
+}
+
+.btn-cancel{
+  color: red;
+  border: 1px solid red; /* Add border */
+  border-radius: 5px; /* Optional: Add border radius for rounded corners */
+  padding: 5.5px 7px; /* Optional: Add padding to adjust the space between the icon and the border */
+  background-color: white;
+  margin-left: 10%;
+}
+
 .btn-leaveHistory-disabled{
   border: 1px solid;
   background-color: white;
@@ -526,6 +544,20 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 .btn-approved:hover{
   color: #08ac6c;
   border: 1px solid #08ac6c;
+  transition: all 0.3s ease;
+  padding: 7px 9px;
+}
+
+.btn-declined:hover{
+  color: #08ac6c;
+  border: 1px solid #08ac6c;
+  transition: all 0.3s ease;
+  padding: 7px 9px;
+}
+
+.btn-cancel:hover{
+  color: #cf1919;
+  border: 1px solid #cf1919;
   transition: all 0.3s ease;
   padding: 7px 9px;
 }
