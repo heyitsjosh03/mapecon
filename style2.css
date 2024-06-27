@@ -13,7 +13,7 @@ body {
   width: 70%;
   justify-content: center;
   align-items: center;
-  height: 100%; /* Adjust as needed */
+  height: auto; /* Adjust as needed */
   margin-top: 140px;
 }
 
