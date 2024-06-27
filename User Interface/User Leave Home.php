@@ -1,32 +1,45 @@
-    <?php
-    session_start();
+<?php
+session_start();
 
-      include("../sql/config.php");
-      include("../sql/function.php");
-      $user_data = check_login($connection);
+include("../sql/config.php");
+include("../sql/function.php");
+$user_data = check_login($connection);
 
-      /*// Check if the user is logged in
-      if (!isset($_SESSION['user_id'])) {
-      header("Location: ../login.php");
-      exit();
-      }*/
+// Check if the user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../login.php");
+    exit();
+}
 
-      $user_id = $_SESSION['user_id'];
+$user_id = $_SESSION['user_id'];
 
-      // Retrieve the current user's first name
-      $queryUser = "SELECT firstname FROM users WHERE user_id = ?";
-      $stmt = $connection->prepare($queryUser);
-      $stmt->bind_param("i", $user_id);
-      $stmt->execute();
-      $resultUser = $stmt->get_result();
+// Retrieve the current user's first name
+$queryUser = "SELECT firstname, approver_id FROM users WHERE user_id = ?";
+$stmt = $connection->prepare($queryUser);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$resultUser = $stmt->get_result();
 
-      if ($resultUser->num_rows > 0) {
-        $rowUser = $resultUser->fetch_assoc();
-        $firstName = $rowUser["firstname"]; // Escape for security
-      } else {
-        $firstName = "User";
-      }
-    ?>
+if ($resultUser->num_rows > 0) {
+    $rowUser = $resultUser->fetch_assoc();
+    $firstName = $rowUser["firstname"]; // Escape for security
+    $approverId = $rowUser["approver_id"];
+} else {
+    $firstName = "User";
+    $approverId = null;
+}
+
+// Check if approver_id is not set
+if (is_null($approverId)) {
+  // Destroy session and redirect to login page
+  session_destroy();
+  echo "<script>
+          alert('Supervisor ID is needed. Please proceed to HR to obtain it!');
+          window.location.href = '../Log In Page/User Log in.php';
+        </script>";
+  exit();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">

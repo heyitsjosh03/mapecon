@@ -24,6 +24,7 @@ if (isset($_GET['user_id'])) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $utype = $_POST['user_status'];
+    $user_id = $_POST['user_id'];
     $fname = $_POST['firstname'];
     $lname = $_POST['lastname'];
     $contact = $_POST['contactnumber'];
@@ -161,6 +162,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </select>
         <?php if (isset($errors['user_status'])): ?><span class="error"><?php echo $errors['user_status']; ?></span><?php endif; ?>
       </div>
+
+      <label for="user_id">Employee ID:</label>
+      <input type="text" id="user_id" name="user_id" value="<?php echo htmlspecialchars($row['user_id']); ?>" readonly>
 
       <label for="firstname">First Name:</label>
       <input type="text" id="firstname" name="firstname" value="<?php echo htmlspecialchars($row['firstname']); ?>" required>
