@@ -33,6 +33,22 @@ if (isset($_POST['id_to_delete'])) {
 // Fetch users grouped by department and user status
 $sql = "SELECT * FROM users ORDER BY id DESC";
 $result = $conn->query($sql);
+
+// Check if any user is missing an approver
+$missingApprover = false;
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        if (empty($row["approver_id"])) {
+            $missingApprover = true;
+            break;
+        }
+    }
+    $result->data_seek(0); // Reset result pointer to the beginning
+}
+
+if ($missingApprover) {
+    echo "<script>alert('APPROVER REQUIRED!');</script>";
+}
 ?>
 
 <!DOCTYPE html>
@@ -50,11 +66,6 @@ $result = $conn->query($sql);
 }
     th.Action{
       text-align:center;
-    }
-    td.department{
-      width: 18%; /* Makes the cell take up the full width */
-    text-align: center; /* Centers the text horizontally */
-    white-space: nowrap; /* Prevents wrapping for exact fitting */
     }
 </style>
 </head>
@@ -129,9 +140,10 @@ $result = $conn->query($sql);
       <th class="th">Supervisor ID</th>
       <th class="th Action" colspan="3">Actions</th>
     </tr>
+    
     <?php
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
           echo "<tr>";
                 echo "<td class='td'></td>";
                 echo "<td class='td'>" . $row["user_status"] . "</td>";
