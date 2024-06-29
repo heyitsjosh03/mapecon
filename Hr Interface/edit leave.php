@@ -189,18 +189,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="contactnumber">Contact Number:</label>
             <input type="text" id="contactnumber" name="contactnumber" value="<?php echo $user_data['contactnumber']; ?>">
             
-            <label for="leave-type">Leave Type:</label>
-            <div class="leave-type">
-                <select name="leave-type" id="leave-type">
-                    <option value="">Select</option>
-                    <option value="Sick Leave">Sick Leave</option>
-                    <option value="Vacation Leave">Vacation Leave</option>
-                </select>
-            </div>
-            <div class="others" id="others-container" style="display: none;">
-                <label for="others">Others:</label>
-                <input type="others" id="others" name="others">
-            </div>
+            <label for="leave-type" class="edit-leave-type">Leave Type:</label>
+            <select name="leave-type" id="leave-type" class="leave-type" required onchange="showOthersField()">
+                <?php
+                foreach ($leave_types as $leave_type) {
+                    $selected = ($leave_type == $application_data['leave_type']) ? 'selected' : '';
+                    echo "<option value='$leave_type' $selected>$leave_type</option>";
+                }
+                ?>
+                <option value="Others" <?php echo ($application_data['leave_type'] == 'Others') ? 'selected' : ''; ?>>Others</option>
+            </select>
 
             <div class="date-range">
                 <div class="from-date">
