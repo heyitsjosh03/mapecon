@@ -1,26 +1,26 @@
 Array
 (
-    [id] => 2
-    [application_id] => 85074
-    [user_id] => 202401
-    [date_filed] => 2024-06-27
+    [id] => 66
+    [application_id] => 62773
+    [user_id] => 1
+    [date_filed] => 2024-06-29
     [leave_type] => Sick Leave
-    [from_date] => 2024-06-27
-    [to_date] => 2024-06-27
-    [working_days_covered] => 1
-    [reason] => Nilalagnat
+    [from_date] => 2024-06-22
+    [to_date] => 2024-06-30
+    [working_days_covered] => 8
+    [reason] => nothing
     [status] => Pending
-    [vl_wpay_bal] => 7
+    [vl_wpay_bal] => 0
     [vl_wopay_bal] => 0
-    [sl_wpay_bal] => 7
+    [sl_wpay_bal] => 0
     [sl_wopay_bal] => 0
-    [vl_total_bal] => 7
-    [sl_total_bal] => 7
-    [checked_by] => DREIANN DIVINAGRACIA
-    [user_firstname] => Joshua
-    [user_lastname] => Panambitan
-    [department] => Admin and Shared Services
-    [contactnumber] => 09757392905
-    [approver_firstname] => Boniface Regine Mari
-    [approver_lastname] => De Mesa
+    [vl_total_bal] => 1
+    [sl_total_bal] => 1
+    [checked_by] => Carlo
+    [user_firstname] => Carlo
+    [user_lastname] => Doroteo
+    [department] => Research and Development
+    [contactnumber] => 09950983157
+    [approver_firstname] => Approver
+    [approver_lastname] =>    
 )

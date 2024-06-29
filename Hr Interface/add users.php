@@ -301,20 +301,33 @@ form input[type="file"]:hover {
         <select name="department" id="department-edit" required>
           <option value="">Select</option>
           <option value="Accounting">Accounting</option>
-          <option value="Admin and Shared Services">Admin and Shared Services</option>
-          <option value="Ads and Promo">Ads and Promo</option>
+          <option value="Audit">Audit</option>
+          <option value="Collection">Collection</option>
+          <option value="Shared services/ Corp Affairs">Shared services/ Corp Affairs</option>
+          <option value="Ads and Promo">Ads and Promo</option>\
+          <option value="Hr">Hr</option>
+          <option value="Admin">Admin</option>
+          <option value="Marketing Office">Marketing Office</option>
+          <option value="Marketing North">Marketing North</option>
+          <option value="Marketing South">Marketing South</option>
+          <option value="Marketing East">Marketing East</option>
+          <option value="Marketing West">Marketing West</option>
+          <option value="OTD">OTD</option>
+          <option value="Service Office">Service Office</option>
+          <option value="Service Technician">Service Technician</option>
           <option value="Business Development Group">Business Development Group</option>
           <option value="Chem Room">Chem Room</option>
           <option value="Clinic">Clinic</option>
-          <option value="Collection">Collection</option>
           <option value="EVP Office">EVP Office</option>
+          <option value="NCUPC">NCUPC</option>
+          <option value="Factory R&D">Factory R&D</option>
           <option value="Greenovations-Floor">Greenovations (1st and 2nd Floor)</option>
           <option value="Greenovations-Table">Greenovations (MGCPI Table)</option>
           <option value="Operator and HR">Operator and HR</option>
-          <option value="OTD">OTD</option>
           <option value="Research and Development">Research and Development</option>
           <option value="Sales">Sales</option>
-          <option value="Service">Service</option>
+          <option value="Factory R&D">IT</option>
+          
         </select>
       </div>
         <label for="email">Email:</label>

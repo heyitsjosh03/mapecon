@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $_SESSION['alert'] = ['message' => 'Error updating profile: ' . mysqli_error($connection), 'type' => 'error'];
       }
 
-      header("Location: Admin Profile.php");
+      header("Location: Hr Profile.php");
       exit;
   }
 }
@@ -134,20 +134,33 @@ $row = mysqli_fetch_assoc($result);
         <select name="department" id="department" required>
           <option value="">Select</option>
           <option value="Accounting" <?php echo (isset($row['department']) && $row['department'] == 'Accounting') ? 'selected' : ''; ?>>Accounting</option>
-          <option value="Admin and Shared Services" <?php echo (isset($row['department']) && $row['department'] == 'Admin and Shared Services') ? 'selected' : ''; ?>>Admin and Shared Services</option>
-          <option value="Ads and Promo" <?php echo (isset($row['department']) && $row['department'] == 'Ads and Promo') ? 'selected' : ''; ?>>Ads and Promo</option>
-          <option value="Business Development Group" <?php echo (isset($row['department']) && $row['department'] == 'Business Development Group') ? 'selected' : ''; ?>>Business Development Group</option>
-          <option value="Chem Room" <?php echo (isset($row['department']) && $row['department'] == 'Chem Room') ? 'selected' : ''; ?>>Chem Room</option>
-          <option value="Clinic" <?php echo (isset($row['department']) && $row['department'] == 'Clinic') ? 'selected' : ''; ?>>Clinic</option>
-          <option value="Collection" <?php echo (isset($row['department']) && $row['department'] == 'Collection') ? 'selected' : ''; ?>>Collection</option>
-          <option value="EVP Office" <?php echo (isset($row['department']) && $row['department'] == 'EVP Office') ? 'selected' : ''; ?>>EVP Office</option>
-          <option value="Greenovations-Floor" <?php echo (isset($row['department']) && $row['department'] == 'Greenovations-Floor') ? 'selected' : ''; ?>>Greenovations (1st and 2nd Floor)</option>
-          <option value="Greenovations-Table" <?php echo (isset($row['department']) && $row['department'] == 'Greenovations-Table') ? 'selected' : ''; ?>>Greenovations (MGCPI Table)</option>
+    <option value="Audit" <?php echo (isset($row['department']) && $row['department'] == 'Audit') ? 'selected' : ''; ?>>Audit</option>
+    <option value="Collection" <?php echo (isset($row['department']) && $row['department'] == 'Collection') ? 'selected' : ''; ?>>Collection</option>
+    <option value="Shared services/ Corp Affairs" <?php echo (isset($row['department']) && $row['department'] == 'Shared services/ Corp Affairs') ? 'selected' : ''; ?>>Shared services/ Corp Affairs</option>
+    <option value="Ads and Promo" <?php echo (isset($row['department']) && $row['department'] == 'Ads and Promo') ? 'selected' : ''; ?>>Ads and Promo</option>
+    <option value="Hr" <?php echo (isset($row['department']) && $row['department'] == 'Hr') ? 'selected' : ''; ?>>Hr</option>
+    <option value="Admin" <?php echo (isset($row['department']) && $row['department'] == 'Admin') ? 'selected' : ''; ?>>Admin</option>
+    <option value="Marketing Office" <?php echo (isset($row['department']) && $row['department'] == 'Marketing Office') ? 'selected' : ''; ?>>Marketing Office</option>
+    <option value="Marketing North" <?php echo (isset($row['department']) && $row['department'] == 'Marketing North') ? 'selected' : ''; ?>>Marketing North</option>
+    <option value="Marketing South" <?php echo (isset($row['department']) && $row['department'] == 'Marketing South') ? 'selected' : ''; ?>>Marketing South</option>
+    <option value="Marketing East" <?php echo (isset($row['department']) && $row['department'] == 'Marketing East') ? 'selected' : ''; ?>>Marketing East</option>
+    <option value="Marketing West" <?php echo (isset($row['department']) && $row['department'] == 'Marketing West') ? 'selected' : ''; ?>>Marketing West</option>
+    <option value="OTD" <?php echo (isset($row['department']) && $row['department'] == 'OTD') ? 'selected' : ''; ?>>OTD</option>
+    <option value="Service Office" <?php echo (isset($row['department']) && $row['department'] == 'Service Office') ? 'selected' : ''; ?>>Service Office</option>
+    <option value="Service Technician" <?php echo (isset($row['department']) && $row['department'] == 'Service Technician') ? 'selected' : ''; ?>>Service Technician</option>
+    <option value="Business Development Group" <?php echo (isset($row['department']) && $row['department'] == 'Business Development Group') ? 'selected' : ''; ?>>Business Development Group</option>
+    <option value="Chem Room" <?php echo (isset($row['department']) && $row['department'] == 'Chem Room') ? 'selected' : ''; ?>>Chem Room</option>
+    <option value="Clinic" <?php echo (isset($row['department']) && $row['department'] == 'Clinic') ? 'selected' : ''; ?>>Clinic</option>
+    <option value="EVP Office" <?php echo (isset($row['department']) && $row['department'] == 'EVP Office') ? 'selected' : ''; ?>>EVP Office</option>
+    <option value="NCUPC" <?php echo (isset($row['department']) && $row['department'] == 'NCUPC') ? 'selected' : ''; ?>>NCUPC</option>
+    <option value="Factory R&D" <?php echo (isset($row['department']) && $row['department'] == 'Factory R&D') ? 'selected' : ''; ?>>Factory R&D</option>
+    <option value="Greenovations-Floor" <?php echo (isset($row['department']) && $row['department'] == 'Greenovations-Floor') ? 'selected' : ''; ?>>Greenovations (1st and 2nd Floor)</option>
+    <option value="Greenovations-Table" <?php echo (isset($row['department']) && $row['department'] == 'Greenovations-Table') ? 'selected' : ''; ?>>Greenovations (MGCPI Table)</option>
+    <option value="Operator and HR" <?php echo (isset($row['department']) && $row['department'] == 'Operator and HR') ? 'selected' : ''; ?>>Operator and HR</option>
+    <option value="Research and Development" <?php echo (isset($row['department']) && $row['department'] == 'Research and Development') ? 'selected' : ''; ?>>Research and Development</option>
+    <option value="Sales" <?php echo (isset($row['department']) && $row['department'] == 'Sales') ? 'selected' : ''; ?>>Sales</option>
+    <option value="IT" <?php echo (isset($row['department']) && $row['department'] == 'IT') ? 'selected' : ''; ?>>IT</option>
           <option value="Operator and HR" <?php echo (isset($row['department']) && $row['department'] == 'Operator and HR') ? 'selected' : ''; ?>>Operator and HR</option>
-          <option value="OTD" <?php echo (isset($row['department']) && $row['department'] == 'OTD') ? 'selected' : ''; ?>>OTD</option>
-          <option value="Research" <?php echo (isset($row['department']) && $row['department'] == 'Research') ? 'selected' : ''; ?>>Research and Development</option>
-          <option value="Sales" <?php echo (isset($row['department']) && $row['department'] == 'Sales') ? 'selected' : ''; ?>>Sales</option>
-          <option value="Service" <?php echo (isset($row['department']) && $row['department'] == 'Service') ? 'selected' : ''; ?>>Service</option>
         </select>
 
         <?php if (isset($errors['department'])): ?><span class="error"><?php echo $errors['department']; ?></span><?php endif; ?>

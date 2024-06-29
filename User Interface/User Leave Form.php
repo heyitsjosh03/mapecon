@@ -177,7 +177,7 @@ $user_data = check_login($connection);
     <form action="<?php echo($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="return validateForm()">
     <label for="leave-type">Leave Type:</label>
         <div class="leave-type">
-            <select name="leave-type" id="leave-type">
+            <select name="a" id="leave-type">
                 <option value="">Select</option>
                 <option value="Sick Leave">Sick Leave</option>
                 <option value="Vacation Leave">Vacation Leave</option>

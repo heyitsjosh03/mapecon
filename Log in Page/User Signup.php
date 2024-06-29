@@ -120,6 +120,7 @@ session_start();
         <select name="department" id="department-edit" required>
           <option value="">Select</option>
           <option value="Accounting">Accounting</option>
+          <option value="Audit">Audit</option>
           <option value="Admin and Shared Services">Admin and Shared Services</option>
           <option value="Ads and Promo">Ads and Promo</option>
           <option value="Business Development Group">Business Development Group</option>
