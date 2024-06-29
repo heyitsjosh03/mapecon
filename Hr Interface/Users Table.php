@@ -40,7 +40,7 @@ $missingRow = -1;
 $rowIndex = 1; // Start row index from 1
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        if (empty($row["approver_id"])) {
+        if (empty($row["approver_id"]) && $row["user_status"] != "hr") {
             $missingApprover = true;
             $missingRow = $rowIndex;
             break;
