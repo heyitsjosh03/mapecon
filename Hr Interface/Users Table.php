@@ -30,8 +30,8 @@ if (isset($_POST['id_to_delete'])) {
   exit();
 }
 
-// Fetch users grouped by department and user status
-$sql = "SELECT * FROM users ORDER BY id DESC";
+// Fetch users grouped by department and user status, ordered alphabetically by department
+$sql = "SELECT * FROM users ORDER BY department ASC";
 $result = $conn->query($sql);
 
 // Check if any user is missing an approver
@@ -173,7 +173,7 @@ if ($result->num_rows > 0) {
 </div>
 </div>
 </div>
-
+<button onclick="scrollToTop()" id="scrollToTopBtn" title="Go to top"><i class="fa fa-arrow-up"></i></button>
 <!-- Modals -->
 <div id="cancelModal" class="modal">
     <div class="modal-content">
@@ -186,7 +186,7 @@ if ($result->num_rows > 0) {
     </div>
 </div>
 
-<button onclick="scrollToTop()" id="scrollToTopBtn" title="Go to top"><i class="fa fa-arrow-up"></i></button>
+
 <!-- Scripts -->
 <script>
 function openModal(action, applicationId) {
@@ -427,5 +427,10 @@ function confirmDecline() {
         }
     });
 </script>
+<footer>
+<div class="footer-bottom">
+    &copy; 2024 MAPECON Philippines Inc. | Designed by Your Company
+  </div>
+</footer>
 </body>
 </html>

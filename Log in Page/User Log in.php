@@ -7,7 +7,7 @@ include("../sql/function.php");
 // Check if the user is already logged in
 if (isset($_SESSION['user_id'])) {
     switch ($_SESSION['user_status']) {
-        case 'HR':
+        case 'Hr':
             header("Location: ../Hr Interface/Hr Home.php");
             exit;
         case 'Approver':
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     setcookie('password', $password, time() + (86400 * 30), "/");
                 }
 
-                if ($user_data['user_status'] == 'HR') {
+                if ($user_data['user_status'] == 'Hr') {
                     header("Location: ../Hr Interface/Hr Home.php");
                     die;
                 } elseif ($user_data['user_status'] == 'User') {

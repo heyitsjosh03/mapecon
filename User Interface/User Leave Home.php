@@ -104,7 +104,11 @@ if (is_null($approverId)) {
     </div>
   </div>
 </div>
-  
+<footer>
+<div class="footer-bottom">
+    &copy; 2024 MAPECON Philippines Inc. | Designed by Your Company
+  </div>
+</footer>
 </body>
 
 <script>

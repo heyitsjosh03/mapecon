@@ -274,7 +274,7 @@ form input[type="file"]:hover {
       <div class="department-edit">
         <select name="user_status" id="user_status" required>
           <option value="">Select</option>
-          <option value="HR" <?php echo (isset($row['user_status']) && $row['user_status'] == 'HR') ? 'selected' : ''; ?>>HR</option>
+          <option value="Hr" <?php echo (isset($row['user_status']) && $row['user_status'] == 'Hr') ? 'selected' : ''; ?>>Hr</option>
           <option value="Approver" <?php echo (isset($row['user_status']) && $row['user_status'] == 'Approver') ? 'selected' : ''; ?>>Approver</option>
           <option value="User" <?php echo (isset($row['user_status']) && $row['user_status'] == 'User') ? 'selected' : ''; ?>>User</option>
         </select>
@@ -300,6 +300,7 @@ form input[type="file"]:hover {
       <div class="department-edit">
         <select name="department" id="department-edit" required>
           <option value="">Select</option>
+          <option value="Operator and HR">Operator and HR</option>  
           <option value="Accounting">Accounting</option>
           <option value="Audit">Audit</option>
           <option value="Collection">Collection</option>
@@ -323,7 +324,6 @@ form input[type="file"]:hover {
           <option value="Factory R&D">Factory R&D</option>
           <option value="Greenovations-Floor">Greenovations (1st and 2nd Floor)</option>
           <option value="Greenovations-Table">Greenovations (MGCPI Table)</option>
-          <option value="Operator and HR">Operator and HR</option>
           <option value="Research and Development">Research and Development</option>
           <option value="Sales">Sales</option>
           <option value="Factory R&D">IT</option>

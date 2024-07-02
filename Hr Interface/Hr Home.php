@@ -122,7 +122,7 @@ mysqli_close($connection);
   <!-- Overlay -->
   <div class="overlay" id="overlay" onclick="closeNav()"></div>
 
-  <!-- Approver Home content -->
+  
   <div class="admin-container">
     <div class="admin-home">
       <div class="dashboard-content">
@@ -431,5 +431,6 @@ mysqli_close($connection);
   }
 </script>
 <script src="script.js"></script>
+
 </body>
 </html>

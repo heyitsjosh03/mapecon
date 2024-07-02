@@ -121,7 +121,7 @@ $user_data = check_login($connection);
         // Output the PDF (uncomment one option)
         // $pdf->Output('leave_form.pdf', 'D'); // Download
         $pdf->Output('filename.pdf', 'S'); // Display in browser for preview
-        header("Location: User Leave History.php");
+        header("Location: Approver History.php");
         exit; // Stop further execution
     }
 
@@ -140,7 +140,7 @@ $user_data = check_login($connection);
 <body>
 <header>
   <div class="logo_header">
-    <a href="../User Interface/User Leave Home.php"> 
+    <a href="../Approver Interface/Approver home.php"> 
       <img src="/mapecon/Pictures/MAPECON_logo.png" alt="MAPECON Logo">
     </a> 
   </div>
@@ -149,8 +149,8 @@ $user_data = check_login($connection);
     <label for="profile-dropdown-toggle" class="profile-dropdown">
       <img src="/mapecon/Pictures/profile.png" alt="Profile">
       <div class="dropdown-content">
-        <a href="../User Interface/User Profile.php">Profile </a>
-        <a href="../User Interface/User Change Password.php">Change Password</a>
+        <a href="../Approver Interface/Approver Profile.php">Profile </a>
+        <a href="../Approver Interface/Approver Change Password.php">Change Password</a>
         <a href="../sql/logout.php">Logout</a>
       </div>
     </label>
@@ -164,10 +164,13 @@ $user_data = check_login($connection);
 
    <!-- Sidebar -->
    <div class="sidebar" id="sidebar">
-    <a href="/mapecon/User Interface/User Leave Home.php" class="home-sidebar"><i class="fa fa-home"></i> Home</a>
+    <a href="/mapecon/Approver Interface/Approver home.php" class="home-sidebar"><i class="fa fa-home"></i> Home</a>
     <span class="leave-label">NAVIGATE</span>
-    <a href="/mapecon/User Interface/User Leave Form.php" id="active"><i class="fa fa-file-text-o"></i>Leave Application</a>
-    <a href="/mapecon/User Interface/User Leave History.php"><i class="fa fa-file-word-o"></i> Leave History</a>
+    <a href="Pending Leaves.php"><i class="fa fa-file-text-o"></i> Pending Leaves</a>
+    <a href="Approved Leaves.php"><i class="fa fa-file-word-o"></i> Approved Leaves</a>
+    <a href="Declined Leaves.php" class="home-sidebar"><i class="fa fa-file-excel-o"></i> Declined Leaves</a>
+    <a href="/mapecon/Approver Interface/Approver Leave Form.php" id="active"><i class="fa fa-file-text-o"></i>Leave Application</a>
+    <a href="/mapecon/Approver Interface/Approver History.php"><i class="fa fa-file-word-o"></i> Leave History</a>
   </div>
 
   <!-- Overlay -->
@@ -206,7 +209,7 @@ $user_data = check_login($connection);
             <textarea name="reason" id="reason" cols="30" rows="10"></textarea>
         </div>
         <div class="buttons">
-            <button type="button" onclick="window.location.href='/mapecon/User Interface/User Leave Home.php';">Cancel</button>
+            <button type="button" onclick="window.location.href='/mapecon/Approver Interface/Approver home.php';">Cancel</button>
             <!--<button type="submit" name="pdf-btn" id="pdf-btn">Save as PDF</button> -->
             <button type="submit" id="submit-btn">Submit to HR</button>
         </div>
@@ -215,8 +218,6 @@ $user_data = check_login($connection);
 </div>
   
 </div>
-</body>
-
 <script>
 
     function updateTime() {
@@ -310,4 +311,5 @@ $user_data = check_login($connection);
         }
     }
 </script>
+</body>
 </html>

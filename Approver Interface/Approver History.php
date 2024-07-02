@@ -45,7 +45,7 @@ $result = $stmt->get_result();
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>User Leave History</title>
+<title>Approver Leave History</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="/mapecon/Pictures/favicon.png">
 <link rel="stylesheet" href="/mapecon/style3.css">
@@ -55,7 +55,7 @@ $result = $stmt->get_result();
 <body>
 <header>
   <div class="logo_header">
-    <a href="../User Interface/User Leave Home.php"> 
+    <a href="../Approver Interface/Approver home.php"> 
       <img src="/mapecon/Pictures/MAPECON_logo.png" alt="MAPECON Logo">
     </a> 
   </div>
@@ -64,8 +64,7 @@ $result = $stmt->get_result();
     <label for="profile-dropdown-toggle" class="profile-dropdown">
       <img src="/mapecon/Pictures/profile.png" alt="Profile">
       <div class="dropdown-content">
-        <a href="../User Interface/User Profile.php">Profile </a>
-        <a href="../User Interface/User Change Password.php">Change Password</a>
+        <a href="../Approver Interface/Approver Change Password.php">Change Password</a>
         <a href="../sql/logout.php">Logout</a>
       </div>
     </label>
@@ -80,10 +79,13 @@ $result = $stmt->get_result();
   
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
-    <a href="/mapecon/User Interface/User Leave Home.php" class="home-sidebar"><i class="fa fa-home"></i> Home</a>
+    <a href="/mapecon/Approver Interface/Approver home.php" class="home-sidebar"><i class="fa fa-home"></i> Home</a>
     <span class="leave-label">NAVIGATE</span>
-    <a href="/mapecon/User Interface/User Leave Form.php"><i class="fa fa-file-text-o"></i>Leave Application</a>
-    <a href="/mapecon/User Interface/User Leave History.php" id="active"><i class="fa fa-file-word-o"></i> Leave History</a>
+    <a href="Pending Leaves.php"><i class="fa fa-file-text-o"></i> Pending Leaves</a>
+    <a href="Approved Leaves.php"><i class="fa fa-file-word-o"></i> Approved Leaves</a>
+    <a href="Declined Leaves.php" class="home-sidebar"><i class="fa fa-file-excel-o"></i> Declined Leaves</a>
+    <a href="/mapecon/User Interface/Approver Leave Form.php"><i class="fa fa-file-text-o"></i>Leave Application</a>
+    <a href="/mapecon/User Interface/Approver History.php" id="active"><i class="fa fa-file-word-o"></i> Leave History</a>
   </div>
 
   <!-- Overlay -->
@@ -401,12 +403,12 @@ updateTime();
 
   
   
-</script> 
+</script>  
 <footer>
 <div class="footer-bottom">
     &copy; 2024 MAPECON Philippines Inc. | Designed by Your Company
   </div>
-</footer> 
+</footer>
 </body>
 </html>
 <?php

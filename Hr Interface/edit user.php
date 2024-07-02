@@ -156,7 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="department-edit">
         <select name="user_status" id="user_status" required>
           <option value="">Select</option>
-          <option value="HR" <?php echo (isset($row['user_status']) && $row['user_status'] == 'HR') ? 'selected' : ''; ?>>HR</option>
+          <option value="Hr" <?php echo (isset($row['user_status']) && $row['user_status'] == 'Hr') ? 'selected' : ''; ?>>Hr</option>
           <option value="Approver" <?php echo (isset($row['user_status']) && $row['user_status'] == 'Approver') ? 'selected' : ''; ?>>Approver</option>
           <option value="User" <?php echo (isset($row['user_status']) && $row['user_status'] == 'User') ? 'selected' : ''; ?>>User</option>
         </select>
@@ -185,7 +185,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <label for="department">Department:</label>
       <div class="department-edit">
         <select name="department" id="department" required>
-          <option value="">Select</option>
+        <option value="<?php echo $user_data['department']; ?>"><?php echo $user_data['department']; ?></option>
           <option value="Accounting" <?php echo (isset($row['department']) && $row['department'] == 'Accounting') ? 'selected' : ''; ?>>Accounting</option>
     <option value="Audit" <?php echo (isset($row['department']) && $row['department'] == 'Audit') ? 'selected' : ''; ?>>Audit</option>
     <option value="Collection" <?php echo (isset($row['department']) && $row['department'] == 'Collection') ? 'selected' : ''; ?>>Collection</option>
@@ -329,5 +329,10 @@ window.onload = function() {
   fetchSupervisorName();
 };
 </script>
+<footer>
+<div class="footer-bottom">
+    &copy; 2024 MAPECON Philippines Inc. | Designed by Your Company
+  </div>
+</footer>
 </body>
 </html>

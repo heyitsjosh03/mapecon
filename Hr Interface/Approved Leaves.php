@@ -164,7 +164,7 @@ $result = $connection->query($sql);
 </div>
 </div>
 
-
+<button onclick="scrollToTop()" id="scrollToTopBtn" title="Go to top"><i class="fa fa-arrow-up"></i></button>
 <script>
 
   function updateTime() {
@@ -407,5 +407,10 @@ function updateCheckAllStatus() {
 
 </script>
 <script src="script.js"></script>
+<footer>
+<div class="footer-bottom">
+    &copy; 2024 MAPECON Philippines Inc. | Designed by Your Company
+  </div>
+</footer>
 </body>
 </html>

@@ -388,5 +388,10 @@ function scrollToTop() {
 
 
 </script>
+<footer>
+<div class="footer-bottom">
+    &copy; 2024 MAPECON Philippines Inc. | Designed by Your Company
+  </div>
+</footer>
 </body>
 </html>

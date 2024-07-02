@@ -77,7 +77,6 @@ mysqli_close($connection);
   <link rel="shortcut icon" href="/mapecon/Pictures/favicon.png">
   <link rel="stylesheet" href="/mapecon/style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js library -->
-
 </head>
 <body>
 <header>
@@ -115,6 +114,8 @@ mysqli_close($connection);
     <a href="Pending Leaves.php"><i class="fa fa-file-text-o"></i> Pending Leaves</a>
     <a href="Approved Leaves.php"><i class="fa fa-file-word-o"></i> Approved Leaves</a>
     <a href="Declined Leaves.php"><i class="fa fa-file-excel-o"></i> Declined Leaves</a>
+    <a href="Approver Leave Form.php"><i class="fa fa-file-text-o"></i> Leave Application </a>
+    <a href="Approver History.php"><i class="fa fa-file-text-o"></i> Leave History</a>
   </div>
 
   <!-- Overlay -->
@@ -124,7 +125,7 @@ mysqli_close($connection);
   <div class="admin-container">
     <div class="admin-home">
       <div class="dashboard-content">
-        
+      
         <div class="card-container-admin">
           <div class="card-container-wrapper">
             <div class="card" onclick="location.href='/mapecon/Approver Interface/Pending Leaves.php';" style="cursor: pointer;">
@@ -150,6 +151,25 @@ mysqli_close($connection);
             </div>
             <p class="phrase">Declined</p>
           </div>
+          <div class="card-container-wrapper">
+          <div class="card" onclick="location.href='Approver Leave Form.php';" style="cursor: pointer;">
+              <div class="card-content">
+              <img src="/mapecon/Pictures/calendar_icon.png" alt="Leave Filing Icon">
+              </div>
+            </div>
+            <p class="phrase">Leave Application</p>
+          </div>
+
+    <div class="card-container-wrapper">
+      <div class="card" onclick="location.href='Approver History.php';" style="cursor: pointer;">
+        <div class="card-content">
+          <img src="/mapecon/Pictures/history_icon.png" alt="Leave History Icon">
+        </div>
+      </div>
+      <p class="phrase">Leave History</p>
+    </div>
+  </div>
+</div>
         </div>
       </div>
     </div>
@@ -336,6 +356,11 @@ mysqli_close($connection);
     }
   }
 </script>
+<footer>
+<div class="footer-bottom">
+    &copy; 2024 MAPECON Philippines Inc. | Designed by Your Company
+  </div>
+</footer>
 </body>
 </html>
 

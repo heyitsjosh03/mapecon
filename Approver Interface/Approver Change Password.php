@@ -44,7 +44,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+< lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -117,7 +117,6 @@
     </form>
   </div>
 </div>
-</body>
 
 <script>
 
@@ -190,4 +189,11 @@ function updateTime() {
     }
   }
 </script>
+
+<footer>
+<div class="footer-bottom">
+    &copy; 2024 MAPECON Philippines Inc. | Designed by Your Company
+  </div>
+</footer>
+</body>
 </html>

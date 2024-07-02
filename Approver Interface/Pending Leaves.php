@@ -96,6 +96,8 @@ if (!$result) {
     <a href="Pending Leaves.php" id="active"><i class="fa fa-file-text-o"></i> Pending Leaves</a>
     <a href="Approved Leaves.php"><i class="fa fa-file-word-o"></i> Approved Leaves</a>
     <a href="Declined Leaves.php"><i class="fa fa-file-excel-o"></i> Declined Leaves</a>
+    <a href="Approver Leave Form.php"><i class="fa fa-file-text-o"></i> Leave Application </a>
+    <a href="Approver History.php"><i class="fa fa-file-text-o"></i> Leave History</a>
   </div>
 
   <!-- Overlay -->
@@ -237,6 +239,79 @@ if (!$result) {
 </div>
 
 <script>
+
+  
+function updateTime() {
+    
+    var today = new Date();
+    var time = today.toLocaleTimeString();
+    var options = { month: 'long', day: 'numeric', year: 'numeric' };
+    var date = today.toLocaleDateString("en-US", options); // May 12, 2024
+    
+    document.getElementById("date-time").innerHTML = "Today is " +  date + " | " + time;
+    setTimeout(updateTime, 1000); // Update time every second
+  }
+
+  updateTime();
+
+  function toggleNav() {
+    var sidebar = document.getElementById("sidebar");
+    var content = document.getElementById("content");
+    var overlay = document.getElementById("overlay");
+    var openButton = document.querySelector(".openbtn");
+  
+    if (sidebar.style.width === "250px") {
+      closeSidebar();
+    } else {
+      openSidebar();
+    }
+  }
+  
+  function openSidebar() {
+    var sidebar = document.getElementById("sidebar");
+    var content = document.getElementById("content");
+    var overlay = document.getElementById("overlay");
+    var openButton = document.querySelector(".openbtn");
+  
+    sidebar.style.width = "250px";
+    sidebar.style.visibility = "visible";
+    openButton.innerHTML = "&#10005;"; // Change icon to close symbol
+  
+    if (window.innerWidth <= 768) { // Mobile and tablet breakpoint
+      overlay.style.display = "block"; // Display overlay
+    } else {
+      content.style.marginLeft = "250px"; // Move content to the right
+    }
+  }
+  
+  function closeSidebar() {
+    var sidebar = document.getElementById("sidebar");
+    var content = document.getElementById("content");
+    var overlay = document.getElementById("overlay");
+    var openButton = document.querySelector(".openbtn");
+  
+    sidebar.style.width = "0";
+    sidebar.style.visibility = "hidden";
+    openButton.innerHTML = "&#9776;"; // Change icon to hamburger
+  
+    if (window.innerWidth <= 768) { // Mobile and tablet breakpoint
+      overlay.style.display = "none"; // Hide overlay
+    } else {
+      content.style.marginLeft = "0"; // Move content back to its original position
+    }
+  }
+  
+  // Close sidebar when clicking outside it
+  window.onclick = function(event) {
+    if (!event.target.matches('.openbtn') && !event.target.matches('#sidebar')) {
+      if (document.getElementById("sidebar").style.width === "250px") {
+        closeSidebar();
+      }
+    }
+  }
+  
+
+
   function openModal(action, id) {
     if (action === 'approve') {
         document.getElementById('approveApplicationId').value = id;
@@ -324,5 +399,68 @@ if (!$result) {
     }
   }
 </script>
+<script>
+  // JavaScript functions for sidebar toggling
+  function toggleNav() {
+    var sidebar = document.getElementById("sidebar");
+    var content = document.getElementById("content");
+    var overlay = document.getElementById("overlay");
+    var openButton = document.querySelector(".openbtn");
+
+    if (sidebar.style.width === "250px") {
+      closeSidebar();
+    } else {
+      openSidebar();
+    }
+  }
+  
+  function openSidebar() {
+    var sidebar = document.getElementById("sidebar");
+    var content = document.getElementById("content");
+    var overlay = document.getElementById("overlay");
+    var openButton = document.querySelector(".openbtn");
+
+    sidebar.style.width = "250px";
+    sidebar.style.visibility = "visible";
+    openButton.innerHTML = "&#10005;"; // Change icon to close symbol
+
+    if (window.innerWidth <= 768) { // Mobile and tablet breakpoint
+      overlay.style.display = "block"; // Display overlay
+    } else {
+      content.style.marginLeft = "250px"; // Move content to the right
+    }
+  }
+  
+  function closeSidebar() {
+    var sidebar = document.getElementById("sidebar");
+    var content = document.getElementById("content");
+    var overlay = document.getElementById("overlay");
+    var openButton = document.querySelector(".openbtn");
+
+    sidebar.style.width = "0";
+    sidebar.style.visibility = "hidden";
+    openButton.innerHTML = "&#9776;"; // Change icon to hamburger
+
+    if (window.innerWidth <= 768) { // Mobile and tablet breakpoint
+      overlay.style.display = "none"; // Hide overlay
+    } else {
+      content.style.marginLeft = "0"; // Move content back to its original position
+    }
+  }
+  
+  // Close sidebar when clicking outside it
+  window.onclick = function(event) {
+    if (!event.target.matches('.openbtn') && !event.target.matches('#sidebar')) {
+      if (document.getElementById("sidebar").style.width === "250px") {
+        closeSidebar();
+      }
+    }
+  }
+</script>
+<footer>
+<div class="footer-bottom">
+    &copy; 2024 MAPECON Philippines Inc. | Designed by Your Company
+  </div>
+</footer>
 </body>
 </html>

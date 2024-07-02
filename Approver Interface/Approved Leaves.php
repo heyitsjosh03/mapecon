@@ -90,6 +90,8 @@ $result = $connection->query($sql);
     <a href="Pending Leaves.php"><i class="fa fa-file-text-o"></i> Pending Leaves</a>
     <a href="Approved Leaves.php" id="active"><i class="fa fa-file-word-o"></i> Approved Leaves</a>
     <a href="Declined Leaves.php"><i class="fa fa-file-excel-o"></i> Declined Leaves</a>
+    <a href="Approver Leave Form.php"><i class="fa fa-file-text-o"></i> Leave Application </a>
+    <a href="Approver History.php"><i class="fa fa-file-text-o"></i> Leave History</a>
   </div>
 
   <!-- Overlay -->
@@ -426,5 +428,10 @@ function updateCheckAllStatus() {
 
 
 </script>
+<footer>
+<div class="footer-bottom">
+    &copy; 2024 MAPECON Philippines Inc. | Designed by Your Company
+  </div>
+</footer>
 </body>
 </html>
