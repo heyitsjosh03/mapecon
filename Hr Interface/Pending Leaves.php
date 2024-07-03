@@ -10,7 +10,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT l.*, UCASE(CONCAT(u.lastname, ', ', u.firstname)) AS full_name, u.department
+$sql = "SELECT l.*, UCASE(CONCAT(u.lastname, ' ', u.firstname)) AS full_name, u.department
         FROM leave_applications AS l 
         INNER JOIN users AS u ON l.user_id = u.user_id
         ORDER BY l.id DESC";
